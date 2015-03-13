@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- <properties resource="mybatis.properties" /> -->
+    <!-- *若工程项目不在D:/develop/app118，此处修改为自已工程所在的路径 *
+    <properties url="file:////G:/andoid/awork1/app118/src/mybatis.properties" />-->
+    <properties url="file:////F:/develop/app118/src/mybatis.properties" />
+    
+	<classPathEntry location="${project.root}/WebContent/WEB-INF/lib/mysql-connector-java-5.1.18-bin.jar" />
+	
+	<context id="MBG" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${jdbc.driverClass}"
+			connectionURL="${jdbc.jdbcUrl}" userId="${jdbc.user}"
+			password="${jdbc.password}">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		
+		<javaModelGenerator targetPackage="cn.app118.model"
+			targetProject="../src">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		
+		<sqlMapGenerator targetPackage="cn.app118.mybatisxml"
+			targetProject="../src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		
+		<!-- ***此处的targetPackage修改为对应DAO所在的包*** -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="cn.app118.dao.${mybatis.dao.moduleName}" targetProject="../src">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+ 
+        <table tableName="${mybatis.tableName}"  
+	           enableCountByExample="false"
+		       enableUpdateByExample="false"
+		       enableDeleteByExample="false"
+		       enableSelectByExample="false"
+	           domainObjectName="${mybatis.domainObjectName}"/> 
+	</context>
+
+</generatorConfiguration>
