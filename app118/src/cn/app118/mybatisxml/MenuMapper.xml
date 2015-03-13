@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.app118.dao.menu.MenuMapper" >
+  <resultMap id="BaseResultMap" type="cn.app118.model.Menu" >
+    <id column="menu_id" property="menuId" jdbcType="INTEGER" />
+    <result column="menu_code" property="menuCode" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_title" property="menuTitle" jdbcType="VARCHAR" />
+    <result column="menu_pid" property="menuPid" jdbcType="INTEGER" />
+    <result column="menu_folder_flag" property="menuFolderFlag" jdbcType="VARCHAR" />
+    <result column="menu_sort" property="menuSort" jdbcType="VARCHAR" />
+    <result column="menu_represent" property="menuRepresent" jdbcType="VARCHAR" />
+    <result column="sort_no" property="sortNo" jdbcType="INTEGER" />
+    <result column="menu_level" property="menuLevel" jdbcType="INTEGER" />
+    <result column="menu_path" property="menuPath" jdbcType="VARCHAR" />
+    <result column="isactive" property="isactive" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    menu_id, menu_code, menu_name, menu_title, menu_pid, menu_folder_flag, menu_sort, 
+    menu_represent, sort_no, menu_level, menu_path, isactive, user_id, create_time, remark, 
+    menu_icon, remark1
+  </sql>
+  <sql id="Base_Column_List_RoleId" >
+    m.menu_id, m.menu_code, m.menu_name, m.menu_title, m.menu_pid, m.menu_folder_flag, m.menu_sort, 
+    m.menu_represent, m.sort_no, m.menu_level, m.menu_path, m.isactive, m.user_id, m.create_time, m.remark, 
+    m.menu_icon, m.remark1
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_menu
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.app118.model.Menu" >
+    insert into sys_menu (menu_id, menu_code, menu_name, 
+      menu_title, menu_pid, menu_folder_flag, 
+      menu_sort, menu_represent, sort_no, 
+      menu_level, menu_path, isactive, 
+      user_id, create_time, remark, 
+      menu_icon, remark1)
+    values (#{menuId,jdbcType=INTEGER}, #{menuCode,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, 
+      #{menuTitle,jdbcType=VARCHAR}, #{menuPid,jdbcType=INTEGER}, #{menuFolderFlag,jdbcType=VARCHAR}, 
+      #{menuSort,jdbcType=VARCHAR}, #{menuRepresent,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, 
+      #{menuLevel,jdbcType=INTEGER}, #{menuPath,jdbcType=VARCHAR}, #{isactive,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{menuIcon,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.app118.model.Menu" >
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="menuCode != null" >
+        menu_code,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="menuTitle != null" >
+        menu_title,
+      </if>
+      <if test="menuPid != null" >
+        menu_pid,
+      </if>
+      <if test="menuFolderFlag != null" >
+        menu_folder_flag,
+      </if>
+      <if test="menuSort != null" >
+        menu_sort,
+      </if>
+      <if test="menuRepresent != null" >
+        menu_represent,
+      </if>
+      <if test="sortNo != null" >
+        sort_no,
+      </if>
+      <if test="menuLevel != null" >
+        menu_level,
+      </if>
+      <if test="menuPath != null" >
+        menu_path,
+      </if>
+      <if test="isactive != null" >
+        isactive,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="menuIcon != null" >
+        menu_icon,
+      </if>
+       <if test="remark1 != null" >
+        remark1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="menuCode != null" >
+        #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuTitle != null" >
+        #{menuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="menuPid != null" >
+        #{menuPid,jdbcType=INTEGER},
+      </if>
+      <if test="menuFolderFlag != null" >
+        #{menuFolderFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="menuSort != null" >
+        #{menuSort,jdbcType=VARCHAR},
+      </if>
+      <if test="menuRepresent != null" >
+        #{menuRepresent,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="menuLevel != null" >
+        #{menuLevel,jdbcType=INTEGER},
+      </if>
+      <if test="menuPath != null" >
+        #{menuPath,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIcon != null" >
+        #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.app118.model.Menu" >
+    update sys_menu
+    <set >
+      <if test="menuCode != null" >
+        menu_code = #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuTitle != null" >
+        menu_title = #{menuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="menuPid != null" >
+        menu_pid = #{menuPid,jdbcType=INTEGER},
+      </if>
+      <if test="menuFolderFlag != null" >
+        menu_folder_flag = #{menuFolderFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="menuSort != null" >
+        menu_sort = #{menuSort,jdbcType=VARCHAR},
+      </if>
+      <if test="menuRepresent != null" >
+        menu_represent = #{menuRepresent,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="menuLevel != null" >
+        menu_level = #{menuLevel,jdbcType=INTEGER},
+      </if>
+      <if test="menuPath != null" >
+        menu_path = #{menuPath,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        isactive = #{isactive,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIcon != null" >
+        menu_icon = #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.app118.model.Menu" >
+    update sys_menu
+    set menu_code = #{menuCode,jdbcType=VARCHAR},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_title = #{menuTitle,jdbcType=VARCHAR},
+      menu_pid = #{menuPid,jdbcType=INTEGER},
+      menu_folder_flag = #{menuFolderFlag,jdbcType=VARCHAR},
+      menu_sort = #{menuSort,jdbcType=VARCHAR},
+      menu_represent = #{menuRepresent,jdbcType=VARCHAR},
+      sort_no = #{sortNo,jdbcType=INTEGER},
+      menu_level = #{menuLevel,jdbcType=INTEGER},
+      menu_path = #{menuPath,jdbcType=VARCHAR},
+      isactive = #{isactive,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      menu_icon = #{menuIcon,jdbcType=VARCHAR}，
+      remark1 = #{remark1,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+ 
+  <select id="selectMenuBySelective"  resultMap="BaseResultMap"  parameterType="cn.app118.model.Menu" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    <where >
+      <if test="menuCode != null" >
+        menu_code = #{menuCode,jdbcType=VARCHAR}
+      </if>
+      <if test="menuName != null" >
+        and menu_name = #{menuName,jdbcType=VARCHAR}
+      </if>
+      <if test="menuTitle != null" >
+        and menu_title = #{menuTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="menuPid != null" >
+        and menu_pid = #{menuPid,jdbcType=INTEGER}
+      </if>
+      <if test="menuFolderFlag != null" >
+        and menu_folder_flag = #{menuFolderFlag,jdbcType=VARCHAR}
+      </if>
+      <if test="menuSort != null" >
+        and  menu_sort = #{menuSort,jdbcType=VARCHAR}
+      </if>
+      <if test="menuRepresent != null" >
+        and menu_represent = #{menuRepresent,jdbcType=VARCHAR}
+      </if>
+      <if test="sortNo != null" >
+        and sort_no = #{sortNo,jdbcType=INTEGER}
+      </if>
+      <if test="menuLevel != null" >
+        and menu_level = #{menuLevel,jdbcType=INTEGER}
+      </if>
+      <if test="menuPath != null" >
+        and menu_path = #{menuPath,jdbcType=VARCHAR}
+      </if>
+      <if test="isactive != null" >
+        and isactive = #{isactive,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null" >
+        and user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remark != null" >
+        and remark = #{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="menuIcon != null" >
+        and menu_icon = #{menuIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="menuId != null" >
+        and menu_id = #{menuId,jdbcType=INTEGER}
+      </if>
+      <if test="remark1 != null" >
+        and remark1 = #{remark1,jdbcType=VARCHAR}
+      </if>
+    </where>
+	 order by menu_pid, menu_sort 
+  </select>
+  <select id="selectMenuByRoleId"  resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List_RoleId" />
+    from  sys_menu m ,sys_role_menu_rela r 
+    where r.menu_id=m.menu_id and r.role_id= #{roleId,jdbcType=INTEGER}
+	order by menu_id 
+  </select>
+  
+  <!-- 根据用户标识，查询用户所属角色，根据角色，查询用户授予的菜单资源 -->
+  <select id="selectBySelectiveByUserId"  resultMap="BaseResultMap"  parameterType="java.util.Map">
+    select 
+    <include refid="Base_Column_List_RoleId" />
+    from  sys_menu m where m.menu_id in
+	(
+		select menu_id from sys_role_menu_rela where role_id in
+		(
+			select role_id from sys_user_role_rela where user_id=#{userId,jdbcType=INTEGER}
+		)
+	)
+	order by m.menu_pid, m.menu_sort 
+  </select>
+  
+  
+</mapper>

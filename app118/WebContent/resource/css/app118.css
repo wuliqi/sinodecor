@@ -1,0 +1,7 @@
+.tdtitle{ font-size:12px; text-align:right; line-height:24px; color:#666666; width:10%;padding:3px }
+.tdtext{ text-align:left; line-height:24px ;padding:3px;width:20%; }
+.tdtext input{border: #d2d2d2 solid 1px ;height:23px; line-height:23px;width:100%;word-wrap:break-word;word-break:break-all;}
+.tdtext select {border: #d2d2d2 solid 1px ;  height:22px; line-height:20px;width:100%;}
+.tdtext textarea{ border: #d2d2d2 1px solid;  line-height:20px;width:100%;word-wrap:break-word;word-break:break-all;}
+.tdtext .grey{border: #d2d2d2 1px solid;  line-height:20px;width:100%;color:#333;word-wrap:break-word;word-break:break-all;}
+.tdtextl{border: #d2d2d2 1px solid;  line-height:20px;width:100%;color:#333;word-wrap:break-word;word-break:break-all;}

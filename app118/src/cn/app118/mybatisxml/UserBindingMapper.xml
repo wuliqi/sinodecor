@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.app118.dao.user.UserBindingMapper" >
+  <resultMap id="BaseResultMap" type="cn.app118.model.UserBinding" >
+    <id column="ub_id" property="ubId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="binding_type" property="bindingType" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+     <result column="os_type" property="osType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ub_id, user_id, open_id, binding_type, create_time,os_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_binding
+    where ub_id = #{ubId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_user_binding
+    where ub_id = #{ubId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.app118.model.UserBinding" useGeneratedKeys="true" keyProperty="ubId">
+    insert into sys_user_binding (ub_id, user_id, open_id, 
+      binding_type, create_time,os_type)
+    values (#{ubId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, 
+      #{bindingType,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP}, #{osType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.app118.model.UserBinding" >
+    insert into sys_user_binding
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ubId != null" >
+        ub_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="bindingType != null" >
+        binding_type,
+      </if>
+      <if test="createTime != null">
+		create_time,
+	  </if>
+      <if test="osType != null">
+		os_type,
+	  </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ubId != null" >
+        #{ubId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingType != null" >
+        #{bindingType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+		#{createTime,jdbcType=TIMESTAMP},
+	  </if>
+      <if test="osType != null">
+		#{osType,jdbcType=TIMESTAMP},
+	  </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.app118.model.UserBinding" >
+    update sys_user_binding
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingType != null" >
+        binding_type = #{bindingType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+	  </if>
+      <if test="osType != null">
+		os_type = #{osType,jdbcType=TIMESTAMP},
+	  </if>
+    </set>
+    where ub_id = #{ubId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.app118.model.UserBinding" >
+    update sys_user_binding
+    set user_id = #{userId,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      binding_type = #{bindingType,jdbcType=VARCHAR},
+      os_type = #{osType,jdbcType=VARCHAR}
+    where ub_id = #{ubId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectBySelective"  resultMap="BaseResultMap"  parameterType="cn.app118.model.UserBinding" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_binding
+    <where >
+      <if test="userId != null" >
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="openId != null" >
+       and  open_id = #{openId,jdbcType=VARCHAR}
+      </if>
+      <if test="bindingType != null" >
+       and  binding_type = #{bindingType,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+		and create_time = #{createTime,jdbcType=TIMESTAMP}
+	  </if>
+      <if test="ubId != null">
+		and ub_id = #{ubId,jdbcType=INTEGER}
+	  </if>
+      <if test="osType != null">
+		and os_type = #{osType,jdbcType=VARCHAR}
+	  </if>
+    </where>
+  </select>
+  <!-- 根据车牌号，获取绑定的用户绑定信息 -->
+  <select id="selectUserBingingByDeviceName"  resultMap="BaseResultMap"  parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_binding
+   	where user_id in
+   	(
+	  select 
+     	u.user_id
+	    from  sys_air_device d ,sys_user u,sys_device_user_rela r 
+	    where d.device_id=r.device_id and u.user_id=r.user_id 
+	    and d.device_name= #{deviceName,jdbcType=VARCHAR}
+	)
+  </select>
+</mapper>

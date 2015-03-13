@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.app118.dao.code.CodeMapper" >
+  <resultMap id="BaseResultMap" type="cn.app118.model.Code" >
+    <id column="code_id" property="codeId" jdbcType="INTEGER" />
+    <result column="code_name" property="codeName" jdbcType="VARCHAR" />
+    <result column="p_code" property="pCode" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+    <result column="code_value" property="codeValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    code_id, code_name, p_code, status, type, sort, descr, create_time, remark1, remark2,code_value
+  </sql>
+  <sql id="Base_Column_List_Pager" >
+    code_id codeId, code_name codeName, p_code pCode, status status, type type, sort sort, descr descr, 
+    create_time  createTime, remark1 remark1, remark2 remark2,code_value codeValue
+  </sql>
+  <sql id="pager">
+      limit ${start},${len}
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_code
+    where code_id = #{codeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_code
+    where code_id = #{codeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.app118.model.Code" >
+    insert into sys_code (code_id, code_name, p_code, 
+      status, type, sort, 
+      descr, create_time, remark1, 
+      remark2,code_value)
+    values (#{codeId,jdbcType=INTEGER}, #{codeName,jdbcType=VARCHAR}, #{pCode,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{descr,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR}, #{codeValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.app118.model.Code" >
+    insert into sys_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codeId != null" >
+        code_id,
+      </if>
+      <if test="codeName != null" >
+        code_name,
+      </if>
+      <if test="pCode != null" >
+        p_code,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+      <if test="codeValue != null" >
+        code_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codeId != null" >
+        #{codeId,jdbcType=INTEGER},
+      </if>
+      <if test="codeName != null" >
+        #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null" >
+        #{pCode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="codeValue != null" >
+        #{code_value,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.app118.model.Code" >
+    update sys_code
+    <set >
+      <if test="codeName != null" >
+        code_name = #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null" >
+        p_code = #{pCode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="codeValue != null" >
+        code_value = #{codeValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where code_id = #{codeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.app118.model.Code" >
+    update sys_code
+    set code_name = #{codeName,jdbcType=VARCHAR},
+      p_code = #{pCode,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      descr = #{descr,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      code_value = #{codeValue,jdbcType=VARCHAR}
+    where code_id = #{codeId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 分页查询 --> 
+  <select id="selectByPager"  resultType="java.util.Map" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List_Pager" />
+    from sys_code
+ 	<where >
+      <if test="codeName != null" >
+        and instr(code_name,#{codeName,jdbcType=VARCHAR})>0
+      </if>
+      <if test="pCode != null" >
+       and  p_code = #{pCode,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        and status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null" >
+        and type = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="noHepatype != null" >
+        and type !=2 and type!=4
+      </if>
+      <if test="sort != null" >
+       and  sort = #{sort,jdbcType=INTEGER}
+      </if>
+      <if test="descr != null" >
+        and descr = #{descr,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remark1 != null" >
+        and remark1 = #{remark1,jdbcType=VARCHAR}
+      </if>
+      <if test="remark2 != null" >
+        and remark2 = #{remark2,jdbcType=VARCHAR}
+      </if>
+      <if test="codeValue != null" >
+        and code_value = #{codeValue,jdbcType=VARCHAR}
+      </if>
+      <if test="codeId != null" >
+         and code_id = #{codeId,jdbcType=INTEGER}
+      </if>
+       <if test="fromCreateTime != null" >
+        and create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="toCreateTime != null" >
+          <![CDATA[
+        	and create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+           ]]>
+      </if>
+    </where>
+    <if test="orderBy != null" >
+      ${orderBy}
+     </if>
+    <include refid="pager" />
+  </select>
+  
+  <!-- 分页查询总记录数 -->
+  <select id="selectByPagerCount"  resultType="java.lang.Integer"  parameterType="java.util.Map" >
+    select 
+    count(code_id)
+    from sys_code
+   <where >
+      <if test="codeName != null" >
+        and instr(code_name,#{codeName,jdbcType=VARCHAR})>0
+      </if>
+      <if test="pCode != null" >
+       and  p_code = #{pCode,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        and status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null" >
+        and type = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="noHepatype != null" >
+        and type !=2 and type!=4
+      </if>
+      <if test="sort != null" >
+       and  sort = #{sort,jdbcType=INTEGER}
+      </if>
+      <if test="descr != null" >
+        and descr = #{descr,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remark1 != null" >
+        and remark1 = #{remark1,jdbcType=VARCHAR}
+      </if>
+      <if test="remark2 != null" >
+        and remark2 = #{remark2,jdbcType=VARCHAR}
+      </if>
+      <if test="codeValue != null" >
+        and code_value = #{codeValue,jdbcType=VARCHAR}
+      </if>
+      <if test="codeId != null" >
+         and code_id = #{codeId,jdbcType=INTEGER}
+      </if>
+       <if test="fromCreateTime != null" >
+        and create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="toCreateTime != null" >
+          <![CDATA[
+        	and create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+           ]]>
+      </if>
+    </where>
+  </select>
+  
+   <select id="selectBySelective"  resultType="java.util.Map" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List_Pager" />
+    from sys_code
+    <where >
+      <if test="codeName != null" >
+        and code_name=#{codeName,jdbcType=VARCHAR}
+      </if>
+      <if test="pCode != null" >
+       and  p_code = #{pCode,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        and status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null" >
+        and type = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="sort != null" >
+       and  sort = #{sort,jdbcType=INTEGER}
+      </if>
+      <if test="descr != null" >
+        and descr = #{descr,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remark1 != null" >
+        and remark1 = #{remark1,jdbcType=VARCHAR}
+      </if>
+      <if test="remark2 != null" >
+        and remark2 = #{remark2,jdbcType=VARCHAR}
+      </if>
+      <if test="codeValue != null" >
+        and code_value = #{codeValue,jdbcType=VARCHAR}
+      </if>
+      <if test="codeId != null" >
+         and code_id = #{codeId,jdbcType=INTEGER}
+      </if>
+      <!-- 只查询在设备中已绑定的汽车品牌 -->
+      <if test="carBrand != null" >
+         and code_id in (SELECT  distinct car_brand from sys_air_device )
+      </if>
+      <!-- 只查询在设备中已绑定的汽车车系 -->
+      <if test="carSeries != null" >
+         and code_id in (SELECT  distinct car_series from sys_air_device )
+      </if>
+      <!-- 只查询在设备中已绑定的汽车型号 -->
+      <if test="carType != null" >
+         and code_id in (SELECT  distinct car_type from sys_air_device )
+      </if>
+    </where>
+  </select>
+  
+</mapper>

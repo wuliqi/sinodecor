@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.app118.dao.weather.WeatherMapper" >
+  <resultMap id="BaseResultMap" type="cn.app118.model.Weather" >
+    <id column="weather_id" property="weatherId" jdbcType="INTEGER" />
+    <result column="aqi" property="aqi" jdbcType="VARCHAR" />
+    <result column="co" property="co" jdbcType="VARCHAR" />
+    <result column="no2" property="no2" jdbcType="VARCHAR" />
+    <result column="o3" property="o3" jdbcType="VARCHAR" />
+    <result column="so2" property="so2" jdbcType="VARCHAR" />
+    <result column="pm10" property="pm10" jdbcType="VARCHAR" />
+    <result column="pm25" property="pm25" jdbcType="VARCHAR" />
+    <result column="quality" property="quality" jdbcType="VARCHAR" />
+    <result column="humidity" property="humidity" jdbcType="VARCHAR" />
+    <result column="temperature" property="temperature" jdbcType="VARCHAR" />
+    <result column="weather_text" property="weatherText" jdbcType="VARCHAR" />
+    <result column="wind_scale" property="windScale" jdbcType="VARCHAR" />
+    <result column="us_embassy_aqi" property="usEmbassyAqi" jdbcType="VARCHAR" />
+    <result column="think_page_weather" property="thinkPageWeather" jdbcType="VARCHAR" />
+    <result column="last_update" property="lastUpdate" jdbcType="TIMESTAMP" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="us_embassy_aqi_time" property="usEmbassyAqiTime" jdbcType="TIMESTAMP" />
+    <result column="us_embassy_aqi_pm25" property="usEmbassyAqiPm25" jdbcType="VARCHAR" />
+    <result column="forecast" property="forecast" jdbcType="VARCHAR" />
+    <result column="weather_code" property="weatherCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    max(weather_id) weather_id, aqi, co, no2, o3, so2, pm10, pm25, quality, humidity, temperature, weather_text, 
+    wind_scale, us_embassy_aqi, think_page_weather, last_update, remark1, remark2,user_id,
+    us_embassy_aqi_time,us_embassy_aqi_pm25,forecast,weather_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_weather
+    where weather_id = #{weatherId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_weather
+    where weather_id = #{weatherId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByLastUpdate" parameterType="java.lang.String" >
+      <![CDATA[
+    		delete from sys_weather where  last_update < #{lastUpdate,jdbcType=TIMESTAMP}
+      ]]>
+  </delete>
+  <insert id="insert" parameterType="cn.app118.model.Weather" >
+    insert into sys_weather (weather_id, aqi, co, 
+      no2, o3, so2, pm10, 
+      pm25, quality, humidity, 
+      temperature, weather_text, wind_scale, 
+      us_embassy_aqi, think_page_weather, last_update, 
+      remark1, remark2,user_id,us_embassy_aqi_time,us_embassy_aqi_pm25,forecast,weather_code)
+    values (#{weatherId,jdbcType=INTEGER}, #{aqi,jdbcType=VARCHAR}, #{co,jdbcType=VARCHAR}, 
+      #{no2,jdbcType=VARCHAR}, #{o3,jdbcType=VARCHAR}, #{so2,jdbcType=VARCHAR}, #{pm10,jdbcType=VARCHAR}, 
+      #{pm25,jdbcType=VARCHAR}, #{quality,jdbcType=VARCHAR}, #{humidity,jdbcType=VARCHAR}, 
+      #{temperature,jdbcType=VARCHAR}, #{weatherText,jdbcType=VARCHAR}, #{windScale,jdbcType=VARCHAR}, 
+      #{usEmbassyAqi,jdbcType=VARCHAR}, #{thinkPageWeather,jdbcType=VARCHAR}, #{lastUpdate,jdbcType=TIMESTAMP}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
+      #{usEmbassyAqiTime,jdbcType=TIMESTAMP}, #{usEmbassyAqiPm25,jdbcType=VARCHAR}, 
+      #{forecast,jdbcType=VARCHAR}, #{weatherCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.app118.model.Weather" >
+    insert into sys_weather
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="weatherId != null" >
+        weather_id,
+      </if>
+      <if test="aqi != null" >
+        aqi,
+      </if>
+      <if test="co != null" >
+        co,
+      </if>
+      <if test="no2 != null" >
+        no2,
+      </if>
+      <if test="o3 != null" >
+        o3,
+      </if>
+      <if test="so2 != null" >
+        so2,
+      </if>
+      <if test="pm10 != null" >
+        pm10,
+      </if>
+      <if test="pm25 != null" >
+        pm25,
+      </if>
+      <if test="quality != null" >
+        quality,
+      </if>
+      <if test="humidity != null" >
+        humidity,
+      </if>
+      <if test="temperature != null" >
+        temperature,
+      </if>
+      <if test="weatherText != null" >
+        weather_text,
+      </if>
+      <if test="windScale != null" >
+        wind_scale,
+      </if>
+      <if test="usEmbassyAqi != null" >
+        us_embassy_aqi,
+      </if>
+      <if test="thinkPageWeather != null" >
+        think_page_weather,
+      </if>
+      <if test="lastUpdate != null" >
+        last_update,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="usEmbassyAqiTime != null" >
+        us_embassy_aqi_time,
+      </if>
+      <if test="usEmbassyAqiPm25 != null" >
+        us_embassy_aqi_pm25,
+      </if>
+      <if test="forecast != null" >
+        forecast,
+      </if>
+      <if test="weatherCode != null" >
+        weather_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="weatherId != null" >
+        #{weatherId,jdbcType=INTEGER},
+      </if>
+      <if test="aqi != null" >
+        #{aqi,jdbcType=VARCHAR},
+      </if>
+      <if test="co != null" >
+        #{co,jdbcType=VARCHAR},
+      </if>
+      <if test="no2 != null" >
+        #{no2,jdbcType=VARCHAR},
+      </if>
+      <if test="o3 != null" >
+        #{o3,jdbcType=VARCHAR},
+      </if>
+      <if test="so2 != null" >
+        #{so2,jdbcType=VARCHAR},
+      </if>
+      <if test="pm10 != null" >
+        #{pm10,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25 != null" >
+        #{pm25,jdbcType=VARCHAR},
+      </if>
+      <if test="quality != null" >
+        #{quality,jdbcType=VARCHAR},
+      </if>
+      <if test="humidity != null" >
+        #{humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="weatherText != null" >
+        #{weatherText,jdbcType=VARCHAR},
+      </if>
+      <if test="windScale != null" >
+        #{windScale,jdbcType=VARCHAR},
+      </if>
+      <if test="usEmbassyAqi != null" >
+        #{usEmbassyAqi,jdbcType=VARCHAR},
+      </if>
+      <if test="thinkPageWeather != null" >
+        #{thinkPageWeather,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdate != null" >
+        #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="usEmbassyAqiTime != null" >
+        #{usEmbassyAqiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usEmbassyAqiPm25 != null" >
+        #{usEmbassyAqiPm25,jdbcType=VARCHAR},
+      </if>
+      <if test="forecast != null" >
+        #{forecast,jdbcType=VARCHAR},
+      </if>
+      <if test="weatherCode != null" >
+        #{weatherCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.app118.model.Weather" >
+    update sys_weather
+    <set >
+      <if test="aqi != null" >
+        aqi = #{aqi,jdbcType=VARCHAR},
+      </if>
+      <if test="co != null" >
+        co = #{co,jdbcType=VARCHAR},
+      </if>
+      <if test="no2 != null" >
+        no2 = #{no2,jdbcType=VARCHAR},
+      </if>
+      <if test="o3 != null" >
+        o3 = #{o3,jdbcType=VARCHAR},
+      </if>
+      <if test="so2 != null" >
+        so2 = #{so2,jdbcType=VARCHAR},
+      </if>
+      <if test="pm10 != null" >
+        pm10 = #{pm10,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25 != null" >
+        pm25 = #{pm25,jdbcType=VARCHAR},
+      </if>
+      <if test="quality != null" >
+        quality = #{quality,jdbcType=VARCHAR},
+      </if>
+      <if test="humidity != null" >
+        humidity = #{humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        temperature = #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="weatherText != null" >
+        weather_text = #{weatherText,jdbcType=VARCHAR},
+      </if>
+      <if test="windScale != null" >
+        wind_scale = #{windScale,jdbcType=VARCHAR},
+      </if>
+      <if test="usEmbassyAqi != null" >
+        us_embassy_aqi = #{usEmbassyAqi,jdbcType=VARCHAR},
+      </if>
+      <if test="thinkPageWeather != null" >
+        think_page_weather = #{thinkPageWeather,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdate != null" >
+        last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id=#{userId,jdbcType=INTEGER},
+      </if>
+      <if test="usEmbassyAqiTime != null" >
+         us_embassy_aqi_time = #{usEmbassyAqiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usEmbassyAqiPm25 != null" >
+         us_embassy_aqi_pm25 = #{usEmbassyAqiPm25,jdbcType=VARCHAR},
+      </if>
+      <if test="forecast != null" >
+         forecast = #{forecast,jdbcType=VARCHAR},
+      </if>
+      <if test="weatherCode != null" >
+         weather_code = #{weatherCode,jdbcType=VARCHAR},
+      </if>
+     
+    </set>
+    where weather_id = #{weatherId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.app118.model.Weather" >
+    update sys_weather
+    set aqi = #{aqi,jdbcType=VARCHAR},
+      co = #{co,jdbcType=VARCHAR},
+      no2 = #{no2,jdbcType=VARCHAR},
+      o3 = #{o3,jdbcType=VARCHAR},
+      so2 = #{so2,jdbcType=VARCHAR},
+      pm10 = #{pm10,jdbcType=VARCHAR},
+      pm25 = #{pm25,jdbcType=VARCHAR},
+      quality = #{quality,jdbcType=VARCHAR},
+      humidity = #{humidity,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=VARCHAR},
+      weather_text = #{weatherText,jdbcType=VARCHAR},
+      wind_scale = #{windScale,jdbcType=VARCHAR},
+      us_embassy_aqi = #{usEmbassyAqi,jdbcType=VARCHAR},
+      think_page_weather = #{thinkPageWeather,jdbcType=VARCHAR},
+      last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      us_embassy_aqi_time = #{usEmbassyAqiTime,jdbcType=TIMESTAMP},
+      us_embassy_aqi_pm25 = #{usEmbassyAqiTime,jdbcType=VARCHAR},
+      forecast = #{forecast,jdbcType=VARCHAR},
+      weather_code = #{weatherCode,jdbcType=VARCHAR}
+    where weather_id = #{weatherId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectBySelective"  resultMap="BaseResultMap"   parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_weather
+    <where >
+      <if test="aqi != null" >
+        aqi = #{aqi,jdbcType=VARCHAR}
+      </if>
+      <if test="co != null" >
+        and co = #{co,jdbcType=VARCHAR}
+      </if>
+      <if test="no2 != null" >
+        and no2 = #{no2,jdbcType=VARCH}
+      </if>
+      <if test="o3 != null" >
+        and o3 = #{o3,jdbcType=VARCHAR}
+      </if>
+      <if test="so2 != null" >
+        and so2 = #{so2,jdbcType=VARCHAR}
+      </if>
+      <if test="pm10 != null" >
+        and pm10 = #{pm10,jdbcType=VARCHAR}
+      </if>
+      <if test="pm25 != null" >
+        and pm25 = #{pm25,jdbcType=VARCHAR}
+      </if>
+      <if test="quality != null" >
+        and quality = #{quality,jdbcType=VARCHAR}
+      </if>
+      <if test="humidity != null" >
+        and humidity = #{humidity,jdbcType=VARCHAR}
+      </if>
+      <if test="temperature != null" >
+        and temperature = #{temperature,jdbcType=VARCHAR}
+      </if>
+      <if test="weatherText != null" >
+        and weather_text = #{weatherText,jdbcType=VARCHAR}
+      </if>
+      <if test="windScale != null" >
+        and wind_scale = #{windScale,jdbcType=VARCHAR}
+      </if>
+      <if test="usEmbassyAqi != null" >
+        and us_embassy_aqi = #{usEmbassyAqi,jdbcType=VARCHAR}
+      </if>
+      <if test="thinkPageWeather != null" >
+        and think_page_weather = #{thinkPageWeather,jdbcType=VARCHAR}
+      </if>
+      <if test="lastUpdate != null" >
+        and last_update >= #{lastUpdate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remark1 != null" >
+        and remark1 = #{remark1,jdbcType=VARCHAR}
+      </if>
+      <if test="remark2 != null" >
+        and remark2 = #{remark2,jdbcType=VARCHAR}
+      </if>
+      <if test="weatherId != null" >
+        and weather_id = #{weatherId,jdbcType=INTEGER}
+      </if>
+      <if test="usEmbassyAqiTime != null" >
+        and  us_embassy_aqi_time >= #{usEmbassyAqiTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="usEmbassyAqiPm25 != null" >
+        and  us_embassy_aqi_pm25 = #{usEmbassyAqiPm25,jdbcType=VARCHAR}
+      </if>
+      <if test="forecast != null" >
+        and  forecast = #{forecast,jdbcType=VARCHAR}
+      </if>
+      <if test="weatherCode != null" >
+        and  weather_code = #{weatherCode,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <!-- 含order by group by limit  -->
+    <if test="clauseSql != null" >
+      ${clauseSql}
+    </if>
+    <!-- order by weather_id desc
+    limit 1,50 -->
+  </select>
+  
+  <select id="selectBySelectiveCount"   resultType="java.lang.Integer"  parameterType="java.util.Map" >
+    select 
+    count(weather_id)
+    from sys_weather
+    <where >
+      <if test="aqi != null" >
+        aqi = #{aqi,jdbcType=VARCHAR}
+      </if>
+      <if test="co != null" >
+        and co = #{co,jdbcType=VARCHAR}
+      </if>
+      <if test="no2 != null" >
+        and no2 = #{no2,jdbcType=VARCH}
+      </if>
+      <if test="o3 != null" >
+        and o3 = #{o3,jdbcType=VARCHAR}
+      </if>
+      <if test="so2 != null" >
+        and so2 = #{so2,jdbcType=VARCHAR}
+      </if>
+      <if test="pm10 != null" >
+        and pm10 = #{pm10,jdbcType=VARCHAR}
+      </if>
+      <if test="pm25 != null" >
+        and pm25 = #{pm25,jdbcType=VARCHAR}
+      </if>
+      <if test="quality != null" >
+        and quality = #{quality,jdbcType=VARCHAR}
+      </if>
+      <if test="humidity != null" >
+        and humidity = #{humidity,jdbcType=VARCHAR}
+      </if>
+      <if test="temperature != null" >
+        and temperature = #{temperature,jdbcType=VARCHAR}
+      </if>
+      <if test="weatherText != null" >
+        and weather_text = #{weatherText,jdbcType=VARCHAR}
+      </if>
+      <if test="windScale != null" >
+        and wind_scale = #{windScale,jdbcType=VARCHAR}
+      </if>
+      <if test="usEmbassyAqi != null" >
+        and us_embassy_aqi = #{usEmbassyAqi,jdbcType=VARCHAR}
+      </if>
+      <if test="thinkPageWeather != null" >
+        and think_page_weather = #{thinkPageWeather,jdbcType=VARCHAR}
+      </if>
+      <if test="lastUpdate != null" >
+        and last_update = #{lastUpdate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remark1 != null" >
+        and remark1 = #{remark1,jdbcType=VARCHAR}
+      </if>
+      <if test="remark2 != null" >
+        and remark2 = #{remark2,jdbcType=VARCHAR}
+      </if>
+      <if test="weatherId != null" >
+        and weather_id = #{weatherId,jdbcType=INTEGER}
+      </if>
+      <if test="usEmbassyAqiTime != null" >
+        and  us_embassy_aqi_time = #{usEmbassyAqiTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="usEmbassyAqiPm25 != null" >
+        and  us_embassy_aqi_pm25 = #{usEmbassyAqiPm25,jdbcType=VARCHAR}
+      </if>
+      <if test="forecast != null" >
+        and  forecast = #{forecast,jdbcType=VARCHAR}
+      </if>
+      <if test="weatherCode != null" >
+        and  weather_code = #{weatherCode,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>
