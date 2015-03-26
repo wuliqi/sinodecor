@@ -64,7 +64,7 @@ public class LaserParticleCounterScheduleServiceImpl implements ILaserParticleCo
 	 * 
 	 * 
 	 */
-	@Scheduled(cron=PMConstant.GRAB_WEATHER_CRON) 
+	//@Scheduled(cron=PMConstant.GRAB_WEATHER_CRON)  //TODO
 	@Override
 	public void grabWeatherInfo() {
 		log.info("###开始自动采集天气信息："+DateUtil.getFormatDate(new Date(), ""));
