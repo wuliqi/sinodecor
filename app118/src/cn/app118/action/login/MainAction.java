@@ -125,12 +125,12 @@ public class MainAction extends BaseAction{
 					
 				} else {//表示用户或密码错误
 					mv.addObject("msg",SystemConstant.MSG_FAIL);// 2 表示登录失败，原因密码错误。
-					mv.setViewName("/index.jsp");
+					mv.setViewName("/pages/index.jsp");
 					return mv;
 				}
 			} else {//表示用户登录失败。
 				mv.addObject("msg",SystemConstant.MSG_NO_DATA);// 9 表示无数据，原因用户类型为后台用用的用户名不存在
-				mv.setViewName("/index.jsp");
+				mv.setViewName("/pages/index.jsp");
 				return mv;
 			}
 		
@@ -211,7 +211,7 @@ public class MainAction extends BaseAction{
 		} catch (Exception e) {
 			log.info("登录异常："+e);
 			mv.addObject("msg",SystemConstant.MSG_EXCEPTION);//0表示异常
-			mv.setViewName("/index.jsp");
+			mv.setViewName("/pages/index.jsp");
 		}
 		return mv;
 	}
@@ -220,7 +220,7 @@ public class MainAction extends BaseAction{
 	public ModelAndView logout() {
 		ModelAndView mv = new ModelAndView();
 		session.removeAttribute("user");
-		mv.setViewName("/index.jsp");
+		mv.setViewName("/pages/index.jsp");
 		return mv;
 	}
 }

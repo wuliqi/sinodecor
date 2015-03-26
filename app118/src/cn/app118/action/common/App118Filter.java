@@ -44,7 +44,7 @@ public class App118Filter implements Filter {
         String uri =  req.getRequestURI();
         req.setAttribute("path", req.getContextPath());
         //过滤器器中维护的特定url和模块中的jsp页面不进行拦截
-        if(!uri.matches(urls) && uri.indexOf("/app/")!=0){
+        if(!uri.matches(urls) && uri.indexOf("/app/")!=0 && uri.indexOf("/client/")!=0){
         	System.out.println("###非法："+uri);
             //如果没有登陆，或者请求session超时都返回重新登陆 
             Object so = req.getSession().getAttribute("user");
