@@ -8,8 +8,8 @@
 </head>
 <body>
 <script language="javascript" type="text/javascript"> 
-	//window.location.href="http://shaqi.taobao.com"; 
-	window.location.href="http://weidian.com/?userid=259883518&wfr=c"; 
+	window.location.href="http://shaqi.taobao.com"; 
+	//window.location.href="http://weidian.com/?userid=259883518&wfr=c"; 
 </script>
 </body>
 </html>
