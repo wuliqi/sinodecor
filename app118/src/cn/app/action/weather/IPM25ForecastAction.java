@@ -4,7 +4,7 @@
  * Copyright (c) 2015 app118.cn.All rights reserved.
  * Created by 2015-01-05
  */
-package cn.app118.action.weather;
+package cn.app.action.weather;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +26,8 @@ import cn.app118.service.weather.IPM25ForecastService;
  *
  */
 @Controller
-@RequestMapping("pM25ForecastAction")
-public class PM25ForecastAction extends BaseAction{
+@RequestMapping("iPM25ForecastAction")
+public class IPM25ForecastAction extends BaseAction{
 	
 	@Resource
 	private IPM25ForecastService pM25ForecastService;

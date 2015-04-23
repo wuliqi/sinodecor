@@ -11,14 +11,18 @@
 <body>
 
 
-<a href="/app118/userAction/login?loginName=18810790739&password=1">登录接口</a><br/>
-<a href="/app118/weatherAction/getWeatherInfo?cid=39.93:116.40&userId=219">天气预报接口</a><br/>
-<a href="/app118/cardAction/listCardType">在线充值-卡片列表</a><br/>
-<a href="/app118/weatherAction/queryWeather">新天气信息接口</a><br/>
-<a href="/app118/pM25ForecastAction/queryPM25Forecast?city=beijing">雾霾预报</a><br/>
-<a href="/app118/codeAction/insertCodeByBatch">批量导入行政区域</a><br/>
+<a href="/app/iUserAction/login?loginName=18810790739&password=1">登录接口</a><br/>
+<a href="/app/iWeatherAction/getWeatherInfo?cid=39.93:116.40">天气预报接口</a><br/>
+<a href="/app/iWeatherAction/queryWeather">新天气信息接口</a><br/>
+<a href="/app/iPM25ForecastAction/queryPM25Forecast?city=beijing">雾霾预报</a><br/>
+<a href="/app/stockAction/queryStockInfo?stockCode=s_sz399001,s_sh000001,sz000100">股票接口</a><br/>
+
+
+<br/>
+<!-- <a href="/app118/codeAction/insertCodeByBatch">批量导入行政区域</a><br/> -->
 <a href="http://api.thinkpage.cn/weather/">心知官网</a><br/>
 <a href="http://www.stateair.net/web/post/1/1.html">美使馆官网</a><br/>
+
 
 </body>
 </html>
