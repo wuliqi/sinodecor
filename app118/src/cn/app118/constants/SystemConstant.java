@@ -20,7 +20,7 @@ public class SystemConstant {
 	
 	public static String COMPANY_SIGNATURE = " 【莎琪美妆】";//公司签名
 
-	public static String WEB_SYSTEM_VERSION = "1.0.0";//后台系统版本号  2015-03-12
+	public static String WEB_SYSTEM_VERSION = "1.0.1";//后台系统版本号  2015-03-12
 	
 	public static String SYSTEM_SKEY = "app118";//系统密钥,系统上线有数据后，不可修改
 	
