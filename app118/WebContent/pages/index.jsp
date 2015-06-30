@@ -12,6 +12,8 @@
 <title><%=SystemConstant.SYSTEM_NAME%></title>
 <%@include file="/pages/common/common.jsp"%>
 <script type="text/javascript">
+	window.location.href="/pages/login/login.jsp"; 
+
 	//当回车按下时,/=47,*=42,+=43
 	$(document).bind("keypress", function(event){
 		event = window.event || event;
@@ -99,6 +101,9 @@
 	}
 	
 </script>
+
+
+
 <style type="text/css">
 body {
  padding:0;
@@ -119,7 +124,7 @@ body {
 </style>
 </head>
 <body>
-<form action="" method="post">
+<%-- <form action="" method="post">
 <div class="main">
 <table  border="0" width="912px" height="514px" style="background-image: url('/resource/images/login_back.png');">
 	<tr height="65px">
@@ -204,6 +209,6 @@ body {
 	</tr>
 </table>
 </div>
-</form>
+</form> --%>
 </body>
 </html>

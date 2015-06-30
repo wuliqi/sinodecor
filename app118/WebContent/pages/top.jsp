@@ -12,7 +12,10 @@
 	<table border="0" width="100%" height="100px" style="background:url('/resource/images/background.png'); ">
 		<tr>
 			<td style="width: 70%;padding-left: 20px;"><img src="/resource/images/logo.png" alt="app118" /></td>
-			<td style="width: 25%;"><img src="/resource/images/systemName.png" alt="<%=SystemConstant.SYSTEM_NAME%>" /></td> 
+			<td style="width: 25%;">
+				&nbsp;
+				<%-- <img src="/resource/images/systemName.png" alt="<%=SystemConstant.SYSTEM_NAME%>" /> --%>
+			</td> 
 			<td><img src="/resource/images/verticalLine.png" alt="app118" /></td> 
 			<td><img src="/resource/images/logout.png" alt="注销" onclick="logout()"/></td> 
 

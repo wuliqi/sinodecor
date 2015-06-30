@@ -56,7 +56,7 @@
 		<filter-class>cn.app118.action.common.App118Filter</filter-class>
 		<init-param>
 			<param-name>urls</param-name>
-			<param-value>/index.jsp|/t.jsp|/pages/index.jsp|/app118/verificationCode/getImgCode|/app118/verificationCode/checkVerifyWord|/app118/mainAction/login|/app118/mainAction/logout</param-value>
+			<param-value>/pages/login/login.jsp|/index.jsp|/t.jsp|/pages/index.jsp|/app118/verificationCode/getImgCode|/app118/verificationCode/checkVerifyWord|/app118/mainAction/login|/app118/mainAction/logout</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>

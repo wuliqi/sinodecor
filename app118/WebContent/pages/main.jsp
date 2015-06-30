@@ -193,20 +193,19 @@ body {
 				
 				</div> -->
 			</div>
-			<div id="leftInfo" height="100%" style="width: 100%;">
+			<div id="leftInfo" height="100%" style="width: 100%;padding-left:18px;padding-right: 18px">
 				<marquee direction="left"  scrollamount="2" behavior="scroll">${weather}</marquee>
 				${userInfo}
 				<br/>
 				${orgInfo}
 				<br/>
-				--------------------------------------<br/>
-				公司总机：010-82883086<br/>
-				海泰地址：北京市海淀区志新村小区<br/>
+				------------------<br/>
+				手机号码：18810790739<br/>
+				地址：北京市海淀区志新村小区<br/>
 				海泰大厦621室<br/>
-				海泰621室传真：82883822<br/> 
 				Version： ${vesion}<br/>
-				Copyright © 2014<br/> 
-				每日互联　版权所有
+				Copyright © 2015<br/> 
+				莎琪美妆　版权所有
 			</div>
 		</div>
 		<!-- 左侧结束 -->

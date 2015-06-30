@@ -66,3 +66,46 @@ function filterRepeatStr(str){
 }
 
 
+/**登录记住用户名和密码*/
+//获得Cookie解码后的值
+function getCookieVal(offset){
+	var endstr = document.cookie.indexOf(";", offset);
+	if (endstr == -1)
+		endstr = document.cookie.length;
+	return unescape(document.cookie.substring(offset, endstr));
+}
+
+function setCookie(name, value) {
+	var today = new Date();
+	var expires = new Date();
+	expires.setTime(today.getTime() + 1000 * 60 * 60 * 24 * 365);
+	document.cookie = name + "=" + escape(value) + "; expires="
+			+ expires.toGMTString();
+}
+
+//删除Cookie
+function delCookie(name){
+	var exp = new Date();
+	exp.setTime(exp.getTime() - 1);
+	var cval = getCookie(name);
+	document.cookie = name + "=" + cval + "; expires=" + exp.toGMTString();
+}
+
+//获得Cookie的原始值
+function getCookie(name){
+	var arg = name + "=";
+	var alen = arg.length;
+	var clen = document.cookie.length;
+	var i = 0;
+	while (i < clen) {
+		var j = i + alen;
+		if (document.cookie.substring(i, j) == arg)
+			return getCookieVal(j);
+		i = document.cookie.indexOf(" ", i) + 1;
+		if (i == 0)
+			break;
+	}
+	return null;
+}
+
+

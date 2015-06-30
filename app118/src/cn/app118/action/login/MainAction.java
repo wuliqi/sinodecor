@@ -76,7 +76,7 @@ public class MainAction extends BaseAction{
 		String userInfo="游客，欢迎您！";
 		mv.addObject("loginName",loginName);
 		User existUser=new User();
-		String remark="app118 莎琪美妆<br/>旗舰店电话：18810790739<br/>客服中心：18810790739<br/>旗舰店地址：北京市朝阳区工体北路<br/>8号院三里屯SOHO2号楼2-208室<br/>";
+		String remark=" 莎琪美妆<br/> 手机号码：18810790739<br/>客服中心：18810790739<br/>地址：北京市海淀区志新村小区<br/>海泰大厦621室<br/>";
 		try {
 			
 			User u = new User();
@@ -125,12 +125,12 @@ public class MainAction extends BaseAction{
 					
 				} else {//表示用户或密码错误
 					mv.addObject("msg",SystemConstant.MSG_FAIL);// 2 表示登录失败，原因密码错误。
-					mv.setViewName("/pages/index.jsp");
+					mv.setViewName("/pages/login/login.jsp");
 					return mv;
 				}
 			} else {//表示用户登录失败。
 				mv.addObject("msg",SystemConstant.MSG_NO_DATA);// 9 表示无数据，原因用户类型为后台用用的用户名不存在
-				mv.setViewName("/pages/index.jsp");
+				mv.setViewName("/pages/login/login.jsp");
 				return mv;
 			}
 		
@@ -211,7 +211,7 @@ public class MainAction extends BaseAction{
 		} catch (Exception e) {
 			log.info("登录异常："+e);
 			mv.addObject("msg",SystemConstant.MSG_EXCEPTION);//0表示异常
-			mv.setViewName("/pages/index.jsp");
+			mv.setViewName("/pages/login/login.jsp");
 		}
 		return mv;
 	}
