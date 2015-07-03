@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.app118.dao.news.NewsMapper" >
+  <resultMap id="BaseResultMap" type="cn.app118.model.News" >
+    <id column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+    <result column="news_keyword" property="newsKeyword" jdbcType="VARCHAR" />
+    <result column="news_brief" property="newsBrief" jdbcType="VARCHAR" />
+    <result column="news_thumbnail" property="newsThumbnail" jdbcType="VARCHAR" />
+    <result column="news_source" property="newsSource" jdbcType="VARCHAR" />
+    <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="clicks" property="clicks" jdbcType="INTEGER" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="news_category" property="newsCategory" jdbcType="VARCHAR" />
+    <result column="is_stick" property="isStick" jdbcType="VARCHAR" />
+    <result column="approval_opinion" property="approvalOpinion" jdbcType="VARCHAR" />
+    <result column="approval_status" property="approvalStatus" jdbcType="VARCHAR" />
+    <result column="approval_user_id" property="approvalUserId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.app118.model.News" extends="BaseResultMap" >
+    <result column="news_content" property="newsContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    news_id, news_title, news_keyword, news_brief, news_thumbnail, news_source, begin_time, 
+    end_time, clicks, org_id, news_category, is_stick, approval_opinion, approval_status, 
+    approval_user_id, create_time, remark1, remark2
+  </sql>
+  <sql id="Blob_Column_List" >
+    news_content
+  </sql>
+  <sql id="Base_Column_List_Pager" >
+    news_id newsId, news_title newsTitle, news_keyword newsKeyword, news_brief newsBrief, news_thumbnail newsThumbnail, news_source newsSource, begin_time beginTime, 
+    end_time endTime, clicks clicks, org_id orgId, news_category newsCategory, is_stick isStick, approval_opinion approvalOpinion, approval_status approvalStatus, 
+    approval_user_id approvalUserId, create_time createTime, remark1 remark1, remark2 remark2
+  </sql>
+  <sql id="Blob_Column_List_Pager" >
+    news_content newsContent
+  </sql> 
+  <sql id="pager">
+      limit ${start},${len}
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_news
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_news
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.app118.model.News" >
+    insert into sys_news (news_id, news_title, news_keyword, 
+      news_brief, news_thumbnail, news_source, 
+      begin_time, end_time, clicks, 
+      org_id, news_category, is_stick, 
+      approval_opinion, approval_status, approval_user_id, 
+      create_time, remark1, remark2, 
+      news_content)
+    values (#{newsId,jdbcType=INTEGER}, #{newsTitle,jdbcType=VARCHAR}, #{newsKeyword,jdbcType=VARCHAR}, 
+      #{newsBrief,jdbcType=VARCHAR}, #{newsThumbnail,jdbcType=VARCHAR}, #{newsSource,jdbcType=VARCHAR}, 
+      #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{clicks,jdbcType=INTEGER}, 
+      #{orgId,jdbcType=INTEGER}, #{newsCategory,jdbcType=VARCHAR}, #{isStick,jdbcType=VARCHAR}, 
+      #{approvalOpinion,jdbcType=VARCHAR}, #{approvalStatus,jdbcType=VARCHAR}, #{approvalUserId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, 
+      #{newsContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.app118.model.News" >
+    insert into sys_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="newsTitle != null" >
+        news_title,
+      </if>
+      <if test="newsKeyword != null" >
+        news_keyword,
+      </if>
+      <if test="newsBrief != null" >
+        news_brief,
+      </if>
+      <if test="newsThumbnail != null" >
+        news_thumbnail,
+      </if>
+      <if test="newsSource != null" >
+        news_source,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="clicks != null" >
+        clicks,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="newsCategory != null" >
+        news_category,
+      </if>
+      <if test="isStick != null" >
+        is_stick,
+      </if>
+      <if test="approvalOpinion != null" >
+        approval_opinion,
+      </if>
+      <if test="approvalStatus != null" >
+        approval_status,
+      </if>
+      <if test="approvalUserId != null" >
+        approval_user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+      <if test="newsContent != null" >
+        news_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="newsTitle != null" >
+        #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsKeyword != null" >
+        #{newsKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="newsBrief != null" >
+        #{newsBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="newsThumbnail != null" >
+        #{newsThumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="newsSource != null" >
+        #{newsSource,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clicks != null" >
+        #{clicks,jdbcType=INTEGER},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="newsCategory != null" >
+        #{newsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="isStick != null" >
+        #{isStick,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalOpinion != null" >
+        #{approvalOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalStatus != null" >
+        #{approvalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalUserId != null" >
+        #{approvalUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="newsContent != null" >
+        #{newsContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.app118.model.News" >
+    update sys_news
+    <set >
+      <if test="newsTitle != null" >
+        news_title = #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsKeyword != null" >
+        news_keyword = #{newsKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="newsBrief != null" >
+        news_brief = #{newsBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="newsThumbnail != null" >
+        news_thumbnail = #{newsThumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="newsSource != null" >
+        news_source = #{newsSource,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clicks != null" >
+        clicks = #{clicks,jdbcType=INTEGER},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="newsCategory != null" >
+        news_category = #{newsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="isStick != null" >
+        is_stick = #{isStick,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalOpinion != null" >
+        approval_opinion = #{approvalOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalStatus != null" >
+        approval_status = #{approvalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalUserId != null" >
+        approval_user_id = #{approvalUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="newsContent != null" >
+        news_content = #{newsContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.app118.model.News" >
+    update sys_news
+    set news_title = #{newsTitle,jdbcType=VARCHAR},
+      news_keyword = #{newsKeyword,jdbcType=VARCHAR},
+      news_brief = #{newsBrief,jdbcType=VARCHAR},
+      news_thumbnail = #{newsThumbnail,jdbcType=VARCHAR},
+      news_source = #{newsSource,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      clicks = #{clicks,jdbcType=INTEGER},
+      org_id = #{orgId,jdbcType=INTEGER},
+      news_category = #{newsCategory,jdbcType=VARCHAR},
+      is_stick = #{isStick,jdbcType=VARCHAR},
+      approval_opinion = #{approvalOpinion,jdbcType=VARCHAR},
+      approval_status = #{approvalStatus,jdbcType=VARCHAR},
+      approval_user_id = #{approvalUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      news_content = #{newsContent,jdbcType=LONGVARCHAR}
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.app118.model.News" >
+    update sys_news
+    set news_title = #{newsTitle,jdbcType=VARCHAR},
+      news_keyword = #{newsKeyword,jdbcType=VARCHAR},
+      news_brief = #{newsBrief,jdbcType=VARCHAR},
+      news_thumbnail = #{newsThumbnail,jdbcType=VARCHAR},
+      news_source = #{newsSource,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      clicks = #{clicks,jdbcType=INTEGER},
+      org_id = #{orgId,jdbcType=INTEGER},
+      news_category = #{newsCategory,jdbcType=VARCHAR},
+      is_stick = #{isStick,jdbcType=VARCHAR},
+      approval_opinion = #{approvalOpinion,jdbcType=VARCHAR},
+      approval_status = #{approvalStatus,jdbcType=VARCHAR},
+      approval_user_id = #{approvalUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR}
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 内容分页查询 -->
+  <select id="selectByPager"  resultType="java.util.Map" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_news
+    <where>
+      <if test="newsTitle != null" >
+        and news_title = #{newsTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="newsKeyword != null" >
+        and news_keyword = #{newsKeyword,jdbcType=VARCHAR}
+      </if>
+      <if test="newsBrief != null" >
+        and news_brief = #{newsBrief,jdbcType=VARCHAR}
+      </if>
+      <if test="newsThumbnail != null" >
+        and news_thumbnail = #{newsThumbnail,jdbcType=VARCHAR}
+      </if>
+      <if test="newsSource != null" >
+        and news_source = #{newsSource,jdbcType=VARCHAR}
+      </if>
+      <if test="beginTime != null" >
+        and begin_time = #{beginTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime != null" >
+        and end_time = #{endTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="clicks != null" >
+        and clicks = #{clicks,jdbcType=INTEGER}
+      </if>
+      <if test="orgId != null" >
+        and org_id = #{orgId,jdbcType=INTEGER}
+      </if>
+      <if test="newsCategory != null" >
+        and news_category = #{newsCategory,jdbcType=VARCHAR}
+      </if>
+      <if test="isStick != null" >
+        and is_stick = #{isStick,jdbcType=VARCHAR}
+      </if>
+      <if test="approvalOpinion != null" >
+        and approval_opinion = #{approvalOpinion,jdbcType=VARCHAR}
+      </if>
+      <if test="approvalStatus != null" >
+        and approval_status = #{approvalStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="approvalUserId != null" >
+        and approval_user_id = #{approvalUserId,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remark1 != null" >
+        and remark1 = #{remark1,jdbcType=VARCHAR}
+      </if>
+      <if test="remark2 != null" >
+        and remark2 = #{remark2,jdbcType=VARCHAR}
+      </if>
+      <if test="newsContent != null" >
+        and news_content = #{newsContent,jdbcType=LONGVARCHAR}
+      </if>  
+      <if test="newsId != null" >
+        and news_id = #{newsId,jdbcType=INTEGER}
+      </if>  
+    </where>
+    <if test="orderBy != null" >
+      ${orderBy}
+    </if>
+	<include refid="pager" />
+  </select>
+   
+   <!-- 内容分页查询总记录数 -->
+  <select id="selectByPagerCount"  resultType="java.lang.Integer"  parameterType="java.util.Map">
+    select count(news_id)
+    from sys_news
+    <where>
+      <if test="newsTitle != null" >
+        and news_title = #{newsTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="newsKeyword != null" >
+        and news_keyword = #{newsKeyword,jdbcType=VARCHAR}
+      </if>
+      <if test="newsBrief != null" >
+        and news_brief = #{newsBrief,jdbcType=VARCHAR}
+      </if>
+      <if test="newsThumbnail != null" >
+        and news_thumbnail = #{newsThumbnail,jdbcType=VARCHAR}
+      </if>
+      <if test="newsSource != null" >
+        and news_source = #{newsSource,jdbcType=VARCHAR}
+      </if>
+      <if test="beginTime != null" >
+        and begin_time = #{beginTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime != null" >
+        and end_time = #{endTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="clicks != null" >
+        and clicks = #{clicks,jdbcType=INTEGER}
+      </if>
+      <if test="orgId != null" >
+        and org_id = #{orgId,jdbcType=INTEGER}
+      </if>
+      <if test="newsCategory != null" >
+        and news_category = #{newsCategory,jdbcType=VARCHAR}
+      </if>
+      <if test="isStick != null" >
+        and is_stick = #{isStick,jdbcType=VARCHAR}
+      </if>
+      <if test="approvalOpinion != null" >
+        and approval_opinion = #{approvalOpinion,jdbcType=VARCHAR}
+      </if>
+      <if test="approvalStatus != null" >
+        and approval_status = #{approvalStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="approvalUserId != null" >
+        and approval_user_id = #{approvalUserId,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remark1 != null" >
+        and remark1 = #{remark1,jdbcType=VARCHAR}
+      </if>
+      <if test="remark2 != null" >
+        and remark2 = #{remark2,jdbcType=VARCHAR}
+      </if>
+      <if test="newsContent != null" >
+        and news_content = #{newsContent,jdbcType=LONGVARCHAR}
+      </if>  
+      <if test="newsId != null" >
+        and news_id = #{newsId,jdbcType=INTEGER}
+      </if>  
+    </where>
+  </select>
+</mapper>

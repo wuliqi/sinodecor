@@ -18,9 +18,13 @@ import java.util.TreeMap;
 public class SystemConstant {
 	public static String SYSTEM_NAME = "后台管理系统";//系统名称
 	
+	public static String SYSTEM_WEB_NAME = "莎琪美妆";//前端网站标题
+	
+	public static String SYSTEM_ICP = "京ICP备15013782号";//ICP备号
+	
 	public static String COMPANY_SIGNATURE = " 【莎琪美妆】";//公司签名
 
-	public static String WEB_SYSTEM_VERSION = "1.0.1";//后台系统版本号  2015-03-12
+	public static String WEB_SYSTEM_VERSION = "1.0.0";//后台系统版本号  2015-03-12
 	
 	public static String SYSTEM_SKEY = "app118";//系统密钥,系统上线有数据后，不可修改
 	
@@ -175,11 +179,13 @@ public class SystemConstant {
 	public static final Map<String,String> getCodeTypeMap(){
 		Map<String, String> map = new TreeMap<String, String>();
 		//商城
-		map.put("10", "产品分类");//产品分类
-		map.put("12", "商家品牌");//商家品牌
+		//map.put("10", "产品分类");//产品分类
+		//map.put("12", "商家品牌");//商家品牌
 		
 		//行政区域 天气信息使用
 		map.put("10000", "行政区域");//行政区域 
+		map.put("20000", "新闻分类");//新闻分类
+		
 		map.put("50000", "消息类型");//消息类型 
 		return map;
 	}

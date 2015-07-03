@@ -1,7 +1,8 @@
-1、spring:4.0.4
+1、spring:4.1.16  2015-07-01
 2、mybatis：3.2.7    3.28(2015-03-06)
 3、spring json包：
 	jackson-core-asl-1.9.13.jar 
 	jackson-mapper-asl-1.9.13.jar
 4、LigerUI V1.2.5
+5、ueditor 1.4.3
 -------------------

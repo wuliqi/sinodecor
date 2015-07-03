@@ -82,7 +82,7 @@ public class MainAction extends BaseAction{
 			User u = new User();
 			u.setLoginName(loginName);
 			String pwdTmp =MD5Util.encode(password);
-			log.info("####登录名："+loginName+"\t密码：" + password);
+			//log.info("####登录名："+loginName+"\t密码：" + password);
 			String sKey = MD5Util.md5(SystemConstant.SYSTEM_SKEY).substring(0,16);
 			String pwdEncrypt = AESUtil.encrypt(pwdTmp, sKey).substring(0, 16);
 			u.setUserType("1");//指定用户类型 ：1表示后台用户

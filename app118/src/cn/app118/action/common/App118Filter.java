@@ -8,6 +8,8 @@ package cn.app118.action.common;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,6 +19,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import cn.app118.constants.SystemConstant;
 
 /**
  * @title :系统过滤器
@@ -25,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class App118Filter implements Filter {
     private static String urls;
-    private static String path;
+
     /**
      * @title:参数初始化
      */
@@ -38,14 +43,20 @@ public class App118Filter implements Filter {
      */
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
-    	   HttpServletRequest req = (HttpServletRequest) request;
+    	HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
+        HttpSession session=req.getSession();
+        Map<String,Object> system=new HashMap<String,Object>();
+        system.put("webName", SystemConstant.SYSTEM_WEB_NAME);
+        system.put("icp", SystemConstant.SYSTEM_ICP);
+        system.put("version", SystemConstant.WEB_SYSTEM_VERSION);
+        session.setAttribute("system",system);
       
         String uri =  req.getRequestURI();
         req.setAttribute("path", req.getContextPath());
         //过滤器器中维护的特定url和模块中的jsp页面不进行拦截
         if(!uri.matches(urls) && uri.indexOf("/app/")!=0 && uri.indexOf("/client/")!=0){
-        	System.out.println("###非法："+uri);
+        	//System.out.println("###非法："+uri);
             //如果没有登陆，或者请求session超时都返回重新登陆 
             Object so = req.getSession().getAttribute("user");
             if(so == null || so.equals("")){
@@ -59,7 +70,7 @@ public class App118Filter implements Filter {
                 return;
             }
          }
-        System.out.println("###正常："+uri);
+        //System.out.println("###正常："+uri);
         chain.doFilter(request, response);
     }
     

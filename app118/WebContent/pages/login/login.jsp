@@ -170,7 +170,7 @@
 					<div class="form-group">
 						<label class="t"></label>
 						<label for="j_remember" class="m">
-						<input id="isMember" name="isMember" type="checkbox" value="true"  <c:if test="${checkFlag==true}">checked="checked"</c:if>>&nbsp;记住用户</label>
+						<input id="isMember" name="isMember" type="checkbox" value="true"  <c:if test="${checkFlag==true}">checked="checked"</c:if>>&nbsp;记住我</label>
 					</div>
 					<div class="form-group space">
 						<label class="t"></label>　　　
@@ -180,7 +180,7 @@
 				</form>
 			</div>
 		</div>
-		<div class="bottom">Copyright &copy; 2015 - 2025 app118.cn,All Rights Reserved  Version 1.0.1</div>
+		<div class="bottom" onclick="client();">Copyright &copy; 2015 - 2025 app118.cn,All Rights Reserved  Version <%=SystemConstant.WEB_SYSTEM_VERSION%></div>
 	</div>
 </div>
 
@@ -188,6 +188,12 @@
 <script src="js/supersized.3.2.7.min.js"></script>
 <script src="js/supersized-init.js"></script>
 <script src="js/scripts.js"></script>
+<script type="text/javascript">
+	function client(){
+		window.location.href="/pages/web/index.jsp";
+	}
+	
+</script>
 <div style="text-align:center;">
 <p></p>
 </div>
