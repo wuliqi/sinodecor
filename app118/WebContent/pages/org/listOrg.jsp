@@ -217,7 +217,7 @@
 							data:{ids:ids},
 							dataType:'json',
 			      			success:function(msg){
-			      				if(msg.flag=1){
+			      				if(msg.flag==1){
 			      					$.ligerDialog.success("删除成功。");
 			      					g.loadData();
 			      				}else{

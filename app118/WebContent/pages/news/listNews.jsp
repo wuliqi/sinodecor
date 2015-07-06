@@ -26,13 +26,40 @@
 		<form action="" id="form1" method="post">
 		<table border="0" cellpadding="0" cellspacing="0" width="100%">
 			<tr>
-				<td class="tdtitle">内容名称：</td>
+				<td class="tdtitle">标题：</td>
 				<td class="tdtext">
-					<input type="text" name="orgName" value="${orgName}" id="orgName" style="width: 128px;height: 20px;"/>
+					<input type="text" name="newsTitle" value="${newsTitle}" id="newsTitle" style="width: 128px;height: 20px;"/>
 				</td>
-				
+				<td class="tdtitle">来源：</td>
+				<td class="tdtext">
+					<input type="text" name="newsSource" value="${newsSource}" id="newsSource" style="width: 128px;height: 20px;"/>
+				</td>
+			</tr>
+			<tr>
 				<td class="tdtitle">
-					创建时间从：
+					所属组织机构：
+				</td>
+				<td class="tdtext">
+					<select name="orgId" id="orgId" style="width: 128px;height: 20px;" ${disabled}>
+						<option value="">---请选择---</option>
+						<c:forEach var="oneMap" items="${orgMap}">
+							<option value="${oneMap.key }" <c:if test="${orgId==oneMap.key }">selected </c:if> >${oneMap.value}</option>
+						</c:forEach>
+					</select>
+				</td>
+				<td class="tdtitle">分类：</td>
+				<td class="tdtext">
+					<select name="newsCategory" id="newsCategory"  style="width: 128px;height: 20px;">
+					<option value="">---请选择---</option>
+					<c:forEach var="oneMap" items="${codeList}">
+						<option value="${oneMap.codeId }" <c:if test="${oneMap.codeId eq orgType}">selected</c:if> >${oneMap.codeName}</option>
+					</c:forEach>
+				</select>
+				</td>
+			</tr>
+			<tr>	
+				<td class="tdtitle">
+					结束时间从：
 				</td>
 				<td>
 					<input type="text" name="fromCreateTime" value="${fromCreateTime}" id="fromCreateTime"/>
@@ -42,8 +69,8 @@
 					<input type="text" name="toCreateTime" value="${toCreateTime}" id="toCreateTime"/>
 				</td>
 			</tr>
+			
 			<tr>
-				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td  align="right">
@@ -67,8 +94,6 @@
 					</ul>
 					
 				</td>
-				
-				<td>&nbsp;</td>
 			</tr>
 		</table>
 		</form>
@@ -164,30 +189,37 @@
 			 $.ligerDialog.warn("请至少选择一行。");
 			 return;
 		}else{
-		 var id="";
+		 var newsId="";
 		 var len=rowid.length;
 			 if(len>1){
 			 	$.ligerDialog.warn("请只选择一行。");
 				return;
 			 }else{
-			    if(rowid[0].orgPid==0){//根结点不可以修改
-					   $.ligerDialog.warn("【"+rowid[0].orgName+"】，内容不能修改。");
-					   return; 
-				} 
-				id+=rowid[0].orgId;
-				params="?id="+id;
+				newsId+=rowid[0].newsId;
+				params="?newsId="+newsId;
 			 }
 		}
    		var url ="/app118/newsAction/toUpdNews"+params;
   		dialog=$.ligerDialog.open({ 
   				  url:url, 
-  				  height:520,
+  				  height:600,
   				  isResize:true,
-  				  width: 650, 
+  				  width: 980, 
   				  title: '修改内容'
   		}); 
    	 }
    	
+   	 function viewNews(newsId){
+   		var url ="/app118/newsAction/viewNews";
+  		dialog=$.ligerDialog.open({ 
+  				  url:url, 
+  				  height:600,
+  				  isResize:false,
+  				  width: 980, 
+  				  title: '内容详情'
+  		}); 
+   	 }
+   	 
    	 //删除内容
    	 function delNews(){
    		var rowid=g.getSelecteds();//获得选中行ID
@@ -198,14 +230,10 @@
 		 var ids="";
 		 var len=rowid.length;
 		 for(var j=0;j<len;j++){
-		   if(rowid[j].orgPid==0){//根结点不可以删除
-			   $.ligerDialog.warn("【"+rowid[j].orgName+"】，内容不能删除。");
-			   return; 
-		   }
-		   if(j!=len-1){
-			   ids+=rowid[j].orgId+",";			
+		    if(j!=len-1){
+			   ids+=rowid[j].newsId+",";			
 			}else{
-				ids+=rowid[j].orgId;
+				ids+=rowid[j].newsId;
 			}
 		 }
 		 var url="/app118/newsAction/delNews";
@@ -217,11 +245,11 @@
 							data:{ids:ids},
 							dataType:'json',
 			      			success:function(msg){
-			      				if(msg.flag=1){
-			      					$.ligerDialog.success("删除成功。");
+			      				if(msg.flag==1){
+			      					$.ligerDialog.success("删除内容成功。");
 			      					g.loadData();
 			      				}else{
-			      					$.ligerDialog.error("删除失败。");
+			      					$.ligerDialog.error("删除内容失败。");
 			      				}
 			      			},
 			      			error:function(){
@@ -259,13 +287,20 @@
   	      	   	  checkbox:true,
   	              headerRowHeight:28,
   	              columns: [
-		  	          { display: '内容名称', name: 'orgName', width: '15%'},
-	  	              { display: '内容编号', name: 'orgNo', width: '10%'},
-	  	              { display: '所属品牌', name: 'orgType', width: '10%'},
-	  	              { display: '服务热线', name: 'mobile', width: '10%'},
-	  	              { display: '地理位置', name: 'abbr', width: '10%'},
-	  	              { display: '备注', name: 'remark', width: '32%' },
-	  	              { display: '创建时间', name: 'createTime', width: '13%'}
+		  	          { display: '标题', name: 'newsTitle', width: '30%',render: function (row){
+			             	var parms="\""+row.newsId+"\"";
+			             	var html="<a href='javascript:viewNews("+parms+");'>"+row.newsTitle+"</a>";
+			             	
+			             	return html;
+			              }
+		  	          },
+	  	              { display: '所属组织机构', name: 'orgName', width: '10%'},
+	  	              { display: '分类', name: 'codeName', width: '6%'},
+	  	              { display: '点击次数', name: 'clicks', width: '6%'},
+	  	              { display: '关键字', name: 'newsKeyword', width: '15%'},
+	  	              { display: '摘要', name: 'newsBrief', width: '13%'},
+	  	              { display: '来源', name: 'newsSource', width: '6%' },
+	  	              { display: '结束时间', name: 'endTime', width: '13%'}
 	  	            
   	              ], url:url,dataAction:"server" , pageSize:15 ,rownumbers:true,pageParmName:"curNo",pagesizeParmName:"curSize"
   	          });

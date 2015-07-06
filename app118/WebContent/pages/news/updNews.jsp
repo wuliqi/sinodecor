@@ -26,20 +26,21 @@
 		<tr>
 			<td  class="tdtitle">标题：</td>
 			<td class="tdtext" nowrap="nowrap">
-				<input type="text" name="newsTitle" id="newsTitle"  style="width: 220px;"/><font color="red">*</font>
+				<input type="text" name="newsTitle" id="newsTitle"  value="${news.newsTitle}" style="width: 220px;"/><font color="red">*</font>
+				<input type="hidden" name="newsId" id="newsId" value="${news.newsId}"/>
 			</td>
 			<td  class="tdtitle">关键字：</td>
 			<td class="tdtext" nowrap="nowrap">
-				<input type="text" name="newsKeyword" id="newsKeyword"  style="width: 220px;"/>
+				<input type="text" name="newsKeyword" id="newsKeyword" value="${news.newsKeyword}"  style="width: 220px;"/>
 			</td>
 		</tr>
 		
 		<tr>
 			<td  class="tdtitle">摘要：</td>
 			<td  nowrap="nowrap" class="tdtext">
-				<input type="text" name="newsBrief" id="newsBrief"  style="width: 220px;"/>
+				<input type="text" name="newsBrief" id="newsBrief" value="${news.newsBrief}"  style="width: 220px;"/>
 			</td>
-			<td  class="tdtitle">缩略图：</td>
+			<td  class="tdtitle"><a href="#" onclick="viewNewsThumb();">缩略图：</a></td>
 			<td  nowrap="nowrap" class="tdtext">
 				<input type="file" name="file" id="file"  style="width: 220px;"/>
 			</td>
@@ -51,7 +52,7 @@
 				<select name="orgId" id="orgId" style="width: 220px;height: 20px;" ${disabled}>
 					<option value="">---请选择---</option>
 					<c:forEach var="oneMap" items="${orgMap}">
-						<option value="${oneMap.key }" <c:if test="${orgId==oneMap.key }">selected </c:if> >${oneMap.value}</option>
+						<option value="${oneMap.key }" <c:if test="${news.orgId==oneMap.key }">selected </c:if> >${oneMap.value}</option>
 					</c:forEach>
 				</select>
 				<font color="red">*</font>
@@ -61,26 +62,21 @@
 				<select name="newsCategory" id="newsCategory"  style="width: 220px;height: 20px;">
 					<option value="">---请选择---</option>
 					<c:forEach var="oneMap" items="${codeList}">
-						<option value="${oneMap.codeId }" <c:if test="${oneMap.codeId eq orgType}">selected</c:if> >${oneMap.codeName}</option>
+						<option value="${oneMap.codeId }" <c:if test="${oneMap.codeId eq news.newsCategory}">selected</c:if> >${oneMap.codeName}</option>
 					</c:forEach>
 				</select>
-				
-				
 				<font color="red">*</font>
 			</td>
-			
-			
 		</tr>
 		<tr>
 			<td class="tdtitle">来源：</td>
 			<td class="tdtext" nowrap="nowrap">
-				<input type="text" name="newsSource" id="newsSource"  style="width: 220px;"/><font color="red">*</font>
+				<input type="text" name="newsSource" id="newsSource" value="${news.newsSource}" style="width: 220px;"/><font color="red">*</font>
 			</td>
 			<td class="tdtitle">是否置顶：</td>
 			<td nowrap="nowrap">
-				<!-- <c:if test="${isStick eq '1'}">checked="checked"</c:if>  -->
-				<input type="radio" name="isStick" id="isStick" value="1" />是
-				<input type="radio" name="isStick" id="isStick" value="0" checked="checked" />否<font color="red">*</font>
+				<input type="radio" name="isStick" id="isStick" value="1" <c:if test="${news.isStick eq '1'}">checked="checked"</c:if>/>是
+				<input type="radio" name="isStick" id="isStick" value="0" <c:if test="${news.isStick eq '0'}">checked="checked"</c:if>/>否<font color="red">*</font>
 				
 			</td>
 		</tr>
@@ -91,11 +87,11 @@
 				开始时间：
 			</td>
 			<td class="tdtext" nowrap="nowrap">
-				<input type="text" name="beginTime"  id="beginTime"/>
+				<input type="text" name="beginTime"  id="beginTime" value="${beginTime}"/>
 			</td>
 			<td class="tdtitle">结束时间：</td>
 			<td class="tdtext" nowrap="nowrap">
-				<input type="text" name="endTime" value="${endTime}" id="endTime"/>
+				<input type="text" name="endTime" id="endTime" value="${endTime}" />
 			</td>
 		</tr>
 		
@@ -138,14 +134,14 @@
 	 	
 	 	$("#beginTime").ligerGetDateEditorManager().setValue('${beginTime}');
 	 	$("#endTime").ligerGetDateEditorManager().setValue('${endTime}');
+	 	ue.setContent('${news.newsContent}');
 		
-		
-		var url = "/app118/newsAction/addNews";
+		var url = "/app118/newsAction/updNews";
 		$("#submitBtn").click(function() {
 			var content=ue.getContent();
 			$("#newsContent").val(content);
 		 	var beginTime=$("#beginTime").val();
-		 	alert(beginTime);
+		 	
 		 	/*var deviceName=$("#deviceName").val();
 			var sex=$("#sex").val();
 			var carCategory=$("#carCategory").val();
@@ -254,19 +250,32 @@
 		var msg ="${message}";
 		if(!(msg=='null'||msg=='')){
 			if(msg == "success"){
-				$.ligerDialog.alert("提示：增加内容成功。",function(){
+				$.ligerDialog.alert("提示：修改内容成功。",function(){
 					parent.closeDialog();	
 				});
 			}else if(msg=="beyondFileSize"){
-				$.ligerDialog.alert("提示：增加内容失败,缩略图不能超过15M。",function(){
+				$.ligerDialog.alert("提示：修改内容失败,缩略图不能超过15M。",function(){
 					parent.closeDialog();	
 				});
 			}else{
-				$.ligerDialog.alert("提示：增加内容失败。",function(){
+				$.ligerDialog.alert("提示：修改内容失败。",function(){
 					parent.closeDialog();	
 				});
 			}
 		}
-	}	
+	}
+	
+	function viewNewsThumb(){
+		//'${news.newsThumbnail}'
+		var url ="${path}"+"${news.newsThumbnail}";
+		alert(url);
+  		dialog=$.ligerDialog.open({ 
+  				  url:url, 
+  				  height:200,
+  				  isResize:true,
+  				  width: 300, 
+  				  title: '查看缩略图'
+  		}); 
+	}
 </script>
 </html>

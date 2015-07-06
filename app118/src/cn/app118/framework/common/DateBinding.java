@@ -23,14 +23,11 @@ public class DateBinding implements WebBindingInitializer {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 
-		SimpleDateFormat datetimeFormat = new SimpleDateFormat(
-				"yyyy-MM-dd HH:mm:ss");
-		datetimeFormat.setLenient(false);
+		SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		timestampFormat.setLenient(false);
 
-		binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(
-				dateFormat, true));
-		binder.registerCustomEditor(java.sql.Timestamp.class,
-				new TimestampEditor(datetimeFormat, true));
+		binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(dateFormat, true));
+		binder.registerCustomEditor(java.sql.Timestamp.class,new TimestampEditor(timestampFormat, true));
 	}
 
 

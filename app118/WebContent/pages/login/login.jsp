@@ -165,7 +165,7 @@
 					<div class="form-group">
 						<label for="j_captcha" class="t">验证码：</label>
 						<input  type="text" name="code" id="code"  class="form-control x164 in">
-						<img src="/app118/verificationCode/getImgCode" align="middle" id='imgVcode' name='imgVcode' alt="验证码" onclick="javascript:changValCode('imgVcode');" title="看不清？换一张"/>
+						<img src="/app118/verificationCode/getImgCode"  id='imgVcode' name='imgVcode' alt="验证码" onclick="javascript:changValCode('imgVcode');" title="看不清？换一张" style=" width: 60px;height: 20px;"/>
 					</div>
 					<div class="form-group">
 						<label class="t"></label>

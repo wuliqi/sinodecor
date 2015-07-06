@@ -34,7 +34,11 @@
   </sql>
   <sql id="Base_Column_List_Pager" >
     news_id newsId, news_title newsTitle, news_keyword newsKeyword, news_brief newsBrief, news_thumbnail newsThumbnail, news_source newsSource, begin_time beginTime, 
-    end_time endTime, clicks clicks, org_id orgId, news_category newsCategory, is_stick isStick, approval_opinion approvalOpinion, approval_status approvalStatus, 
+    end_time endTime, clicks clicks, org_id orgId, 
+    (select org_name from sys_org where sys_news.org_id=org_id) orgName,
+    news_category newsCategory, 
+    (select code_name from  sys_code where code_id=sys_news.news_category) codeName,
+    is_stick isStick, approval_opinion approvalOpinion, approval_status approvalStatus, 
     approval_user_id approvalUserId, create_time createTime, remark1 remark1, remark2 remark2
   </sql>
   <sql id="Blob_Column_List_Pager" >
@@ -299,9 +303,9 @@
   <!-- 内容分页查询 -->
   <select id="selectByPager"  resultType="java.util.Map" parameterType="java.util.Map" >
     select 
-    <include refid="Base_Column_List" />
+    <include refid="Base_Column_List_Pager" />
     ,
-    <include refid="Blob_Column_List" />
+    <include refid="Blob_Column_List_Pager" />
     from sys_news
     <where>
       <if test="newsTitle != null" >
