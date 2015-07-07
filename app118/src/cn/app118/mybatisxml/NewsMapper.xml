@@ -309,7 +309,7 @@
     from sys_news
     <where>
       <if test="newsTitle != null" >
-        and news_title = #{newsTitle,jdbcType=VARCHAR}
+        and instr(news_title,#{newsTitle,jdbcType=VARCHAR})>0
       </if>
       <if test="newsKeyword != null" >
         and news_keyword = #{newsKeyword,jdbcType=VARCHAR}
@@ -321,7 +321,7 @@
         and news_thumbnail = #{newsThumbnail,jdbcType=VARCHAR}
       </if>
       <if test="newsSource != null" >
-        and news_source = #{newsSource,jdbcType=VARCHAR}
+         and instr(news_source,#{newsSource,jdbcType=VARCHAR})>0
       </if>
       <if test="beginTime != null" >
         and begin_time = #{beginTime,jdbcType=TIMESTAMP}
@@ -350,9 +350,16 @@
       <if test="approvalUserId != null" >
         and approval_user_id = #{approvalUserId,jdbcType=INTEGER}
       </if>
-      <if test="createTime != null" >
-        and create_time = #{createTime,jdbcType=TIMESTAMP}
-      </if>
+      <if test="fromCreateTime != null">
+			<![CDATA[
+		   	 and create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+	 </if>
+	 <if test="toCreateTime != null">
+			<![CDATA[
+		   	 and  create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+	 </if>
       <if test="remark1 != null" >
         and remark1 = #{remark1,jdbcType=VARCHAR}
       </if>
@@ -376,9 +383,9 @@
   <select id="selectByPagerCount"  resultType="java.lang.Integer"  parameterType="java.util.Map">
     select count(news_id)
     from sys_news
-    <where>
+   <where>
       <if test="newsTitle != null" >
-        and news_title = #{newsTitle,jdbcType=VARCHAR}
+        and instr(news_title,#{newsTitle,jdbcType=VARCHAR})>0
       </if>
       <if test="newsKeyword != null" >
         and news_keyword = #{newsKeyword,jdbcType=VARCHAR}
@@ -390,7 +397,7 @@
         and news_thumbnail = #{newsThumbnail,jdbcType=VARCHAR}
       </if>
       <if test="newsSource != null" >
-        and news_source = #{newsSource,jdbcType=VARCHAR}
+         and instr(news_source,#{newsSource,jdbcType=VARCHAR})>0
       </if>
       <if test="beginTime != null" >
         and begin_time = #{beginTime,jdbcType=TIMESTAMP}
@@ -419,9 +426,16 @@
       <if test="approvalUserId != null" >
         and approval_user_id = #{approvalUserId,jdbcType=INTEGER}
       </if>
-      <if test="createTime != null" >
-        and create_time = #{createTime,jdbcType=TIMESTAMP}
-      </if>
+      <if test="fromCreateTime != null">
+			<![CDATA[
+		   	 and create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+	 </if>
+	 <if test="toCreateTime != null">
+			<![CDATA[
+		   	 and  create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+	 </if>
       <if test="remark1 != null" >
         and remark1 = #{remark1,jdbcType=VARCHAR}
       </if>

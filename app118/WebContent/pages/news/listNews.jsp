@@ -59,7 +59,7 @@
 			</tr>
 			<tr>	
 				<td class="tdtitle">
-					结束时间从：
+					创建时间从：
 				</td>
 				<td>
 					<input type="text" name="fromCreateTime" value="${fromCreateTime}" id="fromCreateTime"/>
@@ -154,18 +154,23 @@
      
      //重置条件
      function forClean(){
-     	$("#orgName").val('');
+     	$("#newsTitle").val('');
+     	$("#newsSource").val('');
+     	$("#newsCategory").val('');
      	$("#fromCreateTime").val('');
      	$("#toCreateTime").val('');
      }
      
    	 //查询内容
    	 function forSearch(){
-   		var orgName=$("#orgName").val();
+   		var newsTitle=$("#newsTitle").val();
+   		var newsSource=$("#newsSource").val();
+   		var orgId=$("#orgId").val();
+   		var newsCategory=$("#newsCategory").val();
    		var fromCreateTime= $("#fromCreateTime").val();
      	var toCreateTime=$("#toCreateTime").val();
      	
-   	    var params="?orgName="+encodeURI(orgName)+"&fromCreateTime="+fromCreateTime+"&toCreateTime="+toCreateTime;
+   	    var params="?newsTitle="+encodeURI(newsTitle)+"&orgId="+orgId+"&newsSource="+encodeURI(newsSource)+"&newsCategory="+encodeURI(newsCategory)+"&fromCreateTime="+fromCreateTime+"&toCreateTime="+toCreateTime;
    	    init(url+params); 
    	 }
      
@@ -301,7 +306,7 @@
 	  	              { display: '关键字', name: 'newsKeyword', width: '15%'},
 	  	              { display: '摘要', name: 'newsBrief', width: '13%'},
 	  	              { display: '来源', name: 'newsSource', width: '6%' },
-	  	              { display: '结束时间', name: 'endTime', width: '13%'}
+	  	              { display: '创建时间', name: 'createTime', width: '13%'}
 	  	            
   	              ], url:url,dataAction:"server" , pageSize:15 ,rownumbers:true,pageParmName:"curNo",pagesizeParmName:"curSize"
   	          });

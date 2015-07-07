@@ -107,7 +107,7 @@ public class NewsAction extends BaseAction {
 	@RequestMapping("listNewsByPager")
 	@ResponseBody
 	public Map<String, Object> listNewsByPager(String curNo, String curSize,String sortname,String sortorder,
-			String newsTitle, String fromCreateTime, String toCreateTime) {
+			String newsTitle,String newsSource,String orgId,String newsCategory, String fromCreateTime, String toCreateTime) {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		/************* 分页处理 ****************/
 		int skip;
@@ -123,8 +123,17 @@ public class NewsAction extends BaseAction {
 		map.put("start", start);
 		map.put("len", max);
 		/************* 分页处理 ****************/
-		if (!StringUtil.isEmpty(newsTitle)) {
+		if (!StringUtil.isEmpty(newsTitle)) {//标题
 			map.put("newsTitle", newsTitle);
+		}
+		if (!StringUtil.isEmpty(newsSource)) {//来源
+			map.put("newsSource", newsSource);
+		}
+		if (!StringUtil.isEmpty(orgId)) {//所属组织机构
+			map.put("orgId", orgId);
+		}
+		if (!StringUtil.isEmpty(newsCategory)) {//分类
+			map.put("newsCategory", newsCategory);
 		}
 		if (!StringUtil.isEmpty(fromCreateTime)) {
 			map.put("fromCreateTime", fromCreateTime);
@@ -136,15 +145,15 @@ public class NewsAction extends BaseAction {
 		String orderbyStr = null;
 		if (!StringUtil.isEmpty(sortname)) {
 			if ("newsTitle".equals(sortname)) {
-				orderbyStr = "order by newsTitle " + sortorder;
-			} else if ("orgNo".equals(sortname)) {
-				orderbyStr = "order by orgNo " + sortorder;
-			} else if ("remark".equals(sortname)) {
-				orderbyStr = "order by remark " + sortorder;
+				orderbyStr = "order by news_title " + sortorder;
+			} else if ("orgName".equals(sortname)) {
+				orderbyStr = "order by orgName " + sortorder;
+			} else if ("newsSource".equals(sortname)) {
+				orderbyStr = "order by news_source " + sortorder;
 			} else if ("createTime".equals(sortname)) {
 				orderbyStr = "order by create_time " + sortorder;
-			}else if ("orgTypeCn".equals(sortname)) {
-				orderbyStr = "order by orgTypeCn " + sortorder;
+			}else if ("newsCategory".equals(sortname)) {
+				orderbyStr = "order by news_category " + sortorder;
 			}
 		} else {
 			orderbyStr = " order by news_id desc ";
@@ -154,11 +163,10 @@ public class NewsAction extends BaseAction {
 		List<Map> list = new ArrayList<Map>();
 		list = newsService.selectByPager(map);
 		for (Map oneMap : list) {
-			Date endTime = (Date) oneMap.get("endTime");
-			if(endTime!=null){
-				oneMap.put("endTime", DateUtil.getFormatDate(endTime, ""));// 创建时间
+			Date createTime = (Date) oneMap.get("createTime");
+			if(createTime!=null){
+				oneMap.put("createTime", DateUtil.getFormatDate(createTime, ""));// 创建时间
 			}
-
 		}
 		int allSize = newsService.selectByPagerCount(map);
 

@@ -104,6 +104,8 @@
 					<span class='disabled disabledfy'><b>«</b></span>
 					<span class='disabled disabledfy'>‹</span>
 					<span class='current'>1</span>
+					<span class='disabled'>2</span>
+					<span class='disabled'>3</span>
 					<span class='disabled disabledfy'>›</span>
 					<span class='disabled disabledfy'><b>»</b></span>
 				</div>

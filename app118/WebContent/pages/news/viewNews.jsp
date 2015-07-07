@@ -42,7 +42,16 @@
 				缩略图：
 			</td>
 			<td  >
-				<img src="/app118/newsAction/showImage?newsThumbnail=${news.newsThumbnail}" border="0"/>
+				
+				<c:choose>
+					<c:when test="${!empty  news.newsThumbnail}">
+						<img src="/app118/newsAction/showImage?newsThumbnail=${news.newsThumbnail}" border="0"/>
+					</c:when>
+					<c:otherwise>
+						
+					</c:otherwise>
+				</c:choose>
+				
 			</td>
 		</tr>
 		
