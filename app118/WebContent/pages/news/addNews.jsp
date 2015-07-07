@@ -78,7 +78,6 @@
 			</td>
 			<td class="tdtitle">是否置顶：</td>
 			<td nowrap="nowrap">
-				<!-- <c:if test="${isStick eq '1'}">checked="checked"</c:if>  -->
 				<input type="radio" name="isStick" id="isStick" value="1" />是
 				<input type="radio" name="isStick" id="isStick" value="0" checked="checked" />否<font color="red">*</font>
 				
@@ -144,109 +143,56 @@
 		$("#submitBtn").click(function() {
 			var content=ue.getContent();
 			$("#newsContent").val(content);
-		 	var beginTime=$("#beginTime").val();
-		 	alert(beginTime);
-		 	/*var deviceName=$("#deviceName").val();
-			var sex=$("#sex").val();
-			var carCategory=$("#carCategory").val();
-			var realName=$("#realName").val();
-			var carBrand=$("#carBrand").val();
-			var carSeries=$("#carSeries").val();
-			var carType=$("#carType").val();
-			var carStyle=$("#carStyle").val();
-			var carYear=$("#carYear").val();
-			var deviceMac=$("#deviceMac").val();
-			var saleUserId=$("#saleUserId").val();
+		 	
+		 	var newsTitle=$("#newsTitle").val();
 			var orgId=$("#orgId").val();
-			if(loginName==null||trim(loginName)==''){
-				$.ligerDialog.warn("手机号不能为空。");
-				$("#loginName").focus();
-				return;
-			}else{
-				if(!checkPhone(loginName)){
-					$.ligerDialog.warn(loginName+"，手机号码不正确。");
-					$("#loginName").focus();
-					return;
-				}
-			}
-			if(realName==null||trim(realName)==''){
-				$.ligerDialog.warn("真实姓名不能为空。");
-				$("#realName").focus();
+			var newsCategory=$("#newsCategory").val();
+			var newsSource=$("#newsSource").val();
+			var isStick=$("#isStick").val();
+		 	var beginTime=$("#beginTime").val();
+		 	var endTime=$("#endTime").val();
+		 	
+		
+			if(newsTitle==null||trim(newsTitle)==''){
+				$.ligerDialog.warn("标题不能为空。");
+				$("#newsTitle").focus();
 				return;
 			}
-			if(sex==null||trim(sex)==''){
-				$.ligerDialog.warn("性别不能为空，请选择。");
-				$("#sex").focus();
-				return;
-			}
-			
 			if(orgId==null||trim(orgId)==''){
-				$.ligerDialog.warn("所属门店不能为空，请选择。");
+				$.ligerDialog.warn("所属组织机构不能为空，请选择。");
 				$("#orgId").focus();
 				return;
 			}
-			var val=$('input:radio[name="carCategory"]:checked').val();
+			if(newsCategory==null||trim(newsCategory)==''){
+				$.ligerDialog.warn("分类不能为空。");
+				$("#newsCategory").focus();
+				return;
+			}
+			if(newsSource==null||trim(newsSource)==''){
+				$.ligerDialog.warn("来源不能为空，请选择。");
+				$("#newsSource").focus();
+				return;
+			}
+			var val=$('input:radio[name="isStick"]:checked').val();
 			if(val==null){
-				$.ligerDialog.warn("汽车种类不能为空，请选择。");
-				$("#carCategory").focus();
+				$.ligerDialog.warn("是否置顶不能为空，请选择。");
+				$("#isStick").focus();
 				return;
 			}
-			
-			if(carBrand==null||trim(carBrand)==''){
-				$.ligerDialog.warn("汽车品牌不能为空，请选择。");
-				$("#carBrand").focus();
+			if(beginTime==null||trim(beginTime)==''){
+				$.ligerDialog.warn("开始时间不能为空。");
+				$("#beginTime").focus();
 				return;
 			}
-			if('---请选择---'==carSeries||carSeries==null||trim(carSeries)==''){
-				$.ligerDialog.warn("汽车车系不能为空，请选择。");
-				$("#carSeries").focus();
+			if(endTime==null||trim(endTime)==''){
+				$.ligerDialog.warn("结束时间不能为空。");
+				$("#endTime").focus();
 				return;
 			}
-			if('---请选择---'==carType||carType==null||trim(carType)==''){
-				$.ligerDialog.warn("汽车型号不能为空，请选择。");
-				$("#carType").focus();
-				return;
-			}
-			if(carStyle==null||trim(carStyle)==''){
-				$.ligerDialog.warn("汽车款式不能为空。");
-				$("#carStyle").focus();
-				return;
-			}
-			if(carYear==null||trim(carYear)==''){
-				$.ligerDialog.warn("汽车年份不能为空，请选择。");
-				$("#carYear").focus();
-				return;
-			}
-			if(deviceName==null||trim(deviceName)==''){
-				$.ligerDialog.warn("汽车牌号不能为空。");
-				$("#deviceName").focus();
-				return;
-			}else if(!isCarNumber(deviceName)){
-				$.ligerDialog.warn(deviceName+",汽车牌号不正确。");
-				$("#deviceName").focus();
-				return;
-			}
-			if(deviceMac==null||trim(deviceMac)==''){
-				$.ligerDialog.warn("设备Mac不能为空。");
-				$("#deviceMac").focus();
-				return;
-			}else if(!isMacAddress(deviceMac)){
-				$.ligerDialog.warn('Mac地址错误，Mac地址格式为00:17:EA:92:DC:27');
-				$("#deviceMac").focus();
-				return;
-			}
-			if("---请选择---"==saleUserId||saleUserId==null||trim(saleUserId)==''){
-				$.ligerDialog.warn("销售人员不能为空，请选择。");
-				$("#saleUserId").focus();
-				return;
-			}
-			
-			$("#orgId").removeAttr("disabled"); */
+			$("#orgId").removeAttr("disabled"); 
 			document.forms[0].action = url;
 	 		document.forms[0].submit();	 
-
 		});
-
 	});
 	
 	//提示信息

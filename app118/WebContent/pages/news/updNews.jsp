@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,7 +40,16 @@
 			<td  nowrap="nowrap" class="tdtext">
 				<input type="text" name="newsBrief" id="newsBrief" value="${news.newsBrief}"  style="width: 220px;"/>
 			</td>
-			<td  class="tdtitle"><a href="#" onclick="viewNewsThumb();">缩略图：</a></td>
+			<td  class="tdtitle">
+				<c:choose>
+					<c:when test="${empty  news.newsThumbnail}">
+						缩略图：
+					</c:when>
+					<c:otherwise>
+						<a href="javascript:viewNewsThumb();">缩略图：</a>
+					</c:otherwise>
+				</c:choose>
+			</td>
 			<td  nowrap="nowrap" class="tdtext">
 				<input type="file" name="file" id="file"  style="width: 220px;"/>
 			</td>
@@ -119,8 +128,8 @@
 	//实例化编辑器
 	//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
 	var ue = UE.getEditor('editor');
+	
 	$(function() {
-		
 		$("#beginTime").ligerDateEditor({
 			showTime : true,
 			labelWidth :200,
@@ -134,110 +143,66 @@
 	 	
 	 	$("#beginTime").ligerGetDateEditorManager().setValue('${beginTime}');
 	 	$("#endTime").ligerGetDateEditorManager().setValue('${endTime}');
-	 	ue.setContent('${news.newsContent}');
-		
+	 	
+	 	//先加载完后再设置内容
+	 	ue.ready(function() {
+			ue.setContent('${news.newsContent}');
+		});
+	 	
+	 	
 		var url = "/app118/newsAction/updNews";
 		$("#submitBtn").click(function() {
 			var content=ue.getContent();
 			$("#newsContent").val(content);
-		 	var beginTime=$("#beginTime").val();
 		 	
-		 	/*var deviceName=$("#deviceName").val();
-			var sex=$("#sex").val();
-			var carCategory=$("#carCategory").val();
-			var realName=$("#realName").val();
-			var carBrand=$("#carBrand").val();
-			var carSeries=$("#carSeries").val();
-			var carType=$("#carType").val();
-			var carStyle=$("#carStyle").val();
-			var carYear=$("#carYear").val();
-			var deviceMac=$("#deviceMac").val();
-			var saleUserId=$("#saleUserId").val();
+		 	
+			var newsTitle=$("#newsTitle").val();
 			var orgId=$("#orgId").val();
-			if(loginName==null||trim(loginName)==''){
-				$.ligerDialog.warn("手机号不能为空。");
-				$("#loginName").focus();
-				return;
-			}else{
-				if(!checkPhone(loginName)){
-					$.ligerDialog.warn(loginName+"，手机号码不正确。");
-					$("#loginName").focus();
-					return;
-				}
-			}
-			if(realName==null||trim(realName)==''){
-				$.ligerDialog.warn("真实姓名不能为空。");
-				$("#realName").focus();
+			var newsCategory=$("#newsCategory").val();
+			var newsSource=$("#newsSource").val();
+			var isStick=$("#isStick").val();
+		 	var beginTime=$("#beginTime").val();
+		 	var endTime=$("#endTime").val();
+		 	
+		
+			if(newsTitle==null||trim(newsTitle)==''){
+				$.ligerDialog.warn("标题不能为空。");
+				$("#newsTitle").focus();
 				return;
 			}
-			if(sex==null||trim(sex)==''){
-				$.ligerDialog.warn("性别不能为空，请选择。");
-				$("#sex").focus();
-				return;
-			}
-			
 			if(orgId==null||trim(orgId)==''){
-				$.ligerDialog.warn("所属门店不能为空，请选择。");
+				$.ligerDialog.warn("所属组织机构不能为空，请选择。");
 				$("#orgId").focus();
 				return;
 			}
-			var val=$('input:radio[name="carCategory"]:checked').val();
+			if(newsCategory==null||trim(newsCategory)==''){
+				$.ligerDialog.warn("分类不能为空。");
+				$("#newsCategory").focus();
+				return;
+			}
+			if(newsSource==null||trim(newsSource)==''){
+				$.ligerDialog.warn("来源不能为空，请选择。");
+				$("#newsSource").focus();
+				return;
+			}
+			var val=$('input:radio[name="isStick"]:checked').val();
 			if(val==null){
-				$.ligerDialog.warn("汽车种类不能为空，请选择。");
-				$("#carCategory").focus();
+				$.ligerDialog.warn("是否置顶不能为空，请选择。");
+				$("#isStick").focus();
+				return;
+			}
+			if(beginTime==null||trim(beginTime)==''){
+				$.ligerDialog.warn("开始时间不能为空。");
+				$("#beginTime").focus();
+				return;
+			}
+			if(endTime==null||trim(endTime)==''){
+				$.ligerDialog.warn("结束时间不能为空。");
+				$("#endTime").focus();
 				return;
 			}
 			
-			if(carBrand==null||trim(carBrand)==''){
-				$.ligerDialog.warn("汽车品牌不能为空，请选择。");
-				$("#carBrand").focus();
-				return;
-			}
-			if('---请选择---'==carSeries||carSeries==null||trim(carSeries)==''){
-				$.ligerDialog.warn("汽车车系不能为空，请选择。");
-				$("#carSeries").focus();
-				return;
-			}
-			if('---请选择---'==carType||carType==null||trim(carType)==''){
-				$.ligerDialog.warn("汽车型号不能为空，请选择。");
-				$("#carType").focus();
-				return;
-			}
-			if(carStyle==null||trim(carStyle)==''){
-				$.ligerDialog.warn("汽车款式不能为空。");
-				$("#carStyle").focus();
-				return;
-			}
-			if(carYear==null||trim(carYear)==''){
-				$.ligerDialog.warn("汽车年份不能为空，请选择。");
-				$("#carYear").focus();
-				return;
-			}
-			if(deviceName==null||trim(deviceName)==''){
-				$.ligerDialog.warn("汽车牌号不能为空。");
-				$("#deviceName").focus();
-				return;
-			}else if(!isCarNumber(deviceName)){
-				$.ligerDialog.warn(deviceName+",汽车牌号不正确。");
-				$("#deviceName").focus();
-				return;
-			}
-			if(deviceMac==null||trim(deviceMac)==''){
-				$.ligerDialog.warn("设备Mac不能为空。");
-				$("#deviceMac").focus();
-				return;
-			}else if(!isMacAddress(deviceMac)){
-				$.ligerDialog.warn('Mac地址错误，Mac地址格式为00:17:EA:92:DC:27');
-				$("#deviceMac").focus();
-				return;
-			}
-			if("---请选择---"==saleUserId||saleUserId==null||trim(saleUserId)==''){
-				$.ligerDialog.warn("销售人员不能为空，请选择。");
-				$("#saleUserId").focus();
-				return;
-			}
-			
-			$("#orgId").removeAttr("disabled"); */
+			$("#orgId").removeAttr("disabled");
 			document.forms[0].action = url;
 	 		document.forms[0].submit();	 
 
@@ -266,9 +231,8 @@
 	}
 	
 	function viewNewsThumb(){
-		//'${news.newsThumbnail}'
-		var url ="${path}"+"${news.newsThumbnail}";
-		alert(url);
+		var url ="/app118/newsAction/preViewImg?newsThumbnail="+"${news.newsThumbnail}";
+		
   		dialog=$.ligerDialog.open({ 
   				  url:url, 
   				  height:200,

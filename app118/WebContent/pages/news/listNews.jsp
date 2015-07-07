@@ -209,8 +209,9 @@
   		}); 
    	 }
    	
+   	 //查看内容详情
    	 function viewNews(newsId){
-   		var url ="/app118/newsAction/viewNews";
+   		var url ="/app118/newsAction/viewNews?newsId="+newsId;
   		dialog=$.ligerDialog.open({ 
   				  url:url, 
   				  height:600,

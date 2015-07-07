@@ -7,6 +7,9 @@
 package cn.app118.action.news;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,9 +19,9 @@ import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +33,7 @@ import cn.app118.constants.ButtonPermissionConstant;
 import cn.app118.constants.SystemConstant;
 import cn.app118.framework.util.DateUtil;
 import cn.app118.framework.util.StringUtil;
+import cn.app118.model.Code;
 import cn.app118.model.News;
 import cn.app118.model.Org;
 import cn.app118.model.Role;
@@ -218,7 +222,8 @@ public class NewsAction extends BaseAction {
 		String flag = "error";
 		User user=(User)session.getAttribute("user");
 		Integer userId=user.getUserId();
-		
+		String content=news.getNewsContent().replaceAll("\'", "\"");//单引号全部替换从双引号
+		news.setNewsContent(content);
 		try {
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 			// 获取上传的文件
@@ -304,10 +309,6 @@ public class NewsAction extends BaseAction {
 		// 变量声明
 		ModelAndView mv = new ModelAndView("/pages/news/updNews.jsp");
 		try {
-			String path = request.getSession().getServletContext().getRealPath("upload")+File.separator+"news";
-			mv.addObject("path", path);
-			System.out.println("********path:"+path);
-			
 			Map<String, String> orgMap = new TreeMap<String, String>();
 			List<Org> orgList = orgService.selectBySelective(new Org());
 			for (Org org : orgList) {
@@ -321,8 +322,11 @@ public class NewsAction extends BaseAction {
 			mv.addObject("codeList", codeList);
 			
 			News news=newsService.selectByPrimaryKey(Integer.valueOf(newsId));
+			String content=news.getNewsContent().replaceAll("\'", "\"");
+			news.setNewsContent(content);
+			
 			mv.addObject("beginTime", DateUtil.getFormatDate(news.getBeginTime(), "yyyy-MM-dd"));
-			mv.addObject("endTime", DateUtil.getFormatDate(news.getBeginTime(), "yyyy-MM-dd"));
+			mv.addObject("endTime", DateUtil.getFormatDate(news.getEndTime(), "yyyy-MM-dd"));
 			mv.addObject("news", news);
 			
 			User user = (User) session.getAttribute("user");
@@ -337,8 +341,6 @@ public class NewsAction extends BaseAction {
 					mv.addObject("disabled", "disabled=\"disabled\"");
 				}
 			}
-			
-		
 		} catch (Exception e) {
 			log.info("进入修改内容页面异常："+e);
 		}
@@ -359,7 +361,7 @@ public class NewsAction extends BaseAction {
 			MultipartFile multiFile = multipartRequest.getFile("file");
 
 			if (multiFile.isEmpty()) {//文件为空
-				
+				log.info("上传文件为空。");
 			}else{
 				Integer fileSize = (int) multiFile.getSize() / 1024;
 				/**
@@ -401,4 +403,83 @@ public class NewsAction extends BaseAction {
 		return mv;
 	}
 	
+	/**
+	 * 进入缩略图预览页面
+	 * @param newsThumbnail
+	 * @return
+	 */
+	@RequestMapping("/preViewImg")
+	public ModelAndView preViewImg(String newsThumbnail) {
+		// 变量声明
+		ModelAndView mv = new ModelAndView("/pages/news/viewImg.jsp");
+		mv.addObject("newsThumbnail", newsThumbnail);
+		return mv;
+	}
+	
+	
+	@RequestMapping("/viewNews")
+	public ModelAndView viewNews(String newsId) {
+		// 变量声明
+		ModelAndView mv = new ModelAndView("/pages/news/viewNews.jsp");
+		News news=newsService.selectByPrimaryKey(Integer.valueOf(newsId));
+		
+		
+		List<Org> orgList = orgService.selectBySelective(new Org());
+		for (Org org : orgList) {
+			if(org.getOrgId().equals(news.getOrgId())){
+				mv.addObject("orgName", org.getOrgName());
+				break;
+			}
+		}
+		
+		
+		String newsCategory = news.getNewsCategory();
+		if(!StringUtil.isEmpty(newsCategory)){
+			Code code=codeService.selectByPrimaryKey(Integer.valueOf(newsCategory));
+			mv.addObject("codeName", code.getCodeName());
+		}
+		
+		
+		mv.addObject("beginTime", DateUtil.getFormatDate(news.getBeginTime(), "yyyy-MM-dd"));
+		mv.addObject("endTime", DateUtil.getFormatDate(news.getEndTime(), "yyyy-MM-dd"));
+		mv.addObject("news", news);
+		return mv;
+	}
+	
+	
+	
+	@RequestMapping("showImage")
+	@ResponseBody
+	/**
+	 * 显示磁盘上的图片
+	 * @param response
+	 * @param newsThumbnail 缩略图名称
+	 */
+	public void showImage(HttpServletResponse response,String newsThumbnail) {
+		response.setContentType("image/*");
+		FileInputStream fis = null;
+		OutputStream os = null;
+		try {
+			//服务器所在的路径
+			String path = request.getSession().getServletContext().getRealPath("upload")+File.separator+"news"+File.separator+newsThumbnail;
+			fis = new FileInputStream(path);
+			os = response.getOutputStream();
+			int count = 0;
+			byte[] buffer = new byte[1024 * 8];
+			while ((count = fis.read(buffer)) != -1) {
+				os.write(buffer, 0, count);
+				os.flush();
+			}
+		} catch (Exception e) {
+			log.info("显示图片异常："+e);
+		} finally {
+			try {
+				fis.close();
+				os.close();
+			} catch (IOException e) {
+				log.info("显示图片finally中异常："+e);
+			}
+		}
+	}
+
 }
