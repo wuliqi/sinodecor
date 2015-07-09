@@ -43,21 +43,13 @@
 	<div class="aboutus style-1">
 		<h3 class="title">
 			<span class='myCorner' data-corner='top 5px'>公司简介</span>
-			<a href="" class="more" title="链接关键词">更多>></a>
+			<a href="/app118/contentAction/viewContentBody?newsId=12&newsCategory=7&newsCategoryCn=关于我们" class="more" title="链接关键词">更多>></a>
 		</h3>
 		<div class="active editor clear contour-1">
 			<div>
-				<img alt="" src="http://demo.metinfo.cn/upload/images/20120716_094159.jpg" style="margin: 8px; width: 196px; float: left; height: 209px; " />
+				<img id="aboutImg" alt="" src="http://demo.metinfo.cn/upload/images/20120716_094159.jpg" style="margin: 8px; width: 196px; float: left; height: 209px; " />
 			</div>
-			<div style="padding-top:10px;">
-				<span style="font-size:14px;"><strong>关于&ldquo;为合作伙伴创造价值&rdquo;</strong></span>
-			</div>
-			<div>米拓信息认为客户、供应商、公司股东、公司员工等一切和自身有合作关系的单位和个人都是自己的合作伙伴，并只有通过努力为合作伙伴创造价值，才能体现自身的价值并获得发展和成功。</div>
-			<div>&nbsp;</div>
-			<div><span style="font-size:14px;"><strong>关于&ldquo;诚实、宽容、创新、服务&rdquo;</strong></span></div>
-			<div>
-				<span style="font-size:12px;">米拓信息认为诚信是一切合作的基础，宽容是解决问题的前提，创新是发展事业的利器，服务是创造价值的根本。</span>
-			</div>
+			<div id="aboutContent"></div>
 			<div class="clear"></div>
 		</div>
 	</div>
@@ -105,11 +97,11 @@
 	<div class="index-news style-1">
 		<h3 class="title">
 			<span class='myCorner' data-corner='top 5px'>公司新闻</span>
-			<a href="" class="more" title="链接关键词">更多>></a>
+			<a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=3&newsCategoryCn=公司新闻" class="more" title="链接关键词">更多>></a>
 		</h3>
 		<div class="active clear listel contour-2">
-		<ol class='list-none metlist'>
-			<li class='list top'><span class='time'>2012-07-17</span><a href='#' >如何选择网站关键词?</a></li>
+		<ol class='list-none metlist' id="newsTitle">
+			<!-- <li class='list top'><span class='time'>2012-07-17</span><a href='#' >如何选择网站关键词?</a></li>
 			<li class='list '><span class='time'>2012-07-16</span><a href='#' >新手使用建站步骤</a></li>
 			<li class='list '><span class='time'>2012-07-16</span><a href='#' >企业网站应该多长时间备份一次？</a></li>
 			<li class='list '><span class='time'>2012-07-16</span><a href='#' >如何充分发挥的SEO功能</a></li>
@@ -118,7 +110,7 @@
 			<li class='list '><span class='time'>2012-07-16</span><a href='#' >企业建站系统有何优势？</a></li>
 			<li class='list '><span class='time'>2012-07-16</span><a href='#' >商业版和免费版在系统功能上有区别吗？</a></li>
 			<li class='list '><span class='time'>2012-07-16</span><a href='#' >为什么企业要建多国语言网站？</a></li>
-			<li class='list '><span class='time'>2012-07-16</span><a href='#' >如何获取网站管理系统商业授权？</a></li>
+			<li class='list '><span class='time'>2012-07-16</span><a href='#' >如何获取网站管理系统商业授权？</a></li> -->
 		</ol>
 		</div>
 	</div>
@@ -128,11 +120,11 @@
 	<div class="index-news style-1">
 		<h3 class="title">
 			<span class='myCorner' data-corner='top 5px'>行业资讯</span>
-			<a href="" class="more" title="链接关键词">更多>></a>
+			<a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=10&newsCategoryCn=行业资讯" class="more" title="链接关键词">更多>></a>
 		</h3>
 		<div class="active clear listel contour-2">
-			<ol class='list-none metlist'>
-				<li class='list top'><span class='time'>2012-07-17</span><a href='#' >如何选择网站关键词?</a></li>
+			<ol class='list-none metlist' id="professionTitle">
+				<!----> <li class='list top'><span class='time'>2012-07-17</span><a href='#' >如何选择网站关键词?</a></li>
 				<li class='list '><span class='time'>2012-07-16</span><a href='#' >新手使用建站步骤</a></li>
 				<li class='list '><span class='time'>2012-07-16</span><a href='#' >企业网站应该多长时间备份一次？</a></li>
 				<li class='list '><span class='time'>2012-07-16</span><a href='#' >如何充分发挥的SEO功能</a></li>
@@ -141,7 +133,7 @@
 				<li class='list '><span class='time'>2012-07-16</span><a href='#'>企业建站系统有何优势？</a></li>
 				<li class='list '><span class='time'>2012-07-16</span><a href='#'>商业版和免费版在系统功能上有区别吗？</a></li>
 				<li class='list '><span class='time'>2012-07-16</span><a href='#' >为什么企业要建多国语言网站？</a></li>
-				<li class='list '><span class='time'>2012-07-16</span><a href='#'>如何获取网站管理系统商业授权？</a></li>
+				<li class='list '><span class='time'>2012-07-16</span><a href='#'>如何获取网站管理系统商业授权？</a></li> 
 			</ol>
 		</div>
 	</div>
@@ -150,10 +142,10 @@
 	<!-- 招聘开始 -->
 	<div class="index-conts style-2">
 		<h3 class='title myCorner' data-corner='top 5px'>
-			<a href="" title="链接关键词" class="more">更多>></a>招贤纳士
+			<a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=6&newsCategoryCn=招贤纳士 " title="链接关键词" class="more">更多>></a>招贤纳士
 		</h3>
 		<div class="active clear listel contour-2">
-			<ol class='list-none metlist'>
+			<ol class='list-none metlist' id="jobTitle">
 				 <li class='list top'><span class='time'>2012-07-16</span><a href='#' >PHP技术支持</a></li>
 				 <li class='list '><span class='time'>2012-07-16</span><a href='#' >网络销售</a></li>
 				 <li class='list '><span class='time'>2012-07-16</span><a href='#' >网页UI设计师</a></li>
@@ -220,5 +212,64 @@
 <!-- 底部导航菜单结束 -->
 
 <script src="/pages/web/js/fun.inc.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function (){
+	initAbout();
+	initNews("newsTitle",3,"新闻资讯");
+	initNews("professionTitle",10,"行业资讯");
+	initNews("jobTitle",6,"招贤纳士");
+});
+
+//公司简介
+function initAbout(){	
+	var url="/app118/contentAction/initAbout";
+	$.ajax({
+		type:'POST',
+		url:url,
+		data:{newsId:12},
+		dataType:'json',
+		success:function(news){
+			var imgUrl="/app118/newsAction/showImage?newsThumbnail="+news.news.newsThumbnail;
+			$("#aboutImg").attr("src",imgUrl);   
+			$("#aboutContent").html(news.news.newsContent);
+		},
+		error:function(){
+			$.ligerDialog.error("操作失败。");
+		}
+	});
+}
+
+//公司新闻  行业资讯
+function initNews(htmlId,newsCategory,newsCategoryCn){	
+	var url="/app118/contentAction/initNews";
+	$.ajax({
+		type:'POST',
+		url:url,
+		data:{"curNo":1,"newsCategory":newsCategory},
+		dataType:'json',
+		success:function(json){
+			var jsonObj = eval(json.list);
+			var html="";
+			for(var i=0;i<jsonObj.length;i++){
+				var news=jsonObj[i];
+				if(i==0){
+					html=html+"<li class='list top'><span class='time'>"+news.createTime+
+					"</span><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"&newsCategory="+news.newsCategory+"&newsCategoryCn='"+newsCategoryCn+" >"+news.newsTitle+"</a></li>";
+				}else{
+					html=html+"<li class='list'><span class='time'>"+news.createTime+
+					"</span><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"&newsCategory="+news.newsCategory+"&newsCategoryCn='"+newsCategoryCn+" >"+news.newsTitle+"</a></li>";
+				}
+			}
+			$("#"+htmlId).html(html);
+		},
+		error:function(){
+			$.ligerDialog.error("操作失败。");
+		}
+	});
+}
+</script>
+
 </body>
 </html>

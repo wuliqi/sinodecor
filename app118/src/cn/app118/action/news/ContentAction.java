@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.app118.action.common.BaseAction;
@@ -193,5 +194,62 @@ public class ContentAction extends BaseAction {
 			log.info("查看纯内容详情异常："+e);
 		}
 		return mv;
+	}
+	
+	/**
+	 * 首页关于我们初始化
+	 * @param newsId
+	 * @return
+	 */
+	@RequestMapping("/initAbout")
+	@ResponseBody
+	public Map<String, Object> initAbout(String newsId) {
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		Integer newsIdInt = Integer.valueOf(newsId);
+		News news=newsService.selectByPrimaryKey(newsIdInt);
+		jsonMap.put("news", news);
+		return jsonMap;
+	}
+	
+	
+	@RequestMapping("/initNews")
+	@ResponseBody
+	public Map<String, Object> initNews(String curNo, String curSize,String newsCategory,String newsCategoryCn) {
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+
+		/************* 分页处理 ****************/
+		int skip;
+		int max;
+		if (curNo == null || "".equals(curNo))
+			curNo = "0";
+		if (curSize == null || "".equals(curSize))
+			curSize = "10";
+		skip = Integer.parseInt(curNo);
+		max = Integer.parseInt(curSize);
+		int start = (skip - 1) * max;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("len", max);
+		/************* 分页处理 ****************/
+		
+		if (!StringUtil.isEmpty(newsCategory)) {//分类
+			map.put("newsCategory", newsCategory);
+		}
+		
+		//排序
+		String orderbyStr = " order by news_id desc ";
+		map.put("orderBy", orderbyStr);
+		
+		List<Map> list = new ArrayList<Map>();
+		list = newsService.selectByPager(map);
+		for (Map oneMap : list) {
+			Date createTime = (Date) oneMap.get("createTime");
+			if(createTime!=null){
+				oneMap.put("createTime", DateUtil.getFormatDate(createTime, "yyyy-MM-dd"));// 创建时间
+			}
+		}
+		//int allSize = newsService.selectByPagerCount(map);
+		jsonMap.put("list", list);
+		return jsonMap;
 	}
 }
