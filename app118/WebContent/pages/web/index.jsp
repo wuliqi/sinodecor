@@ -8,15 +8,9 @@
 <meta name="keywords" content="网站关键词" />
 <link href="favicon.ico" rel="shortcut icon" />
 
-<link rel="stylesheet" type="text/css" href="css/main.css" />
-<link rel='stylesheet' type='text/css' href='css/css.css'/>
+<link rel='stylesheet' type='text/css' href='/pages/web/css/css.css'/>
 
-<script src="js/jQuery1.7.2.js" type="text/javascript"></script>
-<script src="js/ch.js" type="text/javascript"></script>
-<script src='js/jquery.bxSlider.min.js'></script>
-
-
-
+<script src='/pages/web/js/jquery.bxSlider.min.js'></script>
 <script type='text/javascript'>
 	$(document).ready(function(){//图片轮播
 		$('#slider6').bxSlider({
@@ -35,10 +29,10 @@
 <div class="inner met_flash">
 <div class='flash flash6' style='width:980px; height:245px;'>
 		<ul id='slider6' class='list-none'>
-		<li><a href='#' target='_blank' ><img src='images/1342429839.jpg'width='980' height='245'></a></li>
-		<li><a href='#' target='_blank' ><img src='images/1342430031.jpg'  width='980' height='245'></a></li>
-		<li><a href='#' target='_blank' ><img src='images/1342430031.jpg'  width='980' height='245'></a></li>
-		<li><a href='#' target='_blank' ><img src='images/1342430031.jpg'  width='980' height='245'></a></li>
+		<li><a href='#' target='_blank' ><img src='/pages/web/images/1342429839.jpg'width='980' height='245'></a></li>
+		<li><a href='#' target='_blank' ><img src='/pages/web/images/1342430031.jpg'  width='980' height='245'></a></li>
+		<li><a href='#' target='_blank' ><img src='/pages/web/images/1342430031.jpg'  width='980' height='245'></a></li>
+		<li><a href='#' target='_blank' ><img src='/pages/web/images/1342430031.jpg'  width='980' height='245'></a></li>
 		</ul>
 	</div>
 </div>
@@ -71,7 +65,7 @@
 
 	<!-- 案例开始 -->
 	<div class="case style-2">
-		  <h3 class='title myCorner' data-corner='top 5px'><a href="" title="链接关键词" class="more">更多>></a>案例</h3>
+		  <h3 class='title myCorner' data-corner='top 5px'><a href="" title="链接关键词" class="more">更多>></a>客户案例 </h3>
 		  <div class="active dl-jqrun contour-1">
 				<dl class="ind">
 					<dt>
@@ -156,7 +150,7 @@
 	<!-- 招聘开始 -->
 	<div class="index-conts style-2">
 		<h3 class='title myCorner' data-corner='top 5px'>
-			<a href="" title="链接关键词" class="more">更多>></a>招聘
+			<a href="" title="链接关键词" class="more">更多>></a>招贤纳士
 		</h3>
 		<div class="active clear listel contour-2">
 			<ol class='list-none metlist'>
@@ -225,6 +219,6 @@
 <%@include file="/pages/web/footer.jsp"%>
 <!-- 底部导航菜单结束 -->
 
-<script src="js/fun.inc.js" type="text/javascript"></script>
+<script src="/pages/web/js/fun.inc.js" type="text/javascript"></script>
 </body>
 </html>

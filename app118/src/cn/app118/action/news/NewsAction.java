@@ -254,7 +254,8 @@ public class NewsAction extends BaseAction {
 					String suffix = "." + suffixs[suffixs.length - 1];
 					// 获得文件全名
 					String fname = userId + "_" + System.currentTimeMillis() + suffix;
-					String path = request.getSession().getServletContext().getRealPath("upload")+File.separator+"news";
+					String path = request.getSession().getServletContext().getRealPath("/")+File.separator+"upload"+File.separator+"news";
+					System.out.println("******path:"+path);
 					// 创建文件存放路径
 					File folder = new File(path);
 					if (!folder.exists()) {
@@ -385,7 +386,7 @@ public class NewsAction extends BaseAction {
 					String suffix = "." + suffixs[suffixs.length - 1];
 					// 获得文件全名
 					String fname = userId + "_" + System.currentTimeMillis() + suffix;
-					String path = request.getSession().getServletContext().getRealPath("upload")+File.separator+"news";
+					String path = request.getSession().getServletContext().getRealPath("/")+File.separator+"upload"+File.separator+"news";
 					// 创建文件存放路径
 					File folder = new File(path);
 					if (!folder.exists()) {
@@ -467,25 +468,30 @@ public class NewsAction extends BaseAction {
 		response.setContentType("image/*");
 		FileInputStream fis = null;
 		OutputStream os = null;
-		try {
-			//服务器所在的路径
-			String path = request.getSession().getServletContext().getRealPath("upload")+File.separator+"news"+File.separator+newsThumbnail;
-			fis = new FileInputStream(path);
-			os = response.getOutputStream();
-			int count = 0;
-			byte[] buffer = new byte[1024 * 8];
-			while ((count = fis.read(buffer)) != -1) {
-				os.write(buffer, 0, count);
-				os.flush();
-			}
-		} catch (Exception e) {
-			log.info("显示图片异常："+e);
-		} finally {
+		//服务器所在的路径
+		String path = request.getSession().getServletContext().getRealPath("/")+File.separator+"upload"+File.separator+"news"+File.separator+newsThumbnail;
+		System.out.println("****path:"+path);
+		File file=new File(path);
+		if(file.exists()){//存在
 			try {
-				fis.close();
-				os.close();
-			} catch (IOException e) {
-				log.info("显示图片finally中异常："+e);
+					fis = new FileInputStream(path);
+					os = response.getOutputStream();
+					int count = 0;
+					byte[] buffer = new byte[1024 * 8];
+					while ((count = fis.read(buffer)) != -1) {
+						os.write(buffer, 0, count);
+						os.flush();
+					}
+				
+			} catch (Exception e) {
+				log.info("显示图片异常："+e);
+			} finally {
+				try {
+					fis.close();
+					os.close();
+				} catch (IOException e) {
+					log.info("显示图片finally中异常："+e);
+				}
 			}
 		}
 	}

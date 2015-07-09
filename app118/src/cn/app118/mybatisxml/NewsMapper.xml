@@ -55,6 +55,27 @@
     from sys_news
     where news_id = #{newsId,jdbcType=INTEGER}
   </select>
+  <!-- 查询上一页或下一页 -->
+  <select id="selectPreOrNextNews" resultMap="ResultMapWithBLOBs"  parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_news
+    
+   	<if test="pre != null" >
+   	    <![CDATA[
+         where news_id < #{newsId,jdbcType=INTEGER} order by news_id desc limit 1
+        ]]>
+    </if>
+   	<if test="next != null" >
+   		<![CDATA[
+         where news_id > #{newsId,jdbcType=INTEGER} order by news_id asc limit 1
+        ]]>
+    </if>
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_news
     where news_id = #{newsId,jdbcType=INTEGER}

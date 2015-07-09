@@ -460,6 +460,7 @@ public class DateUtil {
 	 * 时间比较
 	 * @param d1
 	 * @param d2
+	 * @return >0:d1晚于d2   ==0： d1等于d2   <0:d1早于d2 
 	 */
 	public static int compare(Date d1, Date d2) {
 		SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -68,7 +68,13 @@ public class ISoftwareUpdAction extends BaseAction{
 	@RequestMapping("downloadFile2")
 	public void downloadFile2(String fileName,HttpServletResponse response){
 		try {
-			String path =request.getSession().getServletContext().getRealPath("upload");  
+			String path =request.getSession().getServletContext().getRealPath("/")+File.separator+"upload"; 
+			// 创建文件存放路径
+			File folder = new File(path);
+			if (!folder.exists()) {
+				folder.mkdirs();
+			}
+			
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("multipart/form-data");
 			response.setHeader("Content-Disposition", "attachment;fileName="+ java.net.URLEncoder.encode(fileName, "UTF-8"));  
@@ -97,7 +103,12 @@ public class ISoftwareUpdAction extends BaseAction{
 	@RequestMapping("downloadFile")
 	public void downloadFile(String fileName,HttpServletResponse response){
 		//fileName="app118.apk";
-		String filePath =request.getSession().getServletContext().getRealPath("upload"); 
+		String filePath =request.getSession().getServletContext().getRealPath("/")+File.separator+"upload";
+		// 创建文件存放路径
+		File folder = new File(filePath);
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
 		OutputStream out = null;
 		InputStream is=null;
 		try {

@@ -13,6 +13,9 @@ public interface NewsMapper {
     int insertSelective(News record);
 
     News selectByPrimaryKey(Integer newsId);
+    
+    //newsId当前id,type:pre,next
+    News selectPreOrNextNews(Map map);
 
     int updateByPrimaryKeySelective(News record);
 

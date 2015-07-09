@@ -14,6 +14,8 @@ public interface INewsService {
     int insertSelective(News record);
 
     News selectByPrimaryKey(Integer newsId);
+    
+    News selectPreOrNextNews(Map map);
 
     int updateByPrimaryKeySelective(News record);
 

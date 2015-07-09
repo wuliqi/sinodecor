@@ -36,7 +36,12 @@ public class NewsServiceImpl implements INewsService {
 	public News selectByPrimaryKey(Integer newsId) {
 		return newsMapper.selectByPrimaryKey(newsId);
 	}
-
+	
+	@Override
+	public News selectPreOrNextNews(Map map) {
+		return newsMapper.selectPreOrNextNews(map);
+	}
+	
 	@Override
 	public int updateByPrimaryKeySelective(News record) {
 		return newsMapper.updateByPrimaryKeySelective(record);
@@ -61,5 +66,7 @@ public class NewsServiceImpl implements INewsService {
 	public int selectByPagerCount(Map map) {
 		return newsMapper.selectByPagerCount(map);
 	}
+
+	
 
 }

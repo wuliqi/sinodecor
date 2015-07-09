@@ -7,7 +7,7 @@
 </head>
 <body>
 <center>
-	<img src="/app118/newsAction/showImage?newsThumbnail=${newsThumbnail}" border="0"/>
+	<img src="/app118/newsAction/showImage?newsThumbnail=${newsThumbnail}" border="0" width="130px" height="86px"/>
 </center>
 </body>
 </html>
