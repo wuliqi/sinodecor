@@ -211,7 +211,14 @@ public class ContentAction extends BaseAction {
 		return jsonMap;
 	}
 	
-	
+	/**
+	 * 通用内容查询
+	 * @param curNo 当前页码
+	 * @param curSize 页面大小 默认10条
+	 * @param newsCategory 内容分类
+	 * @param newsCategoryCn 内容分类名称
+	 * @return
+	 */
 	@RequestMapping("/initNews")
 	@ResponseBody
 	public Map<String, Object> initNews(String curNo, String curSize,String newsCategory,String newsCategoryCn) {

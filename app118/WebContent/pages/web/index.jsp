@@ -57,9 +57,9 @@
 
 	<!-- 案例开始 -->
 	<div class="case style-2">
-		  <h3 class='title myCorner' data-corner='top 5px'><a href="" title="链接关键词" class="more">更多>></a>客户案例 </h3>
-		  <div class="active dl-jqrun contour-1">
-				<dl class="ind">
+		  <h3 class='title myCorner' data-corner='top 5px'><a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=5&newsCategoryCn=客户案例" title="客户案例" class="more">更多>></a>客户案例 </h3>
+		  <div class="active dl-jqrun contour-1" id="caseContent">
+		  	<!--    <dl class="ind">
 					<dt>
 						<a href="#" target='_self'>
 							<img src="images/1342431883.jpg" alt="图片关键词" title="图片关键词" style="width:116px; height:80px;" />
@@ -85,9 +85,9 @@
 							相关描述文字，相关描述文字，相关描述文字，相关描述文字，相关..
 						</p>
 					</dd>
-				</dl>
+				</dl> 
 				
-				<div class="clear"></div>
+				<div class="clear"></div> -->
 		   </div>
 	</div>
 	<div class="clear"></div>
@@ -158,7 +158,7 @@
 	<!-- 招聘结束 -->
 	
     <!-- 底部轮播图片开始 -->
-	<div class="index-product style-2">
+	<div class="index-product style-2"  id="viewpagerTitle">
 		<h3 class='title myCorner' data-corner='top 5px'>
 			 <span></span>
 			 <div class="flip">
@@ -166,9 +166,10 @@
 				 <a class="prev" id="car_prev" href="javascript:void(0);"></a> 
 				 <a class="next" id="car_next" href="javascript:void(0);"></a>
 			 </div>
-			<a href=""  class="more">更多>></a>
+			<a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=5&newsCategoryCn=客户案例"  class="more">更多>></a>
 		</h3>
-		<div class="active clear">
+		<div class="active clear" >
+		
 			<div class="profld" id="indexcar" data-listnum="5">
 				<ol class='list-none metlist'>
 					 <li class='list'><a href='#'  class='img'><img src='images/1342405015.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' >示例产品八</a></h3></li>
@@ -178,7 +179,8 @@
 					 <li class='list'><a href='#'  class='img'><img src='images/1342360923.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' title='示例产品五' target='_self'>示例产品五</a></h3></li>
 					 <li class='list'><a href='#'  class='img'><img src='images/1342405015.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' title='示例产品四' target='_self'>示例产品四</a></h3></li>
 					 <li class='list'><a href='#'  class='img'><img src='images/1342404144.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' title='示例产品二' target='_self'>示例产品二</a></h3></li>
-					 <li class='list'><a href='#'  class='img'><img src='images/1342360923.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#'>示例产品一</a></h3></li>
+					 <li class='list'><a href='#'  class='img'><img src='images/1342360923.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#'>示例产品一</a></h3></li> 
+					 
 				</ol>
 			 </div>
 		 </div>
@@ -214,10 +216,12 @@
 <script src="/pages/web/js/fun.inc.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function (){
+	initViwepager("viewpagerTitle",5,"客户案例");//5
 	initAbout();
 	initNews("newsTitle",3,"新闻资讯");
 	initNews("professionTitle",10,"行业资讯");
 	initNews("jobTitle",6,"招贤纳士");
+	initCase("caseContent",5,"客户案例");//5
 });
 
 //公司简介
@@ -239,7 +243,7 @@ function initAbout(){
 	});
 }
 
-//公司新闻  行业资讯
+//公司新闻  行业资讯  招贤纳士
 function initNews(htmlId,newsCategory,newsCategoryCn){	
 	var url="/app118/contentAction/initNews";
 	$.ajax({
@@ -269,6 +273,98 @@ function initNews(htmlId,newsCategory,newsCategoryCn){
 		}
 	});
 }
+
+//客户案例
+function initCase(htmlId,newsCategory,newsCategoryCn){	
+	var url="/app118/contentAction/initNews";
+	$.ajax({
+		type:'POST',
+		url:url,
+		data:{"curNo":1,"curSize":2,"newsCategory":newsCategory},
+		dataType:'json',
+		success:function(json){
+			var jsonObj = eval(json.list);
+			var html="";
+			for(var i=0;i<jsonObj.length;i++){
+				var news=jsonObj[i];
+				
+					html=html+"<dl class='ind'>"+
+					"<dt style=\"height: 86px;\" >"+
+					"<a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' target='_self'>"+
+						"<img src='/app118/newsAction/showImage?newsThumbnail="+news.newsThumbnail+"' alt='"+news.newsTitle+"' title='"+news.newsTitle+"' style='width:116px; height:80px;' />"+
+					"</a>"+
+					"</dt>"+
+					"<dd style=\"width: 149px; height: 86px;\">"+
+						"<h4><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+						"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' target='_self' title='"+news.newsTitle+"'>"+news.newsTitle.substring(0,5)+"</a></h4>"+
+						"<p class='desc' title='"+news.newsBrief+"'>"+
+							news.newsBrief.substring(0,28) +
+						"</p>"+
+					"</dd>"+
+					"</dl>"; 
+			}
+			html=html+"<div class='clear'></div>";
+			$("#"+htmlId).html(html);
+		},
+		error:function(){
+			$.ligerDialog.error("操作失败。");
+		}
+	});
+}
+
+//底部图片轮播
+function initViwepager(htmlId,newsCategory,newsCategoryCn){	
+	var url="/app118/contentAction/initNews";
+	$.ajax({
+		type:'POST',
+		url:url,
+		async: false, 
+		data:{"curNo":1,"curSize":20,"newsCategory":newsCategory},
+		dataType:'json',
+		success:function(json){
+			var jsonObj = eval(json.list);
+			var html="";
+			html=html+"<h3 class='title myCorner' data-corner='top 5px'>"+
+			 "<span></span>"+
+			 "<div class=\"flip\">"+
+				 "<p id=\"trigger\"></p> "+
+				 "<a class=\"prev\" id=\"car_prev\" href=\"javascript:void(0);\"></a> "+
+				 "<a class=\"next\" id=\"car_next\" href=\"javascript:void(0);\"></a>"+
+			 "</div>"+
+				"<a href=\"/app118/contentAction/listContentByPager?curNo=1&newsCategory=5&newsCategoryCn=客户案例\"  class=\"more\">更多>></a>"+
+				"</h3>"+
+			"<div class=\"active clear\" >"+
+			"<div class=\"profld\" id=\"indexcar\" data-listnum=\"5\">"+
+				"<ol class='list-none metlist'>";
+			
+			
+			
+			for(var i=0;i<jsonObj.length;i++){
+				var news=jsonObj[i];
+				if(i==0){
+					html=html+"<li class='list' style='height: 157px; margin: 0px 15px; position: relative; left: 0px;'><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"'  class='img'>"+
+					"<img src='/app118/newsAction/showImage?newsThumbnail="+news.newsThumbnail+"'  width='160' height='130' /></a>"+
+					"<h3 style='width:160px;'><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' title='"+news.newsTitle+"' target='_self'>"+news.newsTitle+"</a></h3></li>";
+				}else{
+					html=html+"<li class='list' style='height: 157px; margin: 0px 15px; position: relative;'><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"'  class='img'>"+
+					"<img src='/app118/newsAction/showImage?newsThumbnail="+news.newsThumbnail+"'  width='160' height='130' /></a>"+
+					"<h3 style='width:160px;'><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' title='"+news.newsTitle+"' target='_self'>"+news.newsTitle+"</a></h3></li>";
+				}
+			}
+			html=html+"</ol></div> </div>";
+			$("#"+htmlId).html(html);
+		},
+		error:function(){
+			$.ligerDialog.error("操作失败。");
+		}
+	});
+}
+
 </script>
 
 </body>
