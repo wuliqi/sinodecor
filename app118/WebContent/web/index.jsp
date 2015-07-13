@@ -33,10 +33,10 @@
 <div class="inner met_flash">
 <div class='flash flash6' style='width:980px; height:245px;'>
 		<ul id='slider6' class='list-none'>
-		<li><a href='#' target='_blank' ><img src='/web/images/1342429839.jpg'width='980' height='245'></a></li>
-		<li><a href='#' target='_blank' ><img src='/web/images/1342430031.jpg'  width='980' height='245'></a></li>
-		<li><a href='#' target='_blank' ><img src='/web/images/1342430031.jpg'  width='980' height='245'></a></li>
-		<li><a href='#' target='_blank' ><img src='/web/images/1342430031.jpg'  width='980' height='245'></a></li>
+		<li><a href='http://app118.cn' target='_blank' ><img src='/web/images/1342429839.jpg'width='980' height='245'></a></li>
+		<li><a href='http://app118.cn' target='_blank' ><img src='/web/images/1342430031.jpg'  width='980' height='245'></a></li>
+		<li><a href='http://app118.cn' target='_blank' ><img src='/web/images/1342429839.jpg'  width='980' height='245'></a></li>
+		<li><a href='http://app118.cn' target='_blank' ><img src='/web/images/1342430031.jpg'  width='980' height='245'></a></li>
 		</ul>
 	</div>
 </div>
