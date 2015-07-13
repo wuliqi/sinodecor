@@ -1,5 +1,5 @@
 /**
- * @(#)UserAction.java	06/19/2015
+ * @(#)Weather.java	06/19/2015
  * 
  * Copyright (c) 2015 app118.cn.All rights reserved.
  * Created by 2015-06-19

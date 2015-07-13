@@ -4,8 +4,12 @@
  * Copyright (c) 2015 app118.cn.All rights reserved.
  * Created by 2015-07-08
  */
-package cn.app118.action.news;
+package cn.app.action.news;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,10 +30,14 @@ import cn.app118.framework.util.DateUtil;
 import cn.app118.framework.util.StringUtil;
 import cn.app118.model.News;
 import cn.app118.service.news.INewsService;
-
+/**
+ * 内容信息控制类 前台网站
+ * @author wRitchie
+ *
+ */
 @Controller
-@RequestMapping("contentAction")
-public class ContentAction extends BaseAction {
+@RequestMapping("wContentAction")
+public class WContentAction extends BaseAction {
 
 	@Resource
 	private INewsService newsService;//内容管理服务类
@@ -42,7 +51,7 @@ public class ContentAction extends BaseAction {
 	@RequestMapping("listContentByPager")
 	public ModelAndView listContentByPager(String curNo, String curSize,String sortname,String sortorder,
 			String newsTitle,String newsSource,String orgId,String newsCategory,String newsCategoryCn, String fromCreateTime, String toCreateTime) {
-		ModelAndView mv = new ModelAndView("/pages/web/listContent.jsp");
+		ModelAndView mv = new ModelAndView("/web/content/listContent.jsp");
 		/************* 分页处理 ****************/
 		int skip;
 		int max;
@@ -133,7 +142,7 @@ public class ContentAction extends BaseAction {
 	 */
 	@RequestMapping("viewContent")
 	public ModelAndView viewContent(String newsId,String newsCategory,String newsCategoryCn){
-		ModelAndView mv = new ModelAndView("/pages/web/viewContent.jsp");
+		ModelAndView mv = new ModelAndView("/web/content/viewContent.jsp");
 		try {
 			Integer newsIdInt = Integer.valueOf(newsId);
 			News news=newsService.selectByPrimaryKey(newsIdInt);
@@ -145,23 +154,25 @@ public class ContentAction extends BaseAction {
 				newsService.updateByPrimaryKeySelective(updNews);
 				mv.addObject("createTime",DateUtil.getFormatDate(news.getCreateTime(), ""));
 				mv.addObject("news", news);
-				
+				String sameNewsCategory=news.getNewsCategory();
 				Map preMap=new HashMap();
 				preMap.put("newsId", newsIdInt);
+				preMap.put("newsCategory", sameNewsCategory);
 				preMap.put("pre","pre");
 				News preNews=newsService.selectPreOrNextNews(preMap);
 				String pre="没有了";
 				if(preNews!=null){
-					pre="<a href='/app118/contentAction/viewContent?newsId="+preNews.getNewsId()+"' >"+preNews.getNewsTitle()+"</a>";
+					pre="<a href='/app/wContentAction/viewContent?newsId="+preNews.getNewsId()+"' >"+preNews.getNewsTitle()+"</a>";
 				}
 				
 				Map nextMap=new HashMap();
 				nextMap.put("newsId", newsIdInt);
+				nextMap.put("newsCategory", sameNewsCategory);
 				nextMap.put("next","next");
 				News nextNews=newsService.selectPreOrNextNews(nextMap);
 				String next="没有了";
 				if(nextNews!=null){
-					next="<a href='/app118/contentAction/viewContent?newsId="+nextNews.getNewsId()+"' >"+nextNews.getNewsTitle()+"</a>";
+					next="<a href='/app/wContentAction/viewContent?newsId="+nextNews.getNewsId()+"' >"+nextNews.getNewsTitle()+"</a>";
 				}
 				mv.addObject("pre", pre);
 				mv.addObject("next", next);
@@ -176,7 +187,7 @@ public class ContentAction extends BaseAction {
 	
 	@RequestMapping("viewContentBody")
 	public ModelAndView viewContentBody(String newsId,String newsCategory,String newsCategoryCn){
-		ModelAndView mv = new ModelAndView("/pages/web/viewContentBody.jsp");
+		ModelAndView mv = new ModelAndView("/web/content/viewContentBody.jsp");
 		try {
 			Integer newsIdInt = Integer.valueOf(newsId);
 			News news=newsService.selectByPrimaryKey(newsIdInt);
@@ -258,5 +269,44 @@ public class ContentAction extends BaseAction {
 		//int allSize = newsService.selectByPagerCount(map);
 		jsonMap.put("list", list);
 		return jsonMap;
+	}
+	
+	@RequestMapping("showImage")
+	@ResponseBody
+	/**
+	 * 显示磁盘上的图片
+	 * @param response
+	 * @param newsThumbnail 缩略图名称
+	 */
+	public void showImage(HttpServletResponse response,String newsThumbnail) {
+		response.setContentType("image/*");
+		FileInputStream fis = null;
+		OutputStream os = null;
+		//服务器所在的路径
+		String path = request.getSession().getServletContext().getRealPath("/")+File.separator+"upload"+File.separator+"news"+File.separator+newsThumbnail;
+		System.out.println("****path:"+path);
+		File file=new File(path);
+		if(file.exists()){//存在
+			try {
+					fis = new FileInputStream(path);
+					os = response.getOutputStream();
+					int count = 0;
+					byte[] buffer = new byte[1024 * 8];
+					while ((count = fis.read(buffer)) != -1) {
+						os.write(buffer, 0, count);
+						os.flush();
+					}
+				
+			} catch (Exception e) {
+				log.info("显示图片异常："+e);
+			} finally {
+				try {
+					fis.close();
+					os.close();
+				} catch (IOException e) {
+					log.info("显示图片finally中异常："+e);
+				}
+			}
+		}
 	}
 }

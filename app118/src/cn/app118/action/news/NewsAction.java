@@ -43,7 +43,7 @@ import cn.app118.service.news.INewsService;
 import cn.app118.service.org.IOrgService;
 
 /**
- * 新闻信息控制类
+ * 新闻信息控制类 后台
  * 
  * @author 吴理琪
  * 

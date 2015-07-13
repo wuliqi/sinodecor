@@ -190,7 +190,7 @@
 <script src="js/scripts.js"></script>
 <script type="text/javascript">
 	function client(){
-		window.location.href="/pages/web/index.jsp";
+		window.location.href="/web/index.jsp";
 	}
 	
 </script>

@@ -8,9 +8,13 @@
 <meta name="keywords" content="网站关键词" />
 <link href="favicon.ico" rel="shortcut icon" />
 
-<link rel='stylesheet' type='text/css' href='/pages/web/css/css.css'/>
+<link rel='stylesheet' type='text/css' href='/web/css/css.css'/>
 
-<script src='/pages/web/js/jquery.bxSlider.min.js'></script>
+<link rel="stylesheet" type="text/css" href="/web/css/main.css" />
+<script src="/web/js/jQuery1.7.2.js" type="text/javascript"></script>
+<script src="/web/js/ch.js" type="text/javascript"></script>
+
+<script src='/web/js/jquery.bxSlider.min.js'></script>
 <script type='text/javascript'>
 	$(document).ready(function(){//图片轮播
 		$('#slider6').bxSlider({
@@ -22,17 +26,17 @@
 <body>
 <header>
 <!-- 导航菜单开始 -->
-<%@include file="/pages/web/top.jsp"%>
+<%@include file="/web/top.jsp"%>
 <!-- 导航菜单结束 -->
 </header>
 <!-- 图片轮播开始 -->
 <div class="inner met_flash">
 <div class='flash flash6' style='width:980px; height:245px;'>
 		<ul id='slider6' class='list-none'>
-		<li><a href='#' target='_blank' ><img src='/pages/web/images/1342429839.jpg'width='980' height='245'></a></li>
-		<li><a href='#' target='_blank' ><img src='/pages/web/images/1342430031.jpg'  width='980' height='245'></a></li>
-		<li><a href='#' target='_blank' ><img src='/pages/web/images/1342430031.jpg'  width='980' height='245'></a></li>
-		<li><a href='#' target='_blank' ><img src='/pages/web/images/1342430031.jpg'  width='980' height='245'></a></li>
+		<li><a href='#' target='_blank' ><img src='/web/images/1342429839.jpg'width='980' height='245'></a></li>
+		<li><a href='#' target='_blank' ><img src='/web/images/1342430031.jpg'  width='980' height='245'></a></li>
+		<li><a href='#' target='_blank' ><img src='/web/images/1342430031.jpg'  width='980' height='245'></a></li>
+		<li><a href='#' target='_blank' ><img src='/web/images/1342430031.jpg'  width='980' height='245'></a></li>
 		</ul>
 	</div>
 </div>
@@ -43,7 +47,7 @@
 	<div class="aboutus style-1">
 		<h3 class="title">
 			<span class='myCorner' data-corner='top 5px'>公司简介</span>
-			<a href="/app118/contentAction/viewContentBody?newsId=12&newsCategory=7&newsCategoryCn=关于我们" class="more" title="链接关键词">更多>></a>
+			<a href="/app/wContentAction/viewContentBody?newsId=12&newsCategory=7&newsCategoryCn=关于我们" class="more" title="链接关键词">更多>></a>
 		</h3>
 		<div class="active editor clear contour-1">
 			<div>
@@ -57,7 +61,7 @@
 
 	<!-- 案例开始 -->
 	<div class="case style-2">
-		  <h3 class='title myCorner' data-corner='top 5px'><a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=5&newsCategoryCn=客户案例" title="客户案例" class="more">更多>></a>客户案例 </h3>
+		  <h3 class='title myCorner' data-corner='top 5px'><a href="/app/wContentAction/listContentByPager?curNo=1&newsCategory=5&newsCategoryCn=客户案例" title="客户案例" class="more">更多>></a>客户案例 </h3>
 		  <div class="active dl-jqrun contour-1" id="caseContent">
 		  	<!--    <dl class="ind">
 					<dt>
@@ -97,7 +101,7 @@
 	<div class="index-news style-1">
 		<h3 class="title">
 			<span class='myCorner' data-corner='top 5px'>公司新闻</span>
-			<a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=3&newsCategoryCn=公司新闻" class="more" title="链接关键词">更多>></a>
+			<a href="/app/wContentAction/listContentByPager?curNo=1&newsCategory=3&newsCategoryCn=公司新闻" class="more" title="链接关键词">更多>></a>
 		</h3>
 		<div class="active clear listel contour-2">
 		<ol class='list-none metlist' id="newsTitle">
@@ -120,7 +124,7 @@
 	<div class="index-news style-1">
 		<h3 class="title">
 			<span class='myCorner' data-corner='top 5px'>行业资讯</span>
-			<a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=10&newsCategoryCn=行业资讯" class="more" title="链接关键词">更多>></a>
+			<a href="/app/wContentAction/listContentByPager?curNo=1&newsCategory=10&newsCategoryCn=行业资讯" class="more" title="链接关键词">更多>></a>
 		</h3>
 		<div class="active clear listel contour-2">
 			<ol class='list-none metlist' id="professionTitle">
@@ -142,7 +146,7 @@
 	<!-- 招聘开始 -->
 	<div class="index-conts style-2">
 		<h3 class='title myCorner' data-corner='top 5px'>
-			<a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=6&newsCategoryCn=招贤纳士 " title="链接关键词" class="more">更多>></a>招贤纳士
+			<a href="/app/wContentAction/listContentByPager?curNo=1&newsCategory=6&newsCategoryCn=招贤纳士 " title="链接关键词" class="more">更多>></a>招贤纳士
 		</h3>
 		<div class="active clear listel contour-2">
 			<ol class='list-none metlist' id="jobTitle">
@@ -158,7 +162,7 @@
 	<!-- 招聘结束 -->
 	
     <!-- 底部轮播图片开始 -->
-	<div class="index-product style-2"  id="viewpagerTitle">
+	<div class="index-product style-2"  >
 		<h3 class='title myCorner' data-corner='top 5px'>
 			 <span></span>
 			 <div class="flip">
@@ -166,12 +170,12 @@
 				 <a class="prev" id="car_prev" href="javascript:void(0);"></a> 
 				 <a class="next" id="car_next" href="javascript:void(0);"></a>
 			 </div>
-			<a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=5&newsCategoryCn=客户案例"  class="more">更多>></a>
+			<a href="/app/wContentAction/listContentByPager?curNo=1&newsCategory=5&newsCategoryCn=客户案例"  class="more">更多>></a>
 		</h3>
 		<div class="active clear" >
 		
 			<div class="profld" id="indexcar" data-listnum="5">
-				<ol class='list-none metlist'>
+				<ol class='list-none metlist' id="viewpagerTitle">
 					 <li class='list'><a href='#'  class='img'><img src='images/1342405015.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' >示例产品八</a></h3></li>
 					 <li class='list'><a href='#'  class='img'><img src='images/1342404422.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' >示例产品七</a></h3></li>
 					 <li class='list'><a href='#'  class='img'><img src='images/1342404422.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' title='示例产品六' target='_self'>示例产品六</a></h3></li>
@@ -191,14 +195,14 @@
 	<!-- 友情链接开始-->
 	<div class="index-links">
 		<h3 class="title">
-			<a href="" title="链接关键词" class="more">更多>></a>
+			<!-- <a href="" title="" class="more">更多>></a> -->友情连接
 		</h3>
 		<div class="active clear">
 			<div class="img">
 				<ul class='list-none'></ul>
 			</div>
 			<div class="txt">
-				<ul class='list-none'>
+				<ul class='list-none' id="friendLink">
 					<li><a href='#' target='_blank' title=''>sina</a></li>
 					<li><a href='#' target='_blank' title=''>信息</a></li>
 				</ul>
@@ -210,30 +214,31 @@
 </div>
 
 <!-- 底部导航菜单开始 -->
-<%@include file="/pages/web/footer.jsp"%>
+<%@include file="/web/footer.jsp"%>
 <!-- 底部导航菜单结束 -->
 
-<script src="/pages/web/js/fun.inc.js" type="text/javascript"></script>
+<script src="/web/js/fun.inc.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function (){
-	initViwepager("viewpagerTitle",5,"客户案例");//5
 	initAbout();
 	initNews("newsTitle",3,"新闻资讯");
 	initNews("professionTitle",10,"行业资讯");
 	initNews("jobTitle",6,"招贤纳士");
 	initCase("caseContent",5,"客户案例");//5
+	initViwepager("viewpagerTitle",5,"客户案例");//5
+	initFriendLink("friendLink");
 });
 
 //公司简介
 function initAbout(){	
-	var url="/app118/contentAction/initAbout";
+	var url="/app/wContentAction/initAbout";
 	$.ajax({
 		type:'POST',
 		url:url,
 		data:{newsId:12},
 		dataType:'json',
 		success:function(news){
-			var imgUrl="/app118/newsAction/showImage?newsThumbnail="+news.news.newsThumbnail;
+			var imgUrl="/app/wContentAction/showImage?newsThumbnail="+news.news.newsThumbnail;
 			$("#aboutImg").attr("src",imgUrl);   
 			$("#aboutContent").html(news.news.newsContent);
 		},
@@ -245,7 +250,7 @@ function initAbout(){
 
 //公司新闻  行业资讯  招贤纳士
 function initNews(htmlId,newsCategory,newsCategoryCn){	
-	var url="/app118/contentAction/initNews";
+	var url="/app/wContentAction/initNews";
 	$.ajax({
 		type:'POST',
 		url:url,
@@ -258,11 +263,11 @@ function initNews(htmlId,newsCategory,newsCategoryCn){
 				var news=jsonObj[i];
 				if(i==0){
 					html=html+"<li class='list top'><span class='time'>"+news.createTime+
-					"</span><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"</span><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn='"+newsCategoryCn+" >"+news.newsTitle+"</a></li>";
 				}else{
 					html=html+"<li class='list'><span class='time'>"+news.createTime+
-					"</span><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"</span><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn='"+newsCategoryCn+" >"+news.newsTitle+"</a></li>";
 				}
 			}
@@ -276,7 +281,7 @@ function initNews(htmlId,newsCategory,newsCategoryCn){
 
 //客户案例
 function initCase(htmlId,newsCategory,newsCategoryCn){	
-	var url="/app118/contentAction/initNews";
+	var url="/app/wContentAction/initNews";
 	$.ajax({
 		type:'POST',
 		url:url,
@@ -290,13 +295,13 @@ function initCase(htmlId,newsCategory,newsCategoryCn){
 				
 					html=html+"<dl class='ind'>"+
 					"<dt style=\"height: 86px;\" >"+
-					"<a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"<a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' target='_self'>"+
-						"<img src='/app118/newsAction/showImage?newsThumbnail="+news.newsThumbnail+"' alt='"+news.newsTitle+"' title='"+news.newsTitle+"' style='width:116px; height:80px;' />"+
+						"<img src='/app/wContentAction/showImage?newsThumbnail="+news.newsThumbnail+"' alt='"+news.newsTitle+"' title='"+news.newsTitle+"' style='width:116px; height:80px;' />"+
 					"</a>"+
 					"</dt>"+
 					"<dd style=\"width: 149px; height: 86px;\">"+
-						"<h4><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+						"<h4><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 						"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' target='_self' title='"+news.newsTitle+"'>"+news.newsTitle.substring(0,5)+"</a></h4>"+
 						"<p class='desc' title='"+news.newsBrief+"'>"+
 							news.newsBrief.substring(0,28) +
@@ -315,7 +320,7 @@ function initCase(htmlId,newsCategory,newsCategoryCn){
 
 //底部图片轮播
 function initViwepager(htmlId,newsCategory,newsCategoryCn){	
-	var url="/app118/contentAction/initNews";
+	var url="/app/wContentAction/initNews";
 	$.ajax({
 		type:'POST',
 		url:url,
@@ -325,38 +330,22 @@ function initViwepager(htmlId,newsCategory,newsCategoryCn){
 		success:function(json){
 			var jsonObj = eval(json.list);
 			var html="";
-			html=html+"<h3 class='title myCorner' data-corner='top 5px'>"+
-			 "<span></span>"+
-			 "<div class=\"flip\">"+
-				 "<p id=\"trigger\"></p> "+
-				 "<a class=\"prev\" id=\"car_prev\" href=\"javascript:void(0);\"></a> "+
-				 "<a class=\"next\" id=\"car_next\" href=\"javascript:void(0);\"></a>"+
-			 "</div>"+
-				"<a href=\"/app118/contentAction/listContentByPager?curNo=1&newsCategory=5&newsCategoryCn=客户案例\"  class=\"more\">更多>></a>"+
-				"</h3>"+
-			"<div class=\"active clear\" >"+
-			"<div class=\"profld\" id=\"indexcar\" data-listnum=\"5\">"+
-				"<ol class='list-none metlist'>";
-			
-			
-			
 			for(var i=0;i<jsonObj.length;i++){
 				var news=jsonObj[i];
 				if(i==0){
-					html=html+"<li class='list' style='height: 157px; margin: 0px 15px; position: relative; left: 0px;'><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					html=html+"<li class='list' style='height: 157px; margin: 0px 15px; position: relative; left: 0px;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"'  class='img'>"+
-					"<img src='/app118/newsAction/showImage?newsThumbnail="+news.newsThumbnail+"'  width='160' height='130' /></a>"+
-					"<h3 style='width:160px;'><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"<img src='/app/wContentAction/showImage?newsThumbnail="+news.newsThumbnail+"'  width='160' height='130' /></a>"+
+					"<h3 style='width:160px;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' title='"+news.newsTitle+"' target='_self'>"+news.newsTitle+"</a></h3></li>";
 				}else{
-					html=html+"<li class='list' style='height: 157px; margin: 0px 15px; position: relative;'><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					html=html+"<li class='list' style='height: 157px; margin: 0px 15px; position: relative;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"'  class='img'>"+
-					"<img src='/app118/newsAction/showImage?newsThumbnail="+news.newsThumbnail+"'  width='160' height='130' /></a>"+
-					"<h3 style='width:160px;'><a href='/app118/contentAction/viewContent?newsId="+news.newsId+
+					"<img src='/app/wContentAction/showImage?newsThumbnail="+news.newsThumbnail+"'  width='160' height='130' /></a>"+
+					"<h3 style='width:160px;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' title='"+news.newsTitle+"' target='_self'>"+news.newsTitle+"</a></h3></li>";
 				}
 			}
-			html=html+"</ol></div> </div>";
 			$("#"+htmlId).html(html);
 		},
 		error:function(){
@@ -364,6 +353,31 @@ function initViwepager(htmlId,newsCategory,newsCategoryCn){
 		}
 	});
 }
+
+//友情链接
+function initFriendLink(htmlId){
+	var url="/app/wWebAction/initWeb";
+	$.ajax({
+		type:'POST',
+		url:url,
+		async: false, 
+		data:{"curNo":1,"curSize":100},
+		dataType:'json',
+		success:function(json){
+			var jsonObj = eval(json.list);
+			var html="";
+			for(var i=0;i<jsonObj.length;i++){
+				var web=jsonObj[i];
+				html=html+"<li><a href='"+web.webUrl+"' target='_blank' title='"+web.webName+"'>"+web.webName+"</a></li>";
+			}
+			$("#"+htmlId).html(html);
+		},
+		error:function(){
+			$.ligerDialog.error("操作失败。");
+		}
+	});
+}
+
 
 </script>
 

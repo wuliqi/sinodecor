@@ -9,8 +9,8 @@
 			<a href='link/'  title='友情链接'>友情链接</a><span>|</span>
 			<a href='member/'  title='会员中心'>会员中心</a><span>|</span>
 			<a href='search/'  title='站内搜索'>站内搜索</a><span>|</span>
-			<a href='sitemap/'  title='网站地图'>网站地图</a><span>|</span>
-			<a href='/pages/login/login.jsp'  title='网站管理'>网站管理</a>
+			<a href='/web/sitemap.htm'  title='网站地图'>网站地图</a><span>|</span>
+			<a href='/pages/login/login.jsp'  title='网站管理' target="_blank">网站管理</a>
 		</div>
 		<div class="foot-text">
 			<p>${system.webName} 版权所有 ©2015-2025  ${system.icp}  <script src="http://s4.cnzz.com/z_stat.php?id=1254781847&web_id=1254781847" language="JavaScript"></script> version:${system.version}</p>

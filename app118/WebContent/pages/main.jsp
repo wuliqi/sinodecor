@@ -199,6 +199,7 @@ body {
 				<br/>
 				${orgInfo}
 				<br/>
+				<a href="/web/index.jsp" target="_blank" style="text-decoration:none; color:#000000;}">公司网站</a><br/>
 				------------------<br/>
 				手机号码：18810790739<br/>
 				地址：北京市海淀区志新村小区<br/>

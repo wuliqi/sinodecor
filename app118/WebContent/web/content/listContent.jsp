@@ -8,9 +8,9 @@
 <meta name="description" content="网站描述，一般显示在搜索引擎搜索结果中的描述文字，用于介绍网站，吸引浏览者点击。" />
 <meta name="keywords" content="网站关键词" />
 <link href="favicon.ico" rel="shortcut icon" />
-<link rel="stylesheet" type="text/css" href="/pages/web/css/main.css" />
-<script src="/pages/web/js/jQuery1.7.2.js" type="text/javascript"></script>
-<script src="/pages/web/js/ch.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/web/css/main.css" />
+<script src="/web/js/jQuery1.7.2.js" type="text/javascript"></script>
+<script src="/web/js/ch.js" type="text/javascript"></script>
 
 <style>
 .digg4 {
@@ -62,14 +62,14 @@
 <body>
     <header>
 	<!-- 导航菜单开始 -->
-	<%@include file="/pages/web/top.jsp"%>
+	<%@include file="/web/top.jsp"%>
 	<!-- 导航菜单结束 -->
 	</header>
 
 	<div class="inner met_flash">
 		<div class="flash">
 			<a href='#' target='_blank' title='${system.webName}'>
-				<img src='/pages/web/images/1342430358.jpg' width='980' alt='${system.webName}' height='90'>
+				<img src='/web/images/1342430358.jpg' width='980' alt='${system.webName}' height='90'>
 			</a>
 		</div>
 	</div>
@@ -78,13 +78,13 @@
 <div class="sidebar inner">
  
 	<!-- 左侧导航开始 -->
- 	<%@include file="/pages/web/left.jsp"%>
+ 	<%@include file="/web/left.jsp"%>
  	<!-- 左侧导航结束 -->
  	
     <div class="sb_box">
 	    <h3 class="title">
 			<div class="position">
-				当前位置：<a href="/pages/web/index.jsp" title="网站首页">网站首页</a> &gt; <a href="/app118/contentAction/listContentByPager?curNo=1&newsCategory=${newsCategory}&newsCategoryCn=${newsCategoryCn}">${newsCategoryCn}</a>
+				当前位置：<a href="/web/index.jsp" title="网站首页">网站首页</a> &gt; <a href="/app/wContentAction/listContentByPager?curNo=1&newsCategory=${newsCategory}&newsCategoryCn=${newsCategoryCn}">${newsCategoryCn}</a>
 			</div>
 			<span>${newsCategoryCn}</span>
 		</h3>
@@ -95,8 +95,8 @@
 			<ul class='list-none metlist'>
 				<c:forEach items="${list}" var="news" varStatus="status">
 					<li class='list '><span>[${news.createTime}]</span>
-						<a href='/app118/contentAction/viewContent?newsId=${news.newsId}&newsCategory=${newsCategory}&newsCategoryCn=${newsCategoryCn}' title='${news.newsTitle}' target='_self'>${news.newsTitle}</a>
-						<img class='listhot' src='/pages/web/images/hot.gif' alt='最新' ${news.hotImgStyle}/>
+						<a href='/app/wContentAction/viewContent?newsId=${news.newsId}&newsCategory=${newsCategory}&newsCategoryCn=${newsCategoryCn}' title='${news.newsTitle}' target='_self'>${news.newsTitle}</a>
+						<img class='listhot' src='/web/images/hot.gif' alt='最新' ${news.hotImgStyle}/>
 					</li>
 				</c:forEach>
 			</ul>
@@ -110,24 +110,24 @@
 							<tr>
 						   		<td width="100%" colspan="9" align="right">
 						   		            每页显示${curSize}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						   			<a href='/app118/contentAction/listContentByPager?curNo=1'>«首页</a>
+						   			<a href='/app/wContentAction/listContentByPager?curNo=1'>«首页</a>
 						   			<c:choose>
 						   				<c:when test="${curNo-1 ge 1}">
-						   					<a href='/app118/contentAction/listContentByPager?curNo=${curNo-1}'>‹上一页</a>
+						   					<a href='/app/wContentAction/listContentByPager?curNo=${curNo-1}'>‹上一页</a>
 						   				</c:when>
 						   				<c:otherwise>
-						   					<a href='/app118/contentAction/listContentByPager?curNo=1'>‹上一页</a>
+						   					<a href='/app/wContentAction/listContentByPager?curNo=1'>‹上一页</a>
 						   				</c:otherwise>
 						   			</c:choose>
 						   			<c:choose>
 						   				<c:when test="${curNo+1 le totalPages}">
-						   					<a href='/app118/contentAction/listContentByPager?curNo=${curNo+1}'>下一页›</a>
+						   					<a href='/app/wContentAction/listContentByPager?curNo=${curNo+1}'>下一页›</a>
 						   				</c:when>
 						   				<c:otherwise>
-						   					<a href='/app118/contentAction/listContentByPager?curNo=${totalPages}'>下一页›</a>
+						   					<a href='/app/wContentAction/listContentByPager?curNo=${totalPages}'>下一页›</a>
 						   				</c:otherwise>
 						   			</c:choose>			   			
-						   			<a href='/app118/contentAction/listContentByPager?curNo=${totalPages}'>末页»</a>	
+						   			<a href='/app/wContentAction/listContentByPager?curNo=${totalPages}'>末页»</a>	
 						   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第${curNo}页/共${totalPages}页			   			
 						   		</td>
 						   	</tr> 
@@ -146,8 +146,8 @@
 </div>
 
 <!-- 底部导航菜单开始 -->
-<%@include file="/pages/web/footer.jsp"%>
+<%@include file="/web/footer.jsp"%>
 <!-- 底部导航菜单结束 -->
-<script src="/pages/web/js/fun.inc.js" type="text/javascript"></script>
+<script src="/web/js/fun.inc.js" type="text/javascript"></script>
 </body>
 </html>

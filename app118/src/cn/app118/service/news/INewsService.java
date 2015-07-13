@@ -1,10 +1,21 @@
+/**
+ * @(#)INewsService.java	07/06/2015
+ * 
+ * Copyright (c) 2015 app118.cn.All rights reserved.
+ * Created by 2015-07-06
+ */
 package cn.app118.service.news;
 
 import java.util.List;
 import java.util.Map;
 
 import cn.app118.model.News;
-
+/**
+ * 内容服务接口
+ * 
+ * @author wRitchie
+ *
+ */
 public interface INewsService {
 
 	int deleteByPrimaryKey(Integer newsId);

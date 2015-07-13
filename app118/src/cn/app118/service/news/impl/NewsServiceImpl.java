@@ -1,3 +1,9 @@
+/**
+ * @(#)NewsServiceImpl.java	07/06/2015
+ * 
+ * Copyright (c) 2015 app118.cn.All rights reserved.
+ * Created by 2015-07-06
+ */
 package cn.app118.service.news.impl;
 
 import java.util.List;
@@ -10,7 +16,11 @@ import org.springframework.stereotype.Service;
 import cn.app118.dao.news.NewsMapper;
 import cn.app118.model.News;
 import cn.app118.service.news.INewsService;
-
+/**
+ * 内容服务实现类
+ * @author wRitchie
+ *
+ */
 @Service("newsService")
 public class NewsServiceImpl implements INewsService {
 

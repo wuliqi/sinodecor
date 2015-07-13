@@ -9,15 +9,15 @@
 <meta name="generator" content="MetInfo 5.1.7" />
 <link href="favicon.ico" rel="shortcut icon" />
 
-<link rel="stylesheet" type="text/css" href="css/main.css" />
-<script src="js/jQuery1.7.2.js" type="text/javascript"></script>
-<script src="js/ch.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/web/css/main.css" />
+<script src="/web/js/jQuery1.7.2.js" type="text/javascript"></script>
+<script src="/web/js/ch.js" type="text/javascript"></script>
 
 </head>
 <body>
     <header>
 	<!-- 导航菜单开始 -->
-	<%@include file="/pages/web/top.jsp"%>
+	<%@include file="/web/top.jsp"%>
 	<!-- 导航菜单结束 -->
 	</header>
 
@@ -32,12 +32,12 @@
 
 <div class="sidebar inner">
 	<!-- 左侧导航开始 -->
- 	<%@include file="/pages/web/left.jsp"%>
+ 	<%@include file="/web/left.jsp"%>
  	<!-- 左侧导航结束 -->
     <div class="sb_box">
 	    <h3 class="title">
 			<div class="position">
-				当前位置：<a href="/pages/web/index.jsp" title="网站首页">网站首页</a> &gt; <a href="/pages/web/news.jsp" >新闻资讯</a> > 详情
+				当前位置：<a href="/web/index.jsp" title="网站首页">网站首页</a> &gt; <a href="/web/news.jsp" >新闻资讯</a> > 详情
 			</div>
 			<span>业界资讯</span>
 		</h3>
@@ -109,8 +109,8 @@
 </div>
 
 <!-- 底部导航菜单开始 -->
-<%@include file="/pages/web/footer.jsp"%>
+<%@include file="/web/footer.jsp"%>
 <!-- 底部导航菜单结束 -->
-<script src="js/fun.inc.js" type="text/javascript"></script>
+<script src="/web/js/fun.inc.js" type="text/javascript"></script>
 </body>
 </html>

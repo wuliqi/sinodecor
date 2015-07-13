@@ -6,15 +6,15 @@
 		<div class="active" id="sidebar" data-csnow="2" data-class3="0" data-jsok="2">
 			<dl class="list-none navnow">
 				<dt id='part2_4'>
-					<a href='#'  title='公司动态' class="zm">
-						<span>公司动态</span>
+					<a href='/app/wContentAction/listContentByPager?curNo=1&newsCategory=3&newsCategoryCn=公司新闻'  title='公司新闻' class="zm">
+						<span>公司新闻</span>
 					</a>
 				</dt>
 			</dl>
 			<dl class="list-none navnow">
 				<dt id='part2_5'>
-					<a href='#'  title='业界资讯' class="zm">
-						<span>业界资讯</span>
+					<a href='/app/wContentAction/listContentByPager?curNo=1&newsCategory=10'  title='行业资讯' class="zm">
+						<span>行业资讯</span>
 					</a>
 				</dt>
 			</dl>

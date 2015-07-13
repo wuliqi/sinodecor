@@ -1,3 +1,9 @@
+/**
+ * @(#)NewsMapper.java	07/06/2015
+ * 
+ * Copyright (c) 2015 app118.cn.All rights reserved.
+ * Created by 2015-07-06
+ */
 package cn.app118.dao.news;
 
 import java.util.List;
@@ -5,6 +11,11 @@ import java.util.Map;
 
 import cn.app118.model.News;
 
+/**
+ *  内容Dao
+ * @author wRitchie
+ *
+ */
 public interface NewsMapper {
     int deleteByPrimaryKey(Integer newsId);
 
