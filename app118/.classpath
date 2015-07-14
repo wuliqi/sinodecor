@@ -23,9 +23,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cxf-2.7.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/freemarker-2.3.19.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gexin-rp-sdk-base-2.0.0.17.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gexin-rp-sdk-http-3.0.0.6.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gexin-rp-sdk-template-2.0.0.7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/guava-17.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpasyncclient-4.0-beta3.jar"/>
@@ -94,5 +91,8 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-4.1.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-portlet-4.1.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-websocket-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gexin-rp-sdk-base-2.0.0.26.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gexin-rp-sdk-http-3.0.0.14.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gexin-rp-sdk-template-2.0.0.11.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
