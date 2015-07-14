@@ -94,5 +94,10 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gexin-rp-sdk-base-2.0.0.26.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gexin-rp-sdk-http-3.0.0.14.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gexin-rp-sdk-template-2.0.0.11.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0 (2)">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

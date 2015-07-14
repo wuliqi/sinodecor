@@ -185,6 +185,13 @@ public class WContentAction extends BaseAction {
 		return mv;
 	}
 	
+	/**
+	 * 联系我们，关于我们的详细页面
+	 * @param newsId
+	 * @param newsCategory
+	 * @param newsCategoryCn
+	 * @return
+	 */
 	@RequestMapping("viewContentBody")
 	public ModelAndView viewContentBody(String newsId,String newsCategory,String newsCategoryCn){
 		ModelAndView mv = new ModelAndView("/web/content/viewContentBody.jsp");

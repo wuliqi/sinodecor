@@ -6,8 +6,7 @@
 			<a href='news/news.php?lang=cn&class2=4'  title='公司动态'>公司动态</a><span>|</span>
 			<a href='message/'  title='在线留言'>在线留言</a><span>|</span>
 			<a href='feedback/'  title='在线反馈'>在线反馈</a><span>|</span>
-			<a href='link/'  title='友情链接'>友情链接</a><span>|</span>
-			<a href='member/'  title='会员中心'>会员中心</a><span>|</span>
+			<a href='/app/wWebAction/listWebByPager?curNo=1'  title='友情链接'>友情链接</a><span>|</span>
 			<a href='search/'  title='站内搜索'>站内搜索</a><span>|</span>
 			<a href='/web/sitemap.htm'  title='网站地图'>网站地图</a><span>|</span>
 			<a href='/pages/login/login.jsp'  title='网站管理' target="_blank">网站管理</a>

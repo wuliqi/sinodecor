@@ -36,7 +36,7 @@ public class WWebAction {
 
 	
 	/**
-	 * 友情链接网址分页列表页面
+	 * 更多友情链接网址分页列表页面
 	 * 
 	 * @author 吴理琪
 	 */
@@ -107,6 +107,12 @@ public class WWebAction {
 		return mv;
 	}
 	
+	/**
+	 * 首页的友情链接异步请求
+	 * @param curNo
+	 * @param curSize
+	 * @return
+	 */
 	@RequestMapping("/initWeb")
 	@ResponseBody
 	public Map<String, Object> initWeb(String curNo, String curSize) {

@@ -194,8 +194,8 @@
 	
 	<!-- 友情链接开始-->
 	<div class="index-links">
-		<h3 class="title">
-			<!-- <a href="" title="" class="more">更多>></a> -->友情连接
+		<h3 class="title" title="友情链接">
+			 <a href="/app/wWebAction/listWebByPager?curNo=1" title="友情链接" class="more">更多>></a>
 		</h3>
 		<div class="active clear">
 			<div class="img">
