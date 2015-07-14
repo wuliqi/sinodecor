@@ -9,13 +9,13 @@
 <body>
 <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td height="700" width="100%">
-				<iframe height="100%" width="100%" frameborder="0" name="center" src="main.jsp">
+            <td height="680" width="100%">
+				<iframe height="100%" width="100%" frameborder="0" name="center" src="main.jsp" >
                 </iframe>
 			</td>
         </tr>
         <tr>
-            <td width="100%" height="68">
+            <td width="100%" height="88">
                 <iframe height="100%" width="100%" frameborder="0" name="center" src="bottom.jsp" scrolling="no">
                 </iframe>
             </td>
