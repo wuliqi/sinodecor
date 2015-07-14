@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.app118.dao.user.UserMapper">
+	<resultMap id="BaseResultMap" type="cn.app118.model.User">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="login_name" property="loginName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="last_change_pwd_time" property="lastChangePwdTime"
+			jdbcType="TIMESTAMP" />
+		<result column="last_login_time" property="lastLoginTime"
+			jdbcType="TIMESTAMP" />
+		<result column="real_name" property="realName" jdbcType="VARCHAR" />
+		<result column="signature" property="signature" jdbcType="VARCHAR" />
+		<result column="photo_icon_url" property="photoIconUrl"
+			jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+		<result column="car_type" property="carType" jdbcType="VARCHAR" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="district" property="district" jdbcType="VARCHAR" />
+		<result column="car_category" property="carCategory" jdbcType="VARCHAR" />
+		
+		<result column="org_id" property="orgId" jdbcType="INTEGER" />
+		<result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_id, login_name, password, nickname, create_time,
+		last_change_pwd_time,
+		last_login_time,
+		real_name, signature,
+		photo_icon_url, birthday, sex, phone_number, car_type,
+		country,
+		city,
+		district,
+		car_category,
+		org_id,
+		modify_time,
+		remark,
+		user_type
+	</sql>
+	<sql id="Base_Column_List_Pager">
+		user_id userId, login_name loginName, password, nickname, create_time createTime,
+		last_change_pwd_time lastChangePwdTime,
+		last_login_time lastLoginTime,
+		real_name realName, signature,
+		photo_icon_url photoIconUrl, birthday, sex, phone_number phoneNumber, car_type carType,
+		country,
+		city,
+		district,
+		car_category carCategory,
+		org_id orgId,
+		(select org_name from sys_org where sys_user.org_id=org_id) orgName,
+		modify_time modifyTime,
+		remark,
+		user_type userType
+	</sql>
+	<sql id="pager">
+      limit ${start},${len}
+    </sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		sys_user
+		where user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByUserIds" parameterType="java.lang.String">
+		delete from
+		sys_user
+		where user_id in (#{userIds,jdbcType=VARCHAR})
+	</delete>
+	<insert id="insert" parameterType="cn.app118.model.User" useGeneratedKeys="true" keyProperty="userId">
+		insert into sys_user (user_id,
+		login_name, password,
+		nickname, create_time, last_change_pwd_time,
+		last_login_time, real_name, signature,
+		photo_icon_url, birthday, sex,
+		phone_number, car_type, country,
+		city, district,car_category,org_id,
+		modify_time,remark,user_type)
+		values
+		(
+			#{userId,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR},
+			#{password,jdbcType=VARCHAR},
+			#{nickname,jdbcType=VARCHAR},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{lastChangePwdTime,jdbcType=TIMESTAMP},
+			#{lastLoginTime,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR},
+			#{signature,jdbcType=VARCHAR},
+			#{photoIconUrl,jdbcType=VARCHAR},
+			#{birthday,jdbcType=TIMESTAMP}, #{sex,jdbcType=VARCHAR},
+			#{phoneNumber,jdbcType=VARCHAR}, #{carType,jdbcType=VARCHAR},
+			#{country,jdbcType=VARCHAR},
+			#{city,jdbcType=VARCHAR},
+			#{district,jdbcType=VARCHAR},
+			#{carCategory,jdbcType=VARCHAR},
+			#{orgId,jdbcType=INTEGER},
+			#{modifyTime,jdbcType=TIMESTAMP},
+			#{remark,jdbcType=VARCHAR},
+			#{userType,jdbcType=VARCHAR}
+		)
+		
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="userId" >  
+          SELECT LAST_INSERT_ID()  
+        </selectKey>  
+		
+	</insert>
+	<insert id="insertSelective" parameterType="cn.app118.model.User">
+		insert into sys_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="loginName != null">
+				login_name,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="nickname != null">
+				nickname,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="lastChangePwdTime != null">
+				last_change_pwd_time,
+			</if>
+			<if test="lastLoginTime != null">
+				last_login_time,
+			</if>
+			<if test="realName != null">
+				real_name,
+			</if>
+			<if test="signature != null">
+				signature,
+			</if>
+			<if test="photoIconUrl != null">
+				photo_icon_url,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="phoneNumber != null">
+				phone_number,
+			</if>
+			<if test="carType != null">
+				car_type,
+			</if>
+			<if test="country != null">
+				country,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="district != null">
+				district,
+			</if>
+			<if test="carCategory != null">
+				car_category,
+			</if>
+			<if test="orgId != null">
+				org_id,
+			</if>
+			<if test="modifyTime != null">
+				modify_time,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="userType != null">
+				user_type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				#{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastChangePwdTime != null">
+				#{lastChangePwdTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="signature != null">
+				#{signature,jdbcType=VARCHAR},
+			</if>
+			<if test="photoIconUrl != null">
+				#{photoIconUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneNumber != null">
+				#{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="carType != null">
+				#{carType,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				#{country,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				#{district,jdbcType=VARCHAR},
+			</if>
+			<if test="carCategory != null">
+				#{carCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="orgId != null">
+				#{orgId,jdbcType=INTEGER},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				#{user_type,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.app118.model.User">
+		update sys_user
+		<set>
+			<if test="loginName != null">
+				login_name = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				nickname = #{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastChangePwdTime != null">
+				last_change_pwd_time =
+				#{lastChangePwdTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastLoginTime != null">
+				last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="realName != null">
+				real_name = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="signature != null">
+				signature = #{signature,jdbcType=VARCHAR},
+			</if>
+			<if test="photoIconUrl != null">
+				photo_icon_url = #{photoIconUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneNumber != null">
+				phone_number = #{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="carType != null">
+				car_type = #{carType,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				country = #{country,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				district = #{district,jdbcType=VARCHAR},
+			</if>
+			<if test="carCategory != null">
+				car_category = #{carCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="orgId != null">
+				org_id=#{orgId,jdbcType=INTEGER},
+			</if>
+			<if test="modifyTime != null">
+				modify_time=#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark=#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				user_type=#{userType,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.app118.model.User">
+		update sys_user
+		set login_name = #{loginName,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
+		nickname = #{nickname,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		last_change_pwd_time =
+		#{lastChangePwdTime,jdbcType=TIMESTAMP},
+		last_login_time =
+		#{lastLoginTime,jdbcType=TIMESTAMP},
+		real_name =
+		#{realName,jdbcType=VARCHAR},
+		signature =
+		#{signature,jdbcType=VARCHAR},
+		photo_icon_url =
+		#{photoIconUrl,jdbcType=VARCHAR},
+		birthday =
+		#{birthday,jdbcType=TIMESTAMP},
+		sex = #{sex,jdbcType=VARCHAR},
+		phone_number = #{phoneNumber,jdbcType=VARCHAR},
+		car_type =
+		#{carType,jdbcType=VARCHAR},
+		country = #{country,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR},
+		district =
+		#{district,jdbcType=VARCHAR},
+		car_category =
+		#{carCategory,jdbcType=VARCHAR},
+		org_id=#{orgId,jdbcType=INTEGER},
+		modify_time=#{modifyTime,jdbcType=TIMESTAMP},
+		remark=#{remark,jdbcType=VARCHAR},
+		userType=#{user_type,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectBySelective" resultMap="BaseResultMap"
+		parameterType="cn.app118.model.User">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user
+		<where>
+			<if test="loginName != null">
+				login_name = #{loginName,jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				and password = #{password,jdbcType=VARCHAR}
+			</if>
+			<if test="nickname != null">
+				and nickname = #{nickname,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastChangePwdTime != null">
+				and last_change_pwd_time =
+				#{lastChangePwdTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastLoginTime != null">
+				and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="realName != null">
+				and real_name = #{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="signature != null">
+				and signature = #{signature,jdbcType=VARCHAR}
+			</if>
+			<if test="photoIconUrl != null">
+				and photo_icon_url = #{photoIconUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="birthday != null">
+				and birthday = #{birthday,jdbcType=TIMESTAMP}
+			</if>
+			<if test="sex != null">
+				and sex = #{sex,jdbcType=VARCHAR}
+			</if>
+			<if test="phoneNumber != null">
+				and phone_number = #{phoneNumber,jdbcType=VARCHAR}
+			</if>
+			<if test="carType != null">
+				and car_type = #{carType,jdbcType=VARCHAR}
+			</if>
+			<if test="country != null">
+				and country = #{country,jdbcType=VARCHAR}
+			</if>
+			<if test="city != null">
+				and city = #{city,jdbcType=VARCHAR}
+			</if>
+			<if test="district != null">
+				and district = #{district,jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="carCategory != null">
+				and car_category = #{carCategory,jdbcType=INTEGER}
+			</if>
+			<if test="orgId != null">
+				and org_id=#{orgId,jdbcType=INTEGER}
+			</if>
+			<if test="modifyTime != null">
+				and modify_time=#{modifyTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="remark != null">
+				and remark=#{remark,jdbcType=VARCHAR}
+			</if>
+			<if test="userType != null">
+				and user_type=#{userType,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	<!-- 根据设备标识查询绑定的用户信息 -->
+	<select id="listUserByDeviceId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user
+		where user_id in
+		(select user_id from sys_device_user_rela where device_id=#{deviceId,jdbcType=INTEGER})
+
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="selectByPager" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List_Pager" />
+		from sys_user
+		<where>
+			<if test="loginName != null">
+				and  instr(login_name,#{loginName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="password != null">
+				and password = #{password,jdbcType=VARCHAR}
+			</if>
+			<if test="nickname != null">
+				and nickname = #{nickname,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastChangePwdTime != null">
+				and last_change_pwd_time =
+				#{lastChangePwdTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastLoginTime != null">
+				and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="realName != null">
+				and  instr(real_name,#{realName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="signature != null">
+				and signature = #{signature,jdbcType=VARCHAR}
+			</if>
+			<if test="photoIconUrl != null">
+				and photo_icon_url = #{photoIconUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="birthday != null">
+				and birthday = #{birthday,jdbcType=TIMESTAMP}
+			</if>
+			<if test="sex != null">
+				and sex = #{sex,jdbcType=VARCHAR}
+			</if>
+			<if test="phoneNumber != null">
+				and phone_number = #{phoneNumber,jdbcType=VARCHAR}
+			</if>
+			<if test="carType != null">
+				and car_type = #{carType,jdbcType=VARCHAR}
+			</if>
+			<if test="country != null">
+				and country = #{country,jdbcType=VARCHAR}
+			</if>
+			<if test="city != null">
+				and city = #{city,jdbcType=VARCHAR}
+			</if>
+			<if test="district != null">
+				and district = #{district,jdbcType=VARCHAR}
+			</if>
+			<if test="carCategory != null">
+				and car_category = #{carCategory,jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="fromCreateTime != null">
+				<![CDATA[
+			   	 and create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+			    ]]>
+			</if>
+			<if test="toCreateTime != null">
+				<![CDATA[
+			   	 and create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+			    ]]>
+			</if>
+			<if test="orgId != null">
+				and org_id=#{orgId,jdbcType=INTEGER}
+			</if>
+			<if test="modifyTime != null">
+				and modify_time=#{modifyTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="remark != null">
+				and remark=#{remark,jdbcType=VARCHAR}
+			</if>
+			<if test="userType != null">
+				and user_type=#{userType,jdbcType=VARCHAR}
+			</if>
+		</where>
+		<if test="orderBy != null" >  
+	    	${orderBy}
+	    </if>
+		<include refid="pager" />
+	</select>
+	<!-- 分页查询总记录数 -->
+	<select id="selectByPagerCount" resultType="java.lang.Integer" 
+		parameterType="java.util.Map">
+		select
+		count(user_id)
+		from sys_user
+		<where>
+			<if test="loginName != null">
+				and  instr(login_name,#{loginName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="password != null">
+				and password = #{password,jdbcType=VARCHAR}
+			</if>
+			<if test="nickname != null">
+				and nickname = #{nickname,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastChangePwdTime != null">
+				and last_change_pwd_time =
+				#{lastChangePwdTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastLoginTime != null">
+				and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="realName != null">
+				and  instr(real_name,#{realName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="signature != null">
+				and signature = #{signature,jdbcType=VARCHAR}
+			</if>
+			<if test="photoIconUrl != null">
+				and photo_icon_url = #{photoIconUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="birthday != null">
+				and birthday = #{birthday,jdbcType=TIMESTAMP}
+			</if>
+			<if test="sex != null">
+				and sex = #{sex,jdbcType=VARCHAR}
+			</if>
+			<if test="phoneNumber != null">
+				and phone_number = #{phoneNumber,jdbcType=VARCHAR}
+			</if>
+			<if test="carType != null">
+				and car_type = #{carType,jdbcType=VARCHAR}
+			</if>
+			<if test="country != null">
+				and country = #{country,jdbcType=VARCHAR}
+			</if>
+			<if test="city != null">
+				and city = #{city,jdbcType=VARCHAR}
+			</if>
+			<if test="district != null">
+				and district = #{district,jdbcType=VARCHAR}
+			</if>
+			<if test="carCategory != null">
+				and car_category = #{carCategory,jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="fromCreateTime != null">
+				<![CDATA[
+			   	 and create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+			    ]]>
+			</if>
+			<if test="toCreateTime != null">
+				<![CDATA[
+			   	 and create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+			    ]]>
+			</if>
+			<if test="orgId != null">
+				and org_id=#{orgId,jdbcType=INTEGER}
+			</if>
+			<if test="modifyTime != null">
+				and modify_time=#{modifyTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="remark != null">
+				and remark=#{remark,jdbcType=VARCHAR}
+			</if>
+			<if test="userType != null">
+				and user_type=#{userType,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 分页用户设备绑定关系查询 -->
+	<select id="selectUserDeviceRelByPager" resultType="java.util.Map" parameterType="java.util.Map">
+		select r.dur_id durId, u.user_id userId,u.org_id orgId,(select org_name from sys_org where u.org_id=org_id) orgName,
+		d.install_org_id installOrgId,(select org_name from sys_org where d.install_org_id=org_id) installOrgName,
+		d.device_id deviceId, u.login_name loginName,u.real_name realName,d.device_name deviceName,
+		d.device_mac deviceMac,r.create_time createTime
+		from sys_user u,sys_air_device d,sys_device_user_rela r 
+		where d.device_id=r.device_id and u.user_id=r.user_id
+		<if test="loginName != null">
+			and u.login_name = #{loginName,jdbcType=VARCHAR}
+		</if>
+		<if test="orgId != null">
+			and u.org_id = #{orgId,jdbcType=VARCHAR}
+		</if>
+		<if test="installOrgId != null">
+			and d.install_org_id = #{installOrgId,jdbcType=VARCHAR}
+		</if>
+		<if test="realName != null">
+			and  instr(u.real_name,#{realName,jdbcType=VARCHAR})>0
+		</if>
+		<if test="deviceName != null">
+			and instr(d.device_name,#{deviceName,jdbcType=VARCHAR})>0
+		</if>
+		<if test="fromCreateTime != null">
+			<![CDATA[
+		   	 and r.create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+		</if>
+		<if test="toCreateTime != null">
+			<![CDATA[
+		   	 and r.create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+		</if>
+		<if test="orderBy != null" >  
+	    	${orderBy}
+	    </if>
+		<include refid="pager" />
+	</select>
+	<!-- 分页查询用户设备绑定关系总记录数 -->
+	<select id="selectUserDeviceRelByPagerCount" resultType="java.lang.Integer" 
+		parameterType="java.util.Map">
+		select
+		count(u.user_id)
+		from sys_user u,sys_air_device d,sys_device_user_rela r 
+		where d.device_id=r.device_id and u.user_id=r.user_id
+		<if test="loginName != null">
+			and u.login_name = #{loginName,jdbcType=VARCHAR}
+		</if>
+		<if test="orgId != null">
+			and u.org_id = #{orgId,jdbcType=VARCHAR}
+		</if>
+		<if test="installOrgId != null">
+			and d.install_org_id = #{installOrgId,jdbcType=VARCHAR}
+		</if>
+		<if test="realName != null">
+			and  instr(u.real_name,#{realName,jdbcType=VARCHAR})>0
+		</if>
+		<if test="deviceName != null">
+			and instr(d.device_name,#{deviceName,jdbcType=VARCHAR})>0
+		</if>
+		<if test="fromCreateTime != null">
+			<![CDATA[
+		   	 and r.create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+		</if>
+		<if test="toCreateTime != null">
+			<![CDATA[
+		   	 and r.create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+		</if>
+	</select>
+	
+	<!-- 根据角色标识查找所有的用户 -->
+	<select id="selectUserByRoleId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user
+		where user_id in(
+			SELECT user_id FROM app118.sys_user_role_rela where role_id=#{roleId,jdbcType=INTEGER}
+		)
+	</select>
+	
+	<!-- 用户-设备-设备用户关联关系-充值-过滤器多表关联查询分页列表 -->
+	<select id="selectUserAllByPager" resultType="java.util.Map" parameterType="java.util.Map">
+		select u.user_id userId,u.sex sex,u.login_name loginName,u.real_name realName,
+		u.last_login_time lastLoginTime,
+		u.org_id orgId,(select org_name from sys_org where u.org_id=org_id) orgName
+		from sys_user u 
+		<where>
+			<if test="orgId != null">
+				and u.org_id = #{orgId,jdbcType=VARCHAR}
+			</if>
+			<if test="loginName != null">
+				and  instr(u.login_name,#{loginName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="realName != null">
+				and  instr(u.real_name,#{realName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="lastLoginTime != null">
+				<![CDATA[
+			    	and  u.last_login_time<=#{lastLoginTime,jdbcType=TIMESTAMP}
+			    ]]> 
+			</if>
+		</where>
+		<if test="orderBy != null" >
+	      ${orderBy}
+	     </if>
+		<include refid="pager" />
+	</select>
+	
+	<!-- 用户-设备-设备用户关联关系-充值-过滤器多表关联查询总记录数 -->
+	<select id="selectUserAllByPagerCount" resultType="java.lang.Integer" 
+		parameterType="java.util.Map">
+		select
+		count(u.user_id)
+		from sys_user u 
+		<where>
+			<if test="orgId != null">
+				and u.org_id = #{orgId,jdbcType=VARCHAR}
+			</if>
+			<if test="loginName != null">
+				and  instr(u.login_name,#{loginName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="realName != null">
+				and  instr(u.real_name,#{realName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="lastLoginTime != null">
+				<![CDATA[
+			    	and  u.last_login_time<=#{lastLoginTime,jdbcType=TIMESTAMP}
+			    ]]> 
+			</if>
+		</where>
+	</select>
+	
+	<!-- 用户-设备-设备用户关联关系-充值-过滤器多表关联查询列表导出Excel -->
+	<select id="selectUserAllByExportExcel" resultType="java.util.Map" parameterType="java.util.Map">
+		select u.user_id userId,u.sex sex,u.login_name loginName,u.real_name realName,
+		d.org_id orgId,(select org_name from sys_org where d.org_id=org_id) orgName,
+		d.device_id deviceId,d.car_brand carBrand,
+		(select sys_code.code_name from sys_code where code_id=d.car_brand) carBrandCn,
+		d.car_type carType,
+		(select sys_code.code_name from sys_code where code_id=d.car_type) carTypeCn,
+		d.device_name deviceName,  
+		d.device_mac deviceMac,d.install_time installTime,
+		r.recharge_id   rechargeId,
+		r.card_type cardType,
+		r.paid_amount paidAmount,
+		DATEDIFF(r.end_time,now()) endTime,
+		(r.total_count-r.used_count) remainCount,
+		h.hepa_id hepaId,
+		h.hepa_status hepaStatus,
+	    h.real_price  realPrice,
+	    h.install_time hepaInstallTime
+		from sys_user u 
+			left join sys_device_user_rela dur on u.user_id=dur.user_id 
+			left join sys_air_device d on  d.device_id =dur.device_id 
+			left join sys_device_recharge r on d.device_id=r.device_id 
+			left join sys_hepa h on d.device_name=h.device_name
+		<where>
+			<if test="loginName != null">
+				and  instr(u.login_name,#{loginName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="realName != null">
+				and  instr(u.real_name,#{realName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="deviceName != null">
+				and instr(d.device_name,#{deviceName,jdbcType=VARCHAR})>0
+			</if>
+			
+			<if test="fromInstallTime != null">
+				<![CDATA[
+			   	 and d.install_time >= #{fromInstallTime,jdbcType=TIMESTAMP}
+			    ]]>
+			</if>
+			<if test="toInstallTime != null">
+				<![CDATA[
+			   	 and d.install_time <= #{toInstallTime,jdbcType=TIMESTAMP}
+			    ]]>
+			</if>
+			
+			<if test="cardType != null">
+				and r.card_type=#{cardType,jdbcType=VARCHAR}
+			</if>
+			<if test="cardTypeFree != null">
+				and r.card_type=#{cardTypeFree,jdbcType=VARCHAR}  or r.card_type is null
+			</if>
+			<if test="orgId != null">
+				and d.org_id = #{orgId,jdbcType=VARCHAR}
+			</if>
+		</where>
+		<if test="orderBy != null" >
+	      ${orderBy}
+	     </if>
+	</select>
+	
+</mapper>

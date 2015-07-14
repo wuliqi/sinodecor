@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.app118.dao.web.WebMapper">
+	<resultMap id="BaseResultMap" type="cn.app118.model.Web">
+		<id column="web_id" property="webId" jdbcType="INTEGER" />
+		<result column="web_name" property="webName" jdbcType="VARCHAR" />
+		<result column="web_url" property="webUrl" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="sort_no" property="sortNo" jdbcType="INTEGER" />
+		<result column="web_icon" property="webIcon" jdbcType="VARCHAR" />
+		<result column="web_category" property="webCategory" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		web_id, web_name, web_url, user_id, create_time, sort_no,
+		web_icon,
+		web_category
+	</sql>
+
+	<sql id="Base_Column_List_Pager">
+		web_id webId, web_name webName, web_url webUrl, user_id
+		userId, create_time
+		createTime, sort_no sortNo, web_icon webIcon,
+		web_category webCategory
+	</sql>
+	<sql id="pager">
+		limit ${start},${len}
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_web
+		where web_id = #{webId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		sys_web
+		where web_id = #{webId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.app118.model.Web">
+		insert into sys_web (web_id,
+		web_name, web_url,
+		user_id, create_time, sort_no,
+		web_icon,
+		web_category)
+		values (#{webId,jdbcType=INTEGER},
+		#{webName,jdbcType=VARCHAR},
+		#{webUrl,jdbcType=VARCHAR},
+		#{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+		#{sortNo,jdbcType=INTEGER},
+		#{webIcon,jdbcType=VARCHAR},
+		#{webCategory,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.app118.model.Web">
+		insert into sys_web
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="webId != null">
+				web_id,
+			</if>
+			<if test="webName != null">
+				web_name,
+			</if>
+			<if test="webUrl != null">
+				web_url,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="sortNo != null">
+				sort_no,
+			</if>
+			<if test="webIcon != null">
+				web_icon,
+			</if>
+			<if test="webCategory != null">
+				web_category,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="webId != null">
+				#{webId,jdbcType=INTEGER},
+			</if>
+			<if test="webName != null">
+				#{webName,jdbcType=VARCHAR},
+			</if>
+			<if test="webUrl != null">
+				#{webUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="webIcon != null">
+				#{webIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="webCategory != null">
+				#{webCategory,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.app118.model.Web">
+		update sys_web
+		<set>
+			<if test="webName != null">
+				web_name = #{webName,jdbcType=VARCHAR},
+			</if>
+			<if test="webUrl != null">
+				web_url = #{webUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sortNo != null">
+				sort_no = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="webIcon != null">
+				web_icon = #{webIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="webCategory != null">
+				web_category = #{webCategory,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where web_id = #{webId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.app118.model.Web">
+		update sys_web
+		set
+		web_name = #{webName,jdbcType=VARCHAR},
+		web_url =
+		#{webUrl,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=INTEGER},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		sort_no =
+		#{sortNo,jdbcType=INTEGER},
+		web_icon = #{webIcon,jdbcType=VARCHAR},
+		web_category = #{webCategory,jdbcType=VARCHAR}
+		where web_id =
+		#{webId,jdbcType=INTEGER}
+	</update>
+	<!-- 网址分页查询 -->
+	<select id="selectByPager" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List_Pager" />
+		from sys_web
+		<where>
+			<if test="webName != null">
+				and instr(web_name,#{webName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="webUrl != null">
+				and instr(web_url,#{webUrl,jdbcType=VARCHAR})>0
+			</if>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="fromCreateTime != null">
+			<![CDATA[
+		   	 and create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+			</if>
+			<if test="toCreateTime != null">
+			<![CDATA[
+		   	 and  create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+			</if>
+			<if test="sortNo != null">
+				and sort_no = #{sortNo,jdbcType=INTEGER}
+			</if>
+			<if test="webIcon != null">
+				and web_icon = #{webIcon,jdbcType=VARCHAR}
+			</if>
+			<if test="webCategory != null">
+				and web_category = #{webCategory,jdbcType=VARCHAR}
+			</if>
+			<if test="webId != null">
+				and web_id = #{webId,jdbcType=INTEGER}
+			</if>
+		</where>
+		<if test="orderBy != null">
+			${orderBy}
+		</if>
+		<include refid="pager" />
+	</select>
+	
+	<!-- 网址分页查询总记录数 -->
+	<select id="selectByPagerCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(web_id)
+		from sys_web
+		<where>
+			<if test="webName != null">
+				and instr(web_name,#{webName,jdbcType=VARCHAR})>0
+			</if>
+			<if test="webUrl != null">
+				and instr(web_url,#{webUrl,jdbcType=VARCHAR})>0
+			</if>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="fromCreateTime != null">
+			<![CDATA[
+		   	 and create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+			</if>
+			<if test="toCreateTime != null">
+			<![CDATA[
+		   	 and  create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+			</if>
+			<if test="sortNo != null">
+				and sort_no = #{sortNo,jdbcType=INTEGER}
+			</if>
+			<if test="webIcon != null">
+				and web_icon = #{webIcon,jdbcType=VARCHAR}
+			</if>
+			<if test="webCategory != null">
+				and web_category = #{webCategory,jdbcType=VARCHAR}
+			</if>
+			<if test="webId != null">
+				and web_id = #{webId,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+</mapper>
