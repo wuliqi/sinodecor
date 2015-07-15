@@ -3,11 +3,11 @@
 <footer data-module="10001" data-classnow="10001">
 	<div class="inner">
 		<div class="foot-nav">
-			<a href='news/news.php?lang=cn&class2=4'  title='公司动态'>公司动态</a><span>|</span>
-			<a href='message/'  title='在线留言'>在线留言</a><span>|</span>
-			<a href='feedback/'  title='在线反馈'>在线反馈</a><span>|</span>
+			<a href='/app/wContentAction/listContentByPager?curNo=1&newsCategory=3&newsCategoryCn=公司新闻'  title='公司新闻'>公司新闻</a><span>|</span>
+			<a href='javascript:addFeedback(3);'  title='在线留言'>在线留言</a><span>|</span>
+			<a href='javascript:addFeedback(1);'  title='在线反馈'>在线反馈</a><span>|</span>
 			<a href='/app/wWebAction/listWebByPager?curNo=1'  title='友情链接'>友情链接</a><span>|</span>
-			<a href='search/'  title='站内搜索'>站内搜索</a><span>|</span>
+			<a href='/web/siteSearch.jsp'  title='站内搜索'>站内搜索</a><span>|</span>
 			<a href='/web/sitemap.htm'  title='网站地图'>网站地图</a><span>|</span>
 			<a href='/pages/login/login.jsp'  title='网站管理' target="_blank">网站管理</a>
 		</div>
@@ -17,3 +17,9 @@
 		</div>
 	</div>
 </footer>
+<script type="text/javascript">
+	 function addFeedback(category){
+   		var url ="/app/wFeedbackAction/toAddFeedback?category="+category;
+   		window.location.href=url;
+   	 }
+</script>

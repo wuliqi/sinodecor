@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import cn.app118.constants.SystemConstant;
 
 /**
@@ -29,7 +31,9 @@ import cn.app118.constants.SystemConstant;
  * @data: 2015-5-16
  */
 public class App118Filter implements Filter {
+	public Logger log = Logger.getLogger(this.getClass());
     private static String urls;
+    private static boolean flag=false;//是否打印权限信息
 
     /**
      * @title:参数初始化
@@ -56,7 +60,7 @@ public class App118Filter implements Filter {
         req.setAttribute("path", req.getContextPath());
         //过滤器器中维护的特定url和模块中的jsp页面不进行拦截
         if(!uri.matches(urls) && uri.indexOf("/app/")!=0 && uri.indexOf("/client/")!=0){
-        	System.out.println("###非法："+uri);
+        	if(flag)log.info("###非法请求："+uri);
             //如果没有登陆，或者请求session超时都返回重新登陆 
             Object so = req.getSession().getAttribute("user");
             if(so == null || so.equals("")){
@@ -70,7 +74,7 @@ public class App118Filter implements Filter {
                 return;
             }
          }
-        System.out.println("###正常："+uri);
+        if(flag)log.info("###正常请求："+uri);
         chain.doFilter(request, response);
     }
     

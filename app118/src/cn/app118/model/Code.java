@@ -1,5 +1,5 @@
 /**
- * @(#)UserAction.java	08/21/2015
+ * @(#)Code.java	08/21/2015
  * 
  * Copyright (c) 2015 app118.cn.All rights reserved.
  * Created by 2015-08-21

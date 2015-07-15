@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.app118.dao.feedback.FeedbackMapper">
+	<resultMap id="BaseResultMap" type="cn.app118.model.Feedback">
+		<id column="fd_id" property="fdId" jdbcType="INTEGER" />
+		<result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+		<result column="category" property="category" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		fd_id, phone_number, category, content, create_time
+	</sql>
+	<sql id="Base_Column_List_Pager">
+		fd_id fdId, phone_number phoneNumber, category category, content content,
+		create_time createTime
+	</sql>
+	<sql id="pager">
+		limit ${start},${len}
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_feedback
+		where fd_id = #{fdId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from sys_feedback
+		where fd_id = #{fdId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.app118.model.Feedback">
+		insert into sys_feedback (fd_id, phone_number, category,
+		content, create_time)
+		values (#{fdId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR},
+		#{category,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.app118.model.Feedback">
+		insert into sys_feedback
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="fdId != null">
+				fd_id,
+			</if>
+			<if test="phoneNumber != null">
+				phone_number,
+			</if>
+			<if test="category != null">
+				category,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="fdId != null">
+				#{fdId,jdbcType=INTEGER},
+			</if>
+			<if test="phoneNumber != null">
+				#{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="category != null">
+				#{category,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.app118.model.Feedback">
+		update sys_feedback
+		<set>
+			<if test="phoneNumber != null">
+				phone_number = #{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="category != null">
+				category = #{category,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where fd_id = #{fdId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.app118.model.Feedback">
+		update sys_feedback
+		set phone_number = #{phoneNumber,jdbcType=VARCHAR},
+		category = #{category,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where fd_id = #{fdId,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectByPager" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List_Pager" />
+		from sys_feedback
+		<where>
+			<if test="phoneNumber != null">
+				and instr(phone_number,#{phoneNumber,jdbcType=VARCHAR})>0
+			</if>
+			<if test="category != null">
+				and category = #{category,jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				and content = #{content,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="fdId != null">
+				and fd_id = #{fdId,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+	<select id="selectByPagerCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(fd_id)
+		from sys_feedback
+		<where>
+			<if test="phoneNumber != null">
+				and instr(phone_number,#{phoneNumber,jdbcType=VARCHAR})>0
+			</if>
+			<if test="category != null">
+				and category = #{category,jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				and content = #{content,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="fdId != null">
+				and fd_id = #{fdId,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+</mapper>

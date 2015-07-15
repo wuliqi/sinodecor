@@ -139,7 +139,6 @@ public class WWebAction {
 				oneMap.put("createTime", DateUtil.getFormatDate(createTime, "yyyy-MM-dd"));// 创建时间
 			}
 		}*/
-		System.out.println("首页友情链接："+list.size());
 		jsonMap.put("list", list);
 		return jsonMap;
 	}
