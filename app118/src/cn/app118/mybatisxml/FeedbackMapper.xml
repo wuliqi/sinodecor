@@ -12,7 +12,8 @@
 		fd_id, phone_number, category, content, create_time
 	</sql>
 	<sql id="Base_Column_List_Pager">
-		fd_id fdId, phone_number phoneNumber, category category, content content,
+		fd_id fdId, phone_number phoneNumber, category category,
+		content content,
 		create_time createTime
 	</sql>
 	<sql id="pager">
@@ -27,15 +28,19 @@
 		where fd_id = #{fdId,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from sys_feedback
+		delete from
+		sys_feedback
 		where fd_id = #{fdId,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="cn.app118.model.Feedback">
-		insert into sys_feedback (fd_id, phone_number, category,
+		insert into sys_feedback
+		(fd_id, phone_number, category,
 		content, create_time)
-		values (#{fdId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR},
+		values
+		(#{fdId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR},
 		#{category,jdbcType=VARCHAR},
-		#{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+		#{content,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP})
 	</insert>
 	<insert id="insertSelective" parameterType="cn.app118.model.Feedback">
 		insert into sys_feedback
@@ -93,11 +98,14 @@
 		where fd_id = #{fdId,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="cn.app118.model.Feedback">
-		update sys_feedback
+		update
+		sys_feedback
 		set phone_number = #{phoneNumber,jdbcType=VARCHAR},
 		category = #{category,jdbcType=VARCHAR},
-		content = #{content,jdbcType=VARCHAR},
-		create_time = #{createTime,jdbcType=TIMESTAMP}
+		content =
+		#{content,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP}
 		where fd_id = #{fdId,jdbcType=INTEGER}
 	</update>
 
@@ -116,8 +124,15 @@
 			<if test="content != null">
 				and content = #{content,jdbcType=VARCHAR}
 			</if>
-			<if test="createTime != null">
-				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			<if test="fromCreateTime != null">
+			<![CDATA[
+		   	 and create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+			</if>
+			<if test="toCreateTime != null">
+			<![CDATA[
+		   	 and  create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
 			</if>
 			<if test="fdId != null">
 				and fd_id = #{fdId,jdbcType=INTEGER}
@@ -138,8 +153,15 @@
 			<if test="content != null">
 				and content = #{content,jdbcType=VARCHAR}
 			</if>
-			<if test="createTime != null">
-				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			<if test="fromCreateTime != null">
+			<![CDATA[
+		   	 and create_time >= #{fromCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
+			</if>
+			<if test="toCreateTime != null">
+			<![CDATA[
+		   	 and  create_time <= #{toCreateTime,jdbcType=TIMESTAMP}
+		    ]]>
 			</if>
 			<if test="fdId != null">
 				and fd_id = #{fdId,jdbcType=INTEGER}
