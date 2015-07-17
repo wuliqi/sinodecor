@@ -13,7 +13,7 @@
 		</div>
 		<div class="foot-text">
 			<p>${system.webName} 版权所有 ©2015-2025  ${system.icp}  <script src="http://s4.cnzz.com/z_stat.php?id=1254781847&web_id=1254781847" language="JavaScript"></script> version:${system.version}</p>
-			<p>手机号码：18810790739   QQ:408873941  Email:wRitchie@app118.cn</p>
+			<p>手机号码：18810790739   QQ:408873941  Email:wRitchie@sohu.cn</p>
 		</div>
 	</div>
 </footer>

@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8" />
 <title>${system.webName}</title>
-<meta name="description" content="网站描述，一般显示在搜索引擎搜索结果中的描述文字，用于介绍网站，吸引浏览者点击。" />
-<meta name="keywords" content="网站关键词" />
+<meta name="description" content="莎琪美妆--为您的美丽而服务" />
+<meta name="keywords" content="莎琪美妆 Chanel 香奈儿   欧珀莱/AUPRES " />
 <link href="favicon.ico" rel="shortcut icon" />
 
 <link rel='stylesheet' type='text/css' href='/web/css/css.css'/>
