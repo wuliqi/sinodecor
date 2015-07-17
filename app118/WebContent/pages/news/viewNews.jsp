@@ -45,7 +45,7 @@
 				
 				<c:choose>
 					<c:when test="${!empty  news.newsThumbnail}">
-						<img src="/app118/newsAction/showImage?newsThumbnail=${news.newsThumbnail}" border="0"  width="130px" height="86px"/>
+						<img src="/upload/news/${news.newsThumbnail}" border="0"  width="130px" height="86px"/>
 					</c:when>
 					<c:otherwise>
 						

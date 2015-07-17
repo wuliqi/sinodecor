@@ -238,7 +238,7 @@ function initAbout(){
 		data:{newsId:12},
 		dataType:'json',
 		success:function(news){
-			var imgUrl="/app/wContentAction/showImage?newsThumbnail="+news.news.newsThumbnail;
+			var imgUrl="/upload/news/"+news.news.newsThumbnail;
 			$("#aboutImg").attr("src",imgUrl);   
 			$("#aboutContent").html(news.news.newsContent);
 		},
@@ -297,7 +297,7 @@ function initCase(htmlId,newsCategory,newsCategoryCn){
 					"<dt style=\"height: 86px;\" >"+
 					"<a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' target='_self'>"+
-						"<img src='/app/wContentAction/showImage?newsThumbnail="+news.newsThumbnail+"' alt='"+news.newsTitle+"' title='"+news.newsTitle+"' style='width:116px; height:80px;' />"+
+						"<img src='/upload/news/"+news.newsThumbnail+"' alt='"+news.newsTitle+"' title='"+news.newsTitle+"' style='width:116px; height:80px;' />"+
 					"</a>"+
 					"</dt>"+
 					"<dd style=\"width: 149px; height: 86px;\">"+
@@ -335,13 +335,13 @@ function initViwepager(htmlId,newsCategory,newsCategoryCn){
 				if(i==0){
 					html=html+"<li class='list' style='height: 157px; margin: 0px 15px; position: relative; left: 0px;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"'  class='img'>"+
-					"<img src='/app/wContentAction/showImage?newsThumbnail="+news.newsThumbnail+"'  width='160' height='130' /></a>"+
+					"<img src='/upload/news/"+news.newsThumbnail+"'  width='160' height='130' /></a>"+
 					"<h3 style='width:160px;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' title='"+news.newsTitle+"' target='_self'>"+news.newsTitle+"</a></h3></li>";
 				}else{
 					html=html+"<li class='list' style='height: 157px; margin: 0px 15px; position: relative;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"'  class='img'>"+
-					"<img src='/app/wContentAction/showImage?newsThumbnail="+news.newsThumbnail+"'  width='160' height='130' /></a>"+
+					"<img src='/upload/news/"+news.newsThumbnail+"'  width='160' height='130' /></a>"+
 					"<h3 style='width:160px;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' title='"+news.newsTitle+"' target='_self'>"+news.newsTitle+"</a></h3></li>";
 				}
