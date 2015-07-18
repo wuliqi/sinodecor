@@ -6,7 +6,8 @@
 <title>${system.webName}</title>
 <meta name="description" content="莎琪美妆--为您的美丽而服务" />
 <meta name="keywords" content="莎琪美妆 Chanel 香奈儿   欧珀莱/AUPRES " />
-<link href="favicon.ico" rel="shortcut icon" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
 
 <link rel='stylesheet' type='text/css' href='/web/css/css.css'/>
 

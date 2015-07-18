@@ -38,7 +38,7 @@
 				邮 &nbsp;编：100086
 			</div>
 			<div>
-				Email：wRitchie@app118.cn
+				Email：wRitchie@sohu.com
 			</div>
 			<div>
 				网 &nbsp;址：<a href="http://www.app118.cn">www.app118.cn</a>
