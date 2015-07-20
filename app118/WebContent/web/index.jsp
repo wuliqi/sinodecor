@@ -389,11 +389,11 @@ function initFriendLink(htmlId){
 	<div id="open_im" class="open-im">&nbsp;</div>  
 	<div class="im_main" id="im_main">
 		<div id="close_im" class="close-im"><a href="javascript:void(0);" title="点击关闭">&nbsp;</a></div>
-		<a href="http://wpa.qq.com/msgrd?v=3&uin=408873941&site=qq&menu=yes" target="_blank" class="im-qq qq-a" title="在线QQ客服">
-			<div class="qq-container"></div>
-			<div class="qq-hover-c"><img class="img-qq" src="/web/qq/images/qq.png"></div>
-			<span> QQ在线咨询</span>
-		</a>
+			<a href="http://wpa.qq.com/msgrd?v=3&uin=408873941&site=qq&menu=yes" target="_blank" class="im-qq qq-a" title="在线QQ客服">
+				<div class="qq-container"></div>
+				<div class="qq-hover-c"><img class="img-qq" src="/web/qq/images/qq.png"></div>
+				<span> QQ在线咨询</span>
+			</a>
 		<div class="im-tel">
 			<div>售前咨询热线</div>
 			<div class="tel-num">18801459612</div>
