@@ -7,7 +7,7 @@
     <!-- <properties resource="mybatis.properties" /> -->
     <!-- *若工程项目不在D:/develop/app118，此处修改为自已工程所在的路径 *
     <properties url="file:////G:/andoid/awork1/app118/src/mybatis.properties" />-->
-    <properties url="file:////D:/gitRepo/app118/src/mybatis.properties" />
+    <properties url="file:////F:/git/app118/app118/src/mybatis.properties" />
     
 	<classPathEntry location="${project.root}/WebContent/WEB-INF/lib/mysql-connector-java-5.1.18-bin.jar" />
 	
