@@ -409,7 +409,7 @@ function initFriendLink(htmlId){
 					<div class="weixing-sanjiao-big"></div>
 				</div>
 			</div>
-			<div class="go-top"><a href="javascript:;" title="返回顶部"></a> </div>
+			<div class="go-top"><a href="javascript:scroll(0,0);" title="返回顶部"></a> </div>
 			<div style="clear:both"></div>
 		</div>
 	</div>
