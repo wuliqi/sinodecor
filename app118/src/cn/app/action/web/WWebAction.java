@@ -131,6 +131,8 @@ public class WWebAction {
 		map.put("start", start);
 		map.put("len", max);
 		/************* 分页处理 ****************/
+		String orderbyStr = " order by web_id desc ";
+		map.put("orderBy", orderbyStr);
 		List<Map> list = new ArrayList<Map>();
 		list = webService.selectByPager(map);
 		/*for (Map oneMap : list) {
