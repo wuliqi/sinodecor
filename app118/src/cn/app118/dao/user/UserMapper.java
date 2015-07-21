@@ -1,5 +1,5 @@
 /**
- * @(#)UserAction.java	05/22/2015
+ * @(#)UserMapper.java	05/22/2015
  * 
  * Copyright (c) 2015 app118.cn.All rights reserved.
  * Created by 2015-05-22

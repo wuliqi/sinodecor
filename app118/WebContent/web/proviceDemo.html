@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>全国省市区三级联动示例</title>
+<script src="/web/js/jQuery1.7.2.js" type="text/javascript"></script>
+</head>
+<body>
+	<select name="province" id="province" style="width: 220px;"
+		onchange="doProvinceChange(this.value)">
+		<option value="">---请选择---</option>
+	</select>
+
+	<select name="city" id="city" style="width: 220px;"
+		onchange="doCityChange(this.value)">
+		<option value="">---请选择---</option>
+
+	</select>
+
+	<select name="district" id="district" style="width: 220px;">
+		<option value="">---请选择---</option>
+
+	</select>
+
+<script type="text/javascript">
+function initProvice(){
+	var provinceSelect = document.getElementById("province");
+	provinceSelect.options.length=0; 
+	var objOption =new Option(("","---请选择---")); 
+	provinceSelect.options[provinceSelect.options.length] = objOption;
+	
+	initSelect(provinceSelect,1);
+}
+//省选择后级联市
+function doProvinceChange(parentId){
+	//清除市
+	var citySelect = document.getElementById("city");
+	citySelect.options.length=0; 
+ 	var objOption =new Option(("","---请选择---")); 
+ 	citySelect.options[citySelect.options.length] = objOption;
+ 	
+ 	
+	//清除区
+	var districtSelect = document.getElementById("district");
+	districtSelect.options.length=0; 
+	var objOption =new Option(("","---请选择---")); 
+ 	districtSelect.options[districtSelect.options.length] = objOption;
+ 	
+	initSelect(citySelect,parentId);
+}
+//市选择后级联区
+function doCityChange(parentId){
+	//清除区
+	var districtSelect = document.getElementById("district");
+	districtSelect.options.length=0; 
+ 	var objOption =new Option(("","---请选择---")); 
+ 	districtSelect.options[districtSelect.options.length] = objOption;
+ 	
+	initSelect(districtSelect,parentId);
+}
+
+function initSelect(selectId,parentId){
+	var url="/app/wRegionAction/listRegion";
+	$.ajax({
+		type:'POST',
+		url:url,
+		data:{parentId:parentId},
+		dataType:'json',
+		success:function(json){
+			var jsonObj = eval(json.list);
+			
+			for(var i=0;i<jsonObj.length;i++){
+				var region=jsonObj[i];
+				var objOption = new Option(region.regionName,region.regionId);   
+				selectId.options[selectId.options.length] = objOption;
+			}
+		},
+		error:function(){
+			$.ligerDialog.error("操作失败。");
+		}
+	});
+}
+initProvice();
+</script>
+</body>
+</html>
