@@ -52,7 +52,7 @@
 		</h3>
 		<div class="active editor clear contour-1">
 			<div>
-				<img id="aboutImg" alt="" src="http://demo.metinfo.cn/upload/images/20120716_094159.jpg" style="margin: 8px; width: 196px; float: left; height: 209px; " />
+				<img id="aboutImg" alt="" src="/web/images/20120716_094159.jpg" style="margin: 8px; width: 196px; float: left; height: 209px; " />
 			</div>
 			<div id="aboutContent"></div>
 			<div class="clear"></div>
@@ -163,7 +163,7 @@
 	<!-- 招聘结束 -->
 	
     <!-- 底部轮播图片开始 -->
-	<div class="index-product style-2"  >
+	<div class="index-product style-2">
 		<h3 class='title myCorner' data-corner='top 5px'>
 			 <span></span>
 			 <div class="flip">
@@ -174,7 +174,6 @@
 			<a href="/app/wContentAction/listContentByPager?curNo=1&newsCategory=5&newsCategoryCn=客户案例"  class="more">更多>></a>
 		</h3>
 		<div class="active clear" >
-		
 			<div class="profld" id="indexcar" data-listnum="5">
 				<ol class='list-none metlist' id="viewpagerTitle">
 					 <li class='list'><a href='#'  class='img'><img src='images/1342405015.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' >示例产品八</a></h3></li>
@@ -182,10 +181,11 @@
 					 <li class='list'><a href='#'  class='img'><img src='images/1342404422.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' title='示例产品六' target='_self'>示例产品六</a></h3></li>
 					 <li class='list'><a href='#'  class='img'><img src='images/1342404144.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' title='示例产品三' target='_self'>示例产品三</a></h3></li>
 					 <li class='list'><a href='#'  class='img'><img src='images/1342360923.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' title='示例产品五' target='_self'>示例产品五</a></h3></li>
-					 <li class='list'><a href='#'  class='img'><img src='images/1342405015.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' title='示例产品四' target='_self'>示例产品四</a></h3></li>
+					 
+					 <!-- <li class='list'><a href='#'  class='img'><img src='images/1342405015.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' title='示例产品四' target='_self'>示例产品四</a></h3></li>
 					 <li class='list'><a href='#'  class='img'><img src='images/1342404144.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#' title='示例产品二' target='_self'>示例产品二</a></h3></li>
 					 <li class='list'><a href='#'  class='img'><img src='images/1342360923.jpg'  width='160' height='130' /></a><h3 style='width:160px;'><a href='#'>示例产品一</a></h3></li> 
-					 
+					  -->
 				</ol>
 			 </div>
 		 </div>
@@ -325,8 +325,7 @@ function initViwepager(htmlId,newsCategory,newsCategoryCn){
 	$.ajax({
 		type:'POST',
 		url:url,
-		async: false, 
-		data:{"curNo":1,"curSize":20,"newsCategory":newsCategory},
+		data:{"curNo":1,"curSize":5,"newsCategory":newsCategory},
 		dataType:'json',
 		success:function(json){
 			var jsonObj = eval(json.list);
@@ -334,15 +333,15 @@ function initViwepager(htmlId,newsCategory,newsCategoryCn){
 			for(var i=0;i<jsonObj.length;i++){
 				var news=jsonObj[i];
 				if(i==0){
-					html=html+"<li class='list' style='height: 157px; margin: 0px 15px; position: relative; left: 0px;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
+					html=html+"<li class='list'  style='height: 157px; margin: 0px 15px; position: relative; left: 0px;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"'  class='img'>"+
-					"<img src='/upload/news/"+news.newsThumbnail+"'  width='160' height='130' /></a>"+
+					"<img src='/upload/news/"+news.newsThumbnail+"'  width='160' height='122' border='0'/></a>"+
 					"<h3 style='width:160px;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' title='"+news.newsTitle+"' target='_self'>"+news.newsTitle+"</a></h3></li>";
 				}else{
 					html=html+"<li class='list' style='height: 157px; margin: 0px 15px; position: relative;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"'  class='img'>"+
-					"<img src='/upload/news/"+news.newsThumbnail+"'  width='160' height='130' /></a>"+
+					"<img src='/upload/news/"+news.newsThumbnail+"'  width='160' height='122' border='0'/></a>"+
 					"<h3 style='width:160px;'><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
 					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' title='"+news.newsTitle+"' target='_self'>"+news.newsTitle+"</a></h3></li>";
 				}
@@ -384,7 +383,7 @@ function initFriendLink(htmlId){
 
 
 <link href="/web/qq/css/qqconsult.css" rel="stylesheet" type="text/css" />
-<!-- 代码部分 begin -->
+<!-- 代码部分QQ在线咨询 begin -->
 <div class="main-im">
 	<div id="open_im" class="open-im">&nbsp;</div>  
 	<div class="im_main" id="im_main">
@@ -438,6 +437,6 @@ $(function(){
 	});
 });
 </script>
-<!-- 代码部分 end-->
+<!-- 代码部分QQ在线咨询 end-->
 </body>
 </html>
