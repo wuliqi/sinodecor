@@ -265,11 +265,11 @@ function initNews(htmlId,newsCategory,newsCategoryCn){
 				if(i==0){
 					html=html+"<li class='list top'><span class='time'>"+news.createTime+
 					"</span><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
-					"&newsCategory="+news.newsCategory+"&newsCategoryCn='"+newsCategoryCn+" >"+news.newsTitle+"</a></li>";
+					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' >"+news.newsTitle+"</a></li>";
 				}else{
 					html=html+"<li class='list'><span class='time'>"+news.createTime+
 					"</span><a href='/app/wContentAction/viewContent?newsId="+news.newsId+
-					"&newsCategory="+news.newsCategory+"&newsCategoryCn='"+newsCategoryCn+" >"+news.newsTitle+"</a></li>";
+					"&newsCategory="+news.newsCategory+"&newsCategoryCn="+newsCategoryCn+"' >"+news.newsTitle+"</a></li>";
 				}
 			}
 			$("#"+htmlId).html(html);
