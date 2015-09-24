@@ -9,7 +9,7 @@
 <body>
 <script language="javascript" type="text/javascript"> 
 	//window.location.href="http://shaqi.taobao.com"; 
-	window.location.href="/client/index.jsp"; 
+	window.location.href="/web/index.jsp"; 
 </script>
 </body>
 </html>

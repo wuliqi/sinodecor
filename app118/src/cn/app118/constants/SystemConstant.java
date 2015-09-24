@@ -18,11 +18,11 @@ import java.util.TreeMap;
 public class SystemConstant {
 	public static String SYSTEM_NAME = "后台管理系统";//系统名称
 	
-	public static String SYSTEM_WEB_NAME = "莎琪美妆";//前端网站标题
+	public static String SYSTEM_WEB_NAME = "一诺双盈";//前端网站标题
 	
-	public static String SYSTEM_ICP = "京ICP备15013782号";//ICP备号
+	public static String SYSTEM_ICP = "京ICP备150137**号";//ICP备号
 	
-	public static String COMPANY_SIGNATURE = " 【莎琪美妆】";//公司签名
+	public static String COMPANY_SIGNATURE = " 【一诺双盈】";//公司签名
 
 	public static String WEB_SYSTEM_VERSION = "1.0.0";//后台系统版本号  2015-03-12
 	
@@ -72,9 +72,9 @@ public class SystemConstant {
 	public static String IGETUI_MASTER_SECRET_PASSENGER = "oHkZMXnnG88Iz8aRwqVou9";
 	public static String IGETUI_HOST_PASSENGER = "http://sdk.open.api.igexin.com/apiex.htm";
 	
-	public static String SYSTEM_EMAIL = "app118@app118.cn";//系统邮箱
+	public static String SYSTEM_EMAIL = "bjtowin@bjtowin.com";//系统邮箱
 	
-	public static String BASE_URL = "http://app.app118.cn";//系统URL
+	public static String BASE_URL = "http://www.bjtowin.com";//系统URL
 	
 	public static boolean SYSTEM_SWITCH = false;//系统开关标记
 	
